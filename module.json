@@ -2,7 +2,7 @@
   "id": "meu-modulo-rpg",
   "title": "Meu Módulo RPG",
   "description": "Conjunto de funções customizadas para mesas de RPG com D&D 5e.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "authors": [{ "name": "GM" }],
   "compatibility": {
     "minimum": "13",
@@ -19,3 +19,4 @@
   "url": "hhttps://github.com/Samuel-S-Gomes/little-details-foundry/",
   "download": "https://github.com/Samuel-S-Gomes/little-details-foundry/releases/latest/download/meu-modulo-rpg.zip"
 }
+teste
