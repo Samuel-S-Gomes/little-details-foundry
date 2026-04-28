@@ -1,0 +1,37 @@
+name: Release do Módulo
+
+on:
+  push:
+    tags:
+      - 'v*'   # Dispara em qualquer tag que comece com "v", ex: v0.2.0
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # Necessário para criar releases
+
+    steps:
+      - name: 📥 Baixar código
+        uses: actions/checkout@v4
+
+      - name: 🏷️ Extrair versão da tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: 📦 Criar o .zip do módulo
+        run: |
+          zip -r meu-modulo-rpg.zip . \
+            --exclude "*.git*"       \
+            --exclude ".github/*"    \
+            --exclude "release.sh"   \
+            --exclude "*.zip"
+
+      - name: 🚀 Criar Release e anexar o .zip
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "v${{ steps.get_version.outputs.VERSION }}"
+          files: meu-modulo-rpg.zip
+          generate_release_notes: true   # Gera notas automáticas com base nos commits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

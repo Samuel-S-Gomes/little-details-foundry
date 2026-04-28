@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Publicar Módulo RPG
+Comment=Publica uma nova versão do módulo no GitHub
+Exec=bash -c 'cd "$(dirname "%k")" && bash release.sh'
+Icon=system-software-update
+Terminal=false
+Categories=Utility;
