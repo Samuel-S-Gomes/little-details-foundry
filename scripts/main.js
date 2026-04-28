@@ -68,7 +68,16 @@ Hooks.on('updateActor', (actor, changes, options) => {
     return sourceId === WATCHED_ITEM_UUID;
   });
 
-  if (!hasItemEquipped) return;
+  // Recupera o item vigiado equipado para exibir o nome no popup
+  const watchedItem = actor.items.find(item => {
+    if (!item.system?.equipped) return false;
+    const sourceId = item.flags?.core?.sourceId
+      ?? foundry.utils.getProperty(item, '_stats.compendiumSource')
+      ?? null;
+    return sourceId === WATCHED_ITEM_UUID;
+  });
+
+  const damageTaken = previousHp - newHp;
 
   // ── Exibe o pop-up ao GM ──────────────────────────────────────────────────
   new Dialog({
@@ -76,14 +85,19 @@ Hooks.on('updateActor', (actor, changes, options) => {
     content: `
       <div style="
         text-align: center;
-        padding: 12px 8px;
+        padding: 14px 10px;
         font-family: var(--font-primary);
       ">
-        <p style="font-size: 1.15em; margin: 0;">
+        <p style="font-size: 1.2em; margin: 0 0 6px 0;">
           <strong>${actor.name}</strong> foi atingido!
         </p>
-        <p style="font-size: 0.85em; color: #888; margin-top: 6px;">
-          HP: ${previousHp} → ${newHp}
+        <p style="font-size: 0.9em; color: #c0392b; margin: 0 0 4px 0;">
+          ❤️ HP: ${previousHp} → ${newHp}
+          &nbsp;|&nbsp;
+          <strong>-${damageTaken}</strong>
+        </p>
+        <p style="font-size: 0.8em; color: #888; margin: 8px 0 0 0;">
+          🛡️ Item: <em>${watchedItem?.name ?? 'Item especial'}</em>
         </p>
       </div>
     `,
