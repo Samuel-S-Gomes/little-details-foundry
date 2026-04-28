@@ -17,3 +17,6 @@ package-lock.json
 # Build / dist
 dist/
 *.zip
+
+# Token local (nunca enviar ao GitHub)
+.token
