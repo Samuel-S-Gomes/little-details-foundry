@@ -45,11 +45,13 @@ jobs:
             --exclude "packs/*/_source/*" \
             --exclude "*.zip"
 
-      - name: 🚀 Criar Release e anexar o .zip
+      - name: 🚀 Criar Release e anexar o .zip + module.json
         uses: softprops/action-gh-release@v2
         with:
           name: "v${{ steps.get_version.outputs.VERSION }}"
-          files: meu-modulo-rpg.zip
+          files: |
+            meu-modulo-rpg.zip
+            module.json
           generate_release_notes: true   # Gera notas automáticas com base nos commits
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
