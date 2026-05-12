@@ -3,7 +3,7 @@
   "_key": "!items!HKFlightningDest",
   "name": "Lighting Destruction",
   "type": "feat",
-  "img": "icons/magic/lightning/bolt-strike-forked-blue.webp",
+  "img": "icons/magic/lightning/bolts-forked-large-blue.webp",
   "folder": "HKOstormKnightFt",
   "sort": 700,
   "ownership": { "default": 0 },
@@ -22,7 +22,7 @@
         "_id": "actLtgDstSav0001",
         "type": "save",
         "name": "Chain Lightning (Primary)",
-        "img": "icons/magic/lightning/bolt-strike-forked-blue.webp",
+        "img": "icons/magic/lightning/bolts-forked-large-blue.webp",
         "sort": 100,
         "activation": { "type": "action", "value": 1, "condition": "Primary target within 150 ft. Then three bolts leap to up to three other targets within 30 ft of the first.", "override": true },
         "consumption": {

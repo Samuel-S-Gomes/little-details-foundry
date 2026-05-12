@@ -3,7 +3,7 @@
   "_key": "!items!HKFdestructTorn1",
   "name": "Destructive Tornado",
   "type": "feat",
-  "img": "icons/magic/air/wind-tornado-cyclone-blue.webp",
+  "img": "icons/magic/air/wind-tornado-cyclone-purple-blue.webp",
   "folder": "HKOfeatures00001",
   "sort": 400,
   "ownership": { "default": 0 },
@@ -22,7 +22,7 @@
         "_id": "actDesTornSave01",
         "type": "save",
         "name": "Destructive Tornado",
-        "img": "icons/magic/air/wind-tornado-cyclone-blue.webp",
+        "img": "icons/magic/air/wind-tornado-cyclone-purple-blue.webp",
         "sort": 100,
         "activation": { "type": "action", "value": 1, "condition": "", "override": true },
         "consumption": {

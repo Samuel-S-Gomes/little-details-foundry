@@ -3,7 +3,7 @@
   "_key": "!items!HKFknightOrder01",
   "name": "Knight Order",
   "type": "feat",
-  "img": "icons/skills/melee/strike-sword-greatsword-yellow.webp",
+  "img": "icons/skills/melee/strike-sword-stabbed-brown.webp",
   "folder": "HKOfeatures00001",
   "sort": 500,
   "ownership": { "default": 0 },

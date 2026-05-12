@@ -3,7 +3,7 @@
   "_key": "!items!HKFthunderousStm",
   "name": "Thunderous Storm",
   "type": "feat",
-  "img": "icons/magic/lightning/bolt-strike-forked-blue.webp",
+  "img": "icons/magic/lightning/bolts-forked-large-blue.webp",
   "folder": "HKOstormKnightFt",
   "sort": 600,
   "ownership": { "default": 0 },
