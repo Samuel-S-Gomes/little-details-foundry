@@ -3,7 +3,7 @@
   "_key": "!items!HKSstormKnight00",
   "name": "Storm Knight",
   "type": "subclass",
-  "img": "icons/magic/lightning/bolt-strike-blue.webp",
+  "img": "icons/magic/lightning/bolt-forked-blue.webp",
   "folder": "HKOclasssub00001",
   "sort": 300,
   "ownership": { "default": 0 },
@@ -65,7 +65,7 @@
         },
         "value": {},
         "title": "Resistance",
-        "icon": "icons/magic/lightning/bolt-strike-yellow.webp",
+        "icon": "icons/magic/lightning/bolt-forked-blue-yellow.webp",
         "classRestriction": ""
       },
       {
@@ -131,7 +131,7 @@
         },
         "value": {},
         "title": "Thunder Blast Die",
-        "icon": "icons/magic/lightning/bolt-strike-blue.webp",
+        "icon": "icons/magic/lightning/bolt-forked-blue.webp",
         "classRestriction": ""
       },
       {
@@ -147,7 +147,7 @@
         },
         "value": {},
         "title": "Storm Heart Bonus Damage",
-        "icon": "icons/magic/lightning/bolt-strike-yellow.webp",
+        "icon": "icons/magic/lightning/bolt-forked-blue-yellow.webp",
         "classRestriction": ""
       },
       {
@@ -164,7 +164,7 @@
         },
         "value": {},
         "title": "Electrify Damage",
-        "icon": "icons/magic/lightning/bolt-blast-yellow.webp",
+        "icon": "icons/magic/lightning/bolts-forked-large-orange.webp",
         "classRestriction": ""
       }
     ]

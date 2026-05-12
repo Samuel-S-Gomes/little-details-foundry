@@ -3,7 +3,7 @@
   "_key": "!items!HKFdefensiveGust",
   "name": "Defensive Gust",
   "type": "feat",
-  "img": "icons/magic/air/wind-shield-blue.webp",
+  "img": "icons/magic/air/wind-tornado-spiral-blue-gray.webp",
   "folder": "HKOfeatures00001",
   "sort": 1000,
   "ownership": { "default": 0 },
@@ -22,7 +22,7 @@
         "_id": "actDefGustUtl001",
         "type": "utility",
         "name": "Defensive Gust",
-        "img": "icons/magic/air/wind-shield-blue.webp",
+        "img": "icons/magic/air/wind-tornado-spiral-blue-gray.webp",
         "sort": 100,
         "activation": { "type": "reaction", "value": 1, "condition": "When hit by an attack or targeted by a harmful effect", "override": true },
         "consumption": {

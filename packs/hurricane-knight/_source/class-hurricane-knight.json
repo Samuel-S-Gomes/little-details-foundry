@@ -3,7 +3,7 @@
   "_key": "!items!HKCmainHurricane",
   "name": "Hurricane Knight",
   "type": "class",
-  "img": "icons/magic/air/wind-tornado-stream-blue.webp",
+  "img": "icons/magic/air/wind-stream-purple-blue.webp",
   "folder": "HKOclasssub00001",
   "sort": 100,
   "ownership": { "default": 0 },
@@ -503,7 +503,7 @@
         },
         "value": {},
         "title": "Air Blast Distance",
-        "icon": "icons/magic/air/wind-stream-blue.webp",
+        "icon": "icons/magic/air/wind-stream-blue-gray.webp",
         "classRestriction": ""
       },
       {
@@ -521,7 +521,7 @@
         },
         "value": {},
         "title": "Destructive Tornado Damage",
-        "icon": "icons/magic/air/wind-tornado-cyclone-blue.webp",
+        "icon": "icons/magic/air/wind-tornado-cyclone-purple-blue.webp",
         "classRestriction": ""
       },
       {
@@ -538,7 +538,7 @@
         },
         "value": {},
         "title": "Defensive Gust Uses",
-        "icon": "icons/magic/air/wind-vortex-yellow.webp",
+        "icon": "icons/magic/air/air-burst-spiral-yellow.webp",
         "classRestriction": ""
       }
     ]

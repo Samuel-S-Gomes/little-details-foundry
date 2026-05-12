@@ -3,7 +3,7 @@
   "_key": "!items!HKFwindBody00001",
   "name": "Wind Body",
   "type": "feat",
-  "img": "icons/magic/air/wind-vortex-large-yellow.webp",
+  "img": "icons/magic/air/air-burst-spiral-large-yellow.webp",
   "folder": "HKOsteelwindFts1",
   "sort": 500,
   "ownership": { "default": 0 },
@@ -22,7 +22,7 @@
         "_id": "actWndBodyUtl001",
         "type": "utility",
         "name": "Cast Investiture of Wind",
-        "img": "icons/magic/air/wind-vortex-large-yellow.webp",
+        "img": "icons/magic/air/air-burst-spiral-large-yellow.webp",
         "sort": 100,
         "activation": { "type": "action", "value": 1, "condition": "Concentration, up to 10 minutes. Charisma is your spellcasting ability for this spell.", "override": true },
         "consumption": {

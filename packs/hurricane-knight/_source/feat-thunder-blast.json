@@ -3,7 +3,7 @@
   "_key": "!items!HKFthunderBlast1",
   "name": "Thunder Blast",
   "type": "feat",
-  "img": "icons/magic/lightning/bolt-strike-blue.webp",
+  "img": "icons/magic/lightning/bolt-forked-blue.webp",
   "folder": "HKOstormKnightFt",
   "sort": 100,
   "ownership": { "default": 0 },

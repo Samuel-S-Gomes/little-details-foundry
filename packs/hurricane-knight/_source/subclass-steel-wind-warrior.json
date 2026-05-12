@@ -3,7 +3,7 @@
   "_key": "!items!HKSsteelwindWarr",
   "name": "Steel Wind Warrior",
   "type": "subclass",
-  "img": "icons/magic/air/wind-vortex-yellow.webp",
+  "img": "icons/magic/air/air-burst-spiral-yellow.webp",
   "folder": "HKOclasssub00001",
   "sort": 200,
   "ownership": { "default": 0 },
@@ -106,7 +106,7 @@
         },
         "value": {},
         "title": "Rage Tornado Damage",
-        "icon": "icons/magic/air/wind-tornado-cyclone-blue.webp",
+        "icon": "icons/magic/air/wind-tornado-cyclone-purple-blue.webp",
         "classRestriction": ""
       },
       {
@@ -122,7 +122,7 @@
         },
         "value": {},
         "title": "Wind Body Uses",
-        "icon": "icons/magic/air/wind-vortex-yellow.webp",
+        "icon": "icons/magic/air/air-burst-spiral-yellow.webp",
         "classRestriction": ""
       }
     ]

@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.3.1] — 2026-05-12
+
+### Corrigido
+- Ícones das features da Hurricane Knight: paths apontavam para arquivos inexistentes na biblioteca core do Foundry, exibindo o fallback. Substituídos por paths confirmados (cruzados com `spell-icon-migration.json` do dnd5e e fontes oficiais do compêndio do sistema).
+
+---
+
 ## [0.3.0] — 2026-05-12
 
 ### Adicionado
