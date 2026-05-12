@@ -1,31 +1,45 @@
 # CLAUDE.md — Hurricane Knight Implementation State
 
-> Este arquivo documenta o estado da implementação da classe **Hurricane Knight** para o módulo `meu-modulo-rpg` (FoundryVTT v13 + dnd5e 5.3.x). Use-o como ponto de retomada entre sessões.
+> Estado da implementação da classe **Hurricane Knight** para o módulo `meu-modulo-rpg` (FoundryVTT v13 + dnd5e 5.3.x). Use-o como ponto de retomada entre sessões.
+
+---
+
+## Status geral
+
+- ✅ Classe Hurricane Knight + 2 subclasses + 27 features implementadas no compêndio
+- ✅ Pipeline de build (JSON-fonte → LevelDB) via `@foundryvtt/foundryvtt-cli`
+- ✅ Workflow do GitHub Actions com 3 triggers e idempotência
+- ✅ Release **v0.3.0** publicada com `meu-modulo-rpg.zip` (33 KB) + `module.json` (1.190 B)
+- ⚠️ **Bloqueado em teste:** repositório está **privado** → o botão Update do Foundry recebe 404
+  - Usuário aprovou tornar o repo **público**; passos passados a ele
+  - Depois disso, reinstala no Foundry via manifest URL → atualizações futuras funcionam normalmente
+- ⏳ **Pendente:** o usuário ainda vai testar o conteúdo dentro do Foundry
 
 ---
 
 ## Objetivo
 
-Adicionar uma classe homebrew completa de D&D 5e (1–20) ao módulo, num **novo compêndio do tipo Item**, com **automação total** via:
+Adicionar uma classe homebrew completa de D&D 5e (1–20) ao módulo, num **compêndio do tipo Item**, com **automação total** via:
 - `Advancement` (ItemGrant, ItemChoice, Subclass, ScaleValue, Trait, HitPoints, AbilityScoreImprovement)
 - `Activities` do dnd5e 5.x (save, attack, utility, damage)
-- `ActiveEffects` para resistências, voo, bônus de atributo, etc.
-- Compatível com **Midi-QOL** (que o usuário possui instalado)
+- `ActiveEffects` para resistências, voo, bônus de atributo, buffs com duração, etc.
+- Compatível com **Midi-QOL** (instalado na mesa do usuário)
 
-A classe deve "parecer oficial" — integrada com level-up wizard, starting equipment, save DC automático, scale values acessíveis via `@scale.<id>.<key>`.
+A classe deve "parecer oficial" — integrada com level-up wizard, starting equipment, save DC automático (8 + PB + CHA), scale values acessíveis via `@scale.<id>.<key>`.
 
 ### Fonte do conteúdo
 Hurricane Knight (5e Class) — D&D Wiki (GNU FDL 1.3). O texto integral foi colado pelo usuário e está fielmente reproduzido nos documentos. Subclasses: **Steel Wind Warrior** e **Storm Knight**.
 
-### Decisões já tomadas com o usuário
-1. **Wind Armor** → resistência via Active Effect simples + nota descritiva; o Midi-QOL/macro o usuário ajustará depois.
+### Decisões tomadas com o usuário
+1. **Wind Armor** → +PB de AC por 1 round via Active Effect; nota indicando que Midi-QOL pode refinar para ranged-only.
 2. **Hurricane Strike** → standalone Action; sistema não consegue forçar "consome 1 ataque do Attack action".
 3. **Defensive Gust** → "floating step speed" interpretado como velocidade de movimento atual do personagem.
 4. **Wind Body** → spell `investiture of wind` incluído no texto da feature (não está no SRD do dnd5e).
-5. **Thunder Blast** → modifica Air Blast (acrescentando 3ª activity Attack) **e** existe como feat descritivo separado.
+5. **Thunder Blast** → modifica Air Blast (3ª activity Attack adicionada) **e** existe como feat descritivo separado.
 6. **Build** → roda no **GitHub Actions** (não local), via `@foundryvtt/foundryvtt-cli`.
 7. **dnd5e target**: 5.3.x (Foundry v13, regras 2014).
 8. **Idioma**: inglês original.
+9. **Visibilidade do repo**: público (aprovado em sessão; usuário ainda precisa aplicar).
 
 ---
 
@@ -76,7 +90,7 @@ Folders (4):
 | Rage Tornado | `HKFrageTornado01` | 11 |
 | Wind Body | `HKFwindBody00001` | 14 |
 
-**Storm Knight Features (6):**
+**Storm Knight Features (7):**
 | Feature | _id | Level |
 |---|---|---|
 | Thunder Blast | `HKFthunderBlast1` | 3 |
@@ -100,107 +114,106 @@ Folders (4):
   - `storm-heart-bonus-dice` (dice): 1d6 (3) / 2d6 (11)
   - `electrify-dice` (dice): 2d8 (6) / 3d8 (11) / 4d8 (17)
 
----
-
-## Estado atual
-
-### ✅ Já feito
-
-**Infra:**
-- `module.json` atualizado — campo `packs` + `packFolders` adicionados, sistema dnd5e minimum 5.0.0 / verified 5.3.2.
-- `package.json` criado com devDep `@foundryvtt/foundryvtt-cli` e scripts `build:packs` / `clean:packs`.
-- `tools/build-packs.mjs` — script Node que lê `module.json` e compila cada pack de `packs/<name>/_source/*.json` para LevelDB no próprio diretório.
-- `.github/workflows/release.yml` — Node 20 + `npm install` + `npm run build:packs` antes do zip. Exclui `tools/`, `package*.json`, `node_modules/`, `packs/*/_source/*` do release.
-- `.gitignore` — ignora artefatos LevelDB (`*.ldb`, `*.log`, `*.sst`, `CURRENT`, `LOCK`, `MANIFEST*`).
-- `npm install` validado (cli funcional, `compilePack` é uma função).
-
-**Documentos JSON criados em `packs/hurricane-knight/_source/`:**
-- ✅ `_folder-class-subclasses.json`
-- ✅ `_folder-class-features.json`
-- ✅ `_folder-steel-wind.json`
-- ✅ `_folder-storm-knight.json`
-- ✅ `class-hurricane-knight.json` (com 24 advancements: HitPoints + 3 Traits + 9 ItemGrants + 5 ASIs + 1 Subclass + 3 ScaleValues; tabela 1–20 completa no description; startingEquipment configurado)
-- ✅ `subclass-steel-wind-warrior.json` (4 ItemGrants + 2 ScaleValues)
-
-### 🚧 Em andamento
-
-- Subclass `Storm Knight` (a próxima coisa a escrever): 4 ItemGrants + 1 ItemChoice em L3+L14 (pool = {resist lightning, resist thunder}) + 3 ScaleValues.
-
-### ⏳ Pendente — features (26 arquivos JSON)
-
-Para cada feature, precisamos: descrição HTML fiel ao texto da homebrew, requirements ("Hurricane Knight N"), type {value: class|subclass, subtype: hurricane-knight|steel-wind-warrior|storm-knight}, activation, range, target template, activities (save/attack/utility/damage), uses+recovery quando aplicável, ActiveEffects quando aplicável.
-
-**Class Features (15):**
-1. Wind Armor — bonus action (utility, 1 round AE para AC) + reaction (Str save, push 5ft)
-2. Air Blast — action (Str save, range = `@scale.hurricane-knight.air-blast-distance`) + bonus action mesma activity. Storm Knight adiciona attack activity (1d4+CHA scaling) ao editar este arquivo conforme necessário.
-3. Hurricane Strike — action (Str save, círculo 5ft self, 1d6 bludg)
-4. Destructive Tornado — action (Str save, círculo 10ft, `@scale.hurricane-knight.destructive-tornado-dice` bludg, half on save, 1/short rest)
-5. Knight Order — descritivo
-6. Gale Step — bonus action (utility, voar 10×PB ft)
-7. Extra Attack — descritivo (sistema não auto-aplica)
-8. Wind Heart — descritivo (magical damage para class features)
-9. Floating Step — descritivo (ignora difficult terrain, advantage em saves contra movimento forçado/grapple/restraint)
-10. Defensive Gust — reaction (utility), uses = `@scale.hurricane-knight.defensive-gust-uses`, recovery lr
-11. Air Control — action (utility, message magic, área 5-ft, choke), uses = `@abilities.cha.mod`, recovery lr
-12. Air Bubble — passivo (Active Effect: resistance thunder, immune to inhale-required effects)
-13. One With the Storm — descritivo (flight × 2 sob vento moderado/forte)
-14. Flight — passivo (Active Effect: `system.attributes.movement.fly = 60`)
-15. Wind Walker — passivo (Active Effect: Dex +4 max 24, sem AoO, advantage Dex checks)
-
-**Steel Wind Warrior Features (5):**
-16. Steel Cyclone — descritivo
-17. Whirlwind Ward — action (utility + AE 1 round: resistance bludg/pierce/slash não-mágico)
-18. Wrecking Wind — action vs objeto (descritivo)
-19. Rage Tornado — action (Dex save, cilindro 20×30 ft, `@scale.steel-wind-warrior.rage-tornado-dice` bludg + Str save de push)
-20. Wind Body — action (utility, casts investiture of wind — texto completo da spell no description), uses = `@scale.steel-wind-warrior.wind-body-uses`, recovery lr
-
-**Storm Knight Features (6+1):**
-21. Thunder Blast — descritivo (também ajustar Air Blast com attack activity)
-22. Storm Heart — descritivo (adiciona `@scale.storm-knight.storm-heart-bonus-dice` lightning/thunder ao Destructive Tornado + previne reactions on fail)
-23. Resistance (Lightning) — passivo (AE: damage resistance lightning)
-24. Resistance (Thunder) — passivo (AE: damage resistance thunder)
-25. Electrify — action (Dex save, cube 5-ft, `@scale.storm-knight.electrify-dice` lightning, duração 1 min)
-26. Thunderous Storm — descritivo (criaturas que falham no Destructive Tornado ficam stunned até fim do próximo turno)
-27. Lightning Destruction — action (cast chain lightning via spell reference), 1/lr
-
-### ⏳ Pendente — fechamento
-
-- Validar build local: `npm run build:packs` (deve gerar LevelDB sem erros)
-- Atualizar `README.md` (seção "Funcionalidades" listando a nova classe + compêndio)
-- Atualizar `CHANGELOG.md` (nova entrada 0.3.0 ou similar)
-- Bump de versão no `module.json` se solicitado
-- `git add`, `git commit`, `git push` para branch `claude/foundry-new-feature-WCcV6`
+### Active Effects embarcados (8)
+- `aefWindArmACBst1` — Wind Armor (on-use, +PB AC, 1 round; disabled+transfer=false na activity)
+- `aefFloatingStep1` — Floating Step (passivo; Midi flags advantage str-save / escape-grapple)
+- `aefAirBubblePass` — Air Bubble (passivo; resistance thunder)
+- `aefFlightPassive` — Flight (passivo; upgrade fly = 60 ft)
+- `aefWindWalkerPas` — Wind Walker (passivo; dex +4 / dex.max 24 / Midi flags advantage dex-check + grants disadvantage attack.opportunity)
+- `aefWhirlWardBuff` — Whirlwind Ward (on-use, resistance b/p/s + bypass mgc, 1 round)
+- `aefResistLightng` — Resistance: Lightning (passivo)
+- `aefResistThundrr` — Resistance: Thunder (passivo)
 
 ---
 
-## Pendente de resposta do usuário
+## Infraestrutura de release (atualizada após v0.3.0)
 
-**Nenhum item pendente no momento.** Todas as perguntas iniciais foram respondidas:
-- Texto da homebrew ✅ (colado pelo usuário)
-- dnd5e versão ✅ (5.3.2 com regras 2014)
-- Automação ✅ (total via Advancements)
-- Idioma ✅ (inglês original)
-- Ambiguidades 1–5 ✅ (respostas dadas)
-- Build local vs CI ✅ (CI)
+### Arquivos da pipeline
+- `module.json` — campos `manifest` e `download` apontam para `releases/latest/download/...`. Sistema mínimo dnd5e 5.0.0, verified 5.3.2.
+- `package.json` — devDep `@foundryvtt/foundryvtt-cli`, scripts `build:packs` / `clean:packs`.
+- `tools/build-packs.mjs` — lê `module.json`, itera `packs`, compila cada `_source/*.json` em LevelDB no próprio dir do pack.
+- `.github/workflows/release.yml` — triggers: `push.tags: v*`, `push.branches: main`, `workflow_dispatch`.
+  - Lê versão do `module.json` quando o trigger não é tag.
+  - Checa se a tag já existe (idempotência); pula se sim.
+  - `softprops/action-gh-release@v2` cria a tag automaticamente via `tag_name`.
+  - Sobe **dois assets**: `meu-modulo-rpg.zip` e `module.json`.
+- `.gitignore` — ignora LevelDB (`*.ldb`, `*.log`, `*.sst`, `CURRENT`, `LOCK`, `MANIFEST*`) sob `packs/*/`.
+- `release.sh` — fluxo gráfico legacy via zenity; ainda funciona mas não é mais a única forma (push em main já dispara o workflow).
 
-Se surgirem ambiguidades novas durante a implementação dos features, registrar aqui.
+### Como fazer uma release (fluxo recomendado, daqui pra frente)
+1. Mexer no que precisa, em qualquer branch.
+2. Bumpar `version` no `module.json`.
+3. Mergear em `main`.
+4. Pronto — workflow detecta versão nova, compila o LevelDB, cria tag `vX.Y.Z` e a release com os 2 assets.
+   - Se a tag já existir, o workflow pula sem erro.
+
+### IDs do que está publicado
+- Última release: **v0.3.0** (tag criada pelo workflow em 2026-05-12)
+- Assets:
+  - `meu-modulo-rpg.zip` — 33.578 bytes
+  - `module.json` — 1.190 bytes
+- URLs públicas (só funcionam quando o repo for público):
+  - Manifest: `https://github.com/Samuel-S-Gomes/little-details-foundry/releases/latest/download/module.json`
+  - Download: `https://github.com/Samuel-S-Gomes/little-details-foundry/releases/latest/download/meu-modulo-rpg.zip`
 
 ---
 
-## Convenções técnicas
+## Issue ativo
+
+### Repositório privado → Foundry recebe 404
+- O Foundry faz request HTTP **não autenticado** para a manifest URL.
+- GitHub retorna **404** para qualquer asset de repo privado consultado sem credenciais.
+- Sintoma: erro "No module manifest found at https://..." no Foundry.
+
+**Resolução (passou-se ao usuário):**
+1. Settings → General → Danger Zone → Change repository visibility → Make public.
+2. No Foundry: desinstalar `meu-modulo-rpg` atual → Install Module → colar manifest URL → Install.
+3. A partir dessa reinstalação, o `manifest` fica gravado e o botão Update funciona em todas as futuras releases.
+
+A instalação atual do usuário (v0.2.1) foi feita manualmente (zip baixado pelo navegador logado), e o `module.json` daquele zip não tinha `manifest`, então o "Check for Updates" sempre falharia até a reinstalação.
+
+---
+
+## Pendências
+
+- ⏳ Usuário tornar o repo público.
+- ⏳ Reinstalar o módulo via manifest URL.
+- ⏳ Testar a classe Hurricane Knight dentro do Foundry (level-up wizard, scale values em activities, active effects passivos, escolha de subclasse, escolha de resistência no Storm Knight em L3 + L14).
+- ⏳ Ajustes que possam ser necessários após o teste real.
+
+---
+
+## Convenções técnicas (referência rápida)
 
 - IDs Foundry: exatamente 16 chars alfanuméricos `[A-Za-z0-9]`. Sem hífens, sem underscores.
-- `_key` no JSON-source: `!items!<id>` para itens, `!folders!<id>` para folders. O `@foundryvtt/foundryvtt-cli` respeita isso.
-- UUID de referência cross-compêndio dentro do mesmo módulo:  
+- `_key` no JSON-source:
+  - Items: `!items!<id>`
+  - Folders: `!folders!<id>`
+  - **Embedded effects: `!items.effects!<itemId>.<effectId>`** (esquecer disso é a causa do `LEVEL_INVALID_KEY`)
+- UUID de referência cross-compêndio dentro do mesmo módulo:
   `Compendium.meu-modulo-rpg.hurricane-knight.Item.<feature-id>`
-- Activities ficam em `system.activities` como objeto chaveado por id (não array).
+- Activities em `system.activities` como objeto chaveado por id (não array).
 - Item-level uses em `system.uses` (max + recovery array). Activities consomem via `consumption.targets: [{type: "itemUses", value: "1"}]`.
-- Active Effects que precisam ser transferidos ao ator: `transfer: true` no nível do ActiveEffect.
-- Para features passivas que aplicam o efeito ao equipar/adquirir: `transfer: true` + `disabled: false`.
-- Para features que aplicam o efeito ao USAR a activity: `transfer: false`, e a activity inclui `effects: [{ _id: "<effect_id>" }]`.
+- Save DC: usar `save.dc = { calculation: "cha", formula: "" }` — o sistema calcula 8 + PB + mod CHA sozinho (mais limpo que `calculation: ""` + `formula: "..."`).
+- Active Effect change modes: 0=CUSTOM, 1=MULTIPLY, 2=ADD, 3=DOWNGRADE, 4=UPGRADE, 5=OVERRIDE.
+- `transfer: true` em AE = aplica automaticamente ao ator quando o item é equipado/adquirido.
+- `transfer: false` + `disabled: true` em AE + activity tem `effects: [{ _id }]` = aplica via activity ao usar.
 
 ---
 
-## Próximo passo concreto
+## Histórico de sessões
 
-Escrever `subclass-storm-knight.json`, depois começar pelos features mais complexos (Air Blast, Wind Armor, Destructive Tornado, Hurricane Strike) e finalizar com os passivos descritivos.
+### 2026-05-12 — implementação completa
+- Pesquisa, planejamento e perguntas-chave esclarecidas com o usuário.
+- 30 documentos JSON criados em `packs/hurricane-knight/_source/`.
+- Build local validado (`npm run build:packs`) → 42 keys no LevelDB (4 folders + 30 items + 8 effects).
+- Bug encontrado e corrigido: embedded effects exigem `_key` explícito (`!items.effects!<itemId>.<effectId>`).
+- Commit + push na branch `claude/foundry-new-feature-WCcV6`.
+
+### 2026-05-12 — release v0.3.0
+- Adicionado campo `manifest` no `module.json`.
+- Workflow atualizado: 3 triggers, idempotência, sobe `module.json` como asset.
+- Sandbox bloqueou push direto para `main` e push de tags; resolvido via PR + merge pelo GitHub MCP API.
+- PR #1 mergeado em main, sha `13b8cdd`; workflow rodou e publicou v0.3.0.
+- Erro "no manifest URL" no Foundry → diagnóstico: repo é privado, GitHub retorna 404 para clientes anônimos.
+- Usuário aprovou tornar o repo público.
