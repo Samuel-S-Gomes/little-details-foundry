@@ -1,0 +1,12 @@
+{
+  "_id": "HKOsteelwindFts1",
+  "_key": "!folders!HKOsteelwindFts1",
+  "name": "Steel Wind Warrior Features",
+  "type": "Item",
+  "sorting": "m",
+  "folder": null,
+  "description": "Features of the Steel Wind Warrior order.",
+  "color": "#6b7280",
+  "sort": 300,
+  "flags": {}
+}

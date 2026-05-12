@@ -1,0 +1,78 @@
+{
+  "_id": "HKFwhirlwindWard",
+  "_key": "!items!HKFwhirlwindWard",
+  "name": "Whirlwind Ward",
+  "type": "feat",
+  "img": "icons/magic/air/wind-shield-blue.webp",
+  "folder": "HKOsteelwindFts1",
+  "sort": 200,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [
+    {
+      "_id": "aefWhirlWardBuff",
+      "_key": "!items.effects!HKFwhirlwindWard.aefWhirlWardBuff",
+      "name": "Whirlwind Ward",
+      "img": "icons/magic/air/wind-shield-blue.webp",
+      "origin": "",
+      "disabled": true,
+      "transfer": false,
+      "changes": [
+        { "key": "system.traits.dr.value", "mode": 2, "value": "bludgeoning", "priority": 20 },
+        { "key": "system.traits.dr.value", "mode": 2, "value": "piercing", "priority": 20 },
+        { "key": "system.traits.dr.value", "mode": 2, "value": "slashing", "priority": 20 },
+        { "key": "system.traits.dr.bypasses", "mode": 2, "value": "mgc", "priority": 20 }
+      ],
+      "duration": {
+        "rounds": 1,
+        "seconds": 6,
+        "startTime": null,
+        "startRound": null,
+        "startTurn": null,
+        "turns": null,
+        "combat": null
+      },
+      "description": "<p>Resistance to bludgeoning, piercing and slashing from nonmagical sources until the start of your next turn.</p>",
+      "tint": "#7ec8ff",
+      "statuses": [],
+      "flags": {}
+    }
+  ],
+  "system": {
+    "description": {
+      "value": "<p>At 3rd level, when you use an Action, instead of an Attack action, to use your Hurricane Strike. When you do so, you gain resistance to bludgeoning, piercing and slashing damage from nonmagical sources until the start of your next turn.</p><p>If you have more than one attack in each of your turns, you need to forgo your additional attack to benefit from the whirlwind ward.</p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "subclass", "subtype": "steel-wind-warrior" },
+    "requirements": "Steel Wind Warrior 3",
+    "activities": {
+      "actWhirlWardUtl1": {
+        "_id": "actWhirlWardUtl1",
+        "type": "utility",
+        "name": "Engage Whirlwind Ward",
+        "img": "icons/magic/air/wind-shield-blue.webp",
+        "sort": 100,
+        "activation": { "type": "action", "value": 1, "condition": "Use as part of a Hurricane Strike taken with the Action (not Attack action).", "override": true },
+        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
+        "description": { "chatFlavor": "Whirling winds shield you against mundane strikes." },
+        "duration": { "value": "1", "units": "round", "concentration": false, "override": true },
+        "effects": [
+          { "_id": "aefWhirlWardBuff" }
+        ],
+        "range": { "value": "", "units": "self", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "", "type": "self", "choice": false, "special": "" },
+          "prompt": false,
+          "override": true
+        },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      }
+    },
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 3 }
+  }
+}

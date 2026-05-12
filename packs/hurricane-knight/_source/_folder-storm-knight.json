@@ -1,0 +1,12 @@
+{
+  "_id": "HKOstormKnightFt",
+  "_key": "!folders!HKOstormKnightFt",
+  "name": "Storm Knight Features",
+  "type": "Item",
+  "sorting": "m",
+  "folder": null,
+  "description": "Features of the Storm Knight order.",
+  "color": "#7e3aae",
+  "sort": 400,
+  "flags": {}
+}

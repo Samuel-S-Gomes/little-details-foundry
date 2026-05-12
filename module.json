@@ -2,7 +2,7 @@
   "id": "meu-modulo-rpg",
   "title": "Meu Módulo RPG",
   "description": "Conjunto de funções customizadas para mesas de RPG com D&D 5e.",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "authors": [{ "name": "GM" }],
   "compatibility": {
     "minimum": "13",
@@ -12,10 +12,29 @@
     "systems": [{
       "id": "dnd5e",
       "type": "system",
-      "compatibility": { "minimum": "3.0.0" }
+      "compatibility": { "minimum": "5.0.0", "verified": "5.3.2" }
     }]
   },
   "esmodules": ["scripts/main.js"],
+  "packs": [
+    {
+      "name": "hurricane-knight",
+      "label": "Hurricane Knight",
+      "path": "packs/hurricane-knight",
+      "type": "Item",
+      "system": "dnd5e",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "flags": {}
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Hurricane Knight",
+      "sorting": "m",
+      "color": "#3a5a8a",
+      "packs": ["hurricane-knight"]
+    }
+  ],
   "url": "https://github.com/Samuel-S-Gomes/little-details-foundry/",
   "download": "https://github.com/Samuel-S-Gomes/little-details-foundry/releases/latest/download/meu-modulo-rpg.zip"
 }

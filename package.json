@@ -1,0 +1,14 @@
+{
+  "name": "meu-modulo-rpg",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Build pipeline para os compêndios do módulo.",
+  "type": "module",
+  "scripts": {
+    "build:packs": "node tools/build-packs.mjs",
+    "clean:packs": "node tools/build-packs.mjs --clean"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^1.0.4"
+  }
+}

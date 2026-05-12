@@ -19,12 +19,30 @@ jobs:
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
-      - name: 📦 Criar o .zip do módulo
+      - name: 🟢 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Instalar dependências de build
+        run: npm install --no-audit --no-fund
+
+      - name: 🛠️ Compilar compêndios (LevelDB)
+        run: npm run build:packs
+
+      - name: 🗜️ Criar o .zip do módulo
         run: |
           zip -r meu-modulo-rpg.zip . \
-            --exclude "*.git*"       \
-            --exclude ".github/*"    \
-            --exclude "release.sh"   \
+            --exclude "*.git*"            \
+            --exclude ".github/*"         \
+            --exclude "release.sh"        \
+            --exclude "configurar-token.sh" \
+            --exclude "*.desktop"         \
+            --exclude "node_modules/*"    \
+            --exclude "tools/*"           \
+            --exclude "package.json"      \
+            --exclude "package-lock.json" \
+            --exclude "packs/*/_source/*" \
             --exclude "*.zip"
 
       - name: 🚀 Criar Release e anexar o .zip

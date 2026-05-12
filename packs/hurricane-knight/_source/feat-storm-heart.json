@@ -1,0 +1,61 @@
+{
+  "_id": "HKFstormHeart001",
+  "_key": "!items!HKFstormHeart001",
+  "name": "Storm Heart",
+  "type": "feat",
+  "img": "icons/magic/lightning/bolt-strike-yellow.webp",
+  "folder": "HKOstormKnightFt",
+  "sort": 200,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Starting at 3rd level, you can enhance the power of the winds you create with electricity. When you use your Destructive Tornado feature, you deal additional 1d6 lighting or thunder damage, and all creatures in the area that fail the saving throw can't use reactions until the end of your next turn.</p><p>The additional damage increases to 2d6 at 11th level.</p><hr><p><strong>Current bonus damage:</strong> @scale.storm-knight.storm-heart-bonus-dice (lightning or thunder, your choice).</p><p><em>Foundry note: add this bonus damage manually when rolling Destructive Tornado.</em></p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "subclass", "subtype": "storm-knight" },
+    "requirements": "Storm Knight 3",
+    "activities": {
+      "actStormHeartDmg": {
+        "_id": "actStormHeartDmg",
+        "type": "damage",
+        "name": "Storm Heart Bonus",
+        "img": "icons/magic/lightning/bolt-strike-yellow.webp",
+        "sort": 100,
+        "activation": { "type": "special", "value": null, "condition": "Rolled together with your Destructive Tornado. Choose lightning or thunder.", "override": true },
+        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
+        "description": { "chatFlavor": "Crackling power surges through the tornado." },
+        "duration": { "value": "", "units": "inst", "concentration": false, "override": true },
+        "effects": [],
+        "range": { "value": "", "units": "self", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "", "type": "creature", "choice": false, "special": "" },
+          "prompt": false,
+          "override": true
+        },
+        "damage": {
+          "critical": { "allow": false, "bonus": "" },
+          "includeBase": false,
+          "parts": [
+            {
+              "number": null,
+              "denomination": null,
+              "bonus": "",
+              "custom": { "enabled": true, "formula": "@scale.storm-knight.storm-heart-bonus-dice" },
+              "types": ["lightning"],
+              "scaling": { "mode": "", "number": 1, "formula": "" }
+            }
+          ]
+        },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      }
+    },
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 3 }
+  }
+}

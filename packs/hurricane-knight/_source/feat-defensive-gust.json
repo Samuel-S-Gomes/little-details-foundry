@@ -1,0 +1,58 @@
+{
+  "_id": "HKFdefensiveGust",
+  "_key": "!items!HKFdefensiveGust",
+  "name": "Defensive Gust",
+  "type": "feat",
+  "img": "icons/magic/air/wind-shield-blue.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 1000,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Starting at 9th level, whenever you would be hit by an attack roll or an effect that would deal damage or impose a harmful effect to you, you can use your reaction to move up to your floating step speed, potentially avoiding the attack or effect.</p><p>You can use this feature once, being unable to do it again until you finish a long rest. You gain one additional use of this feature at 13th (for a total of 2) and 17th (for a total of 3) levels.</p><hr><p><em>Foundry note: \"floating step speed\" is interpreted as your current movement speed.</em></p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 9",
+    "activities": {
+      "actDefGustUtl001": {
+        "_id": "actDefGustUtl001",
+        "type": "utility",
+        "name": "Defensive Gust",
+        "img": "icons/magic/air/wind-shield-blue.webp",
+        "sort": 100,
+        "activation": { "type": "reaction", "value": 1, "condition": "When hit by an attack or targeted by a harmful effect", "override": true },
+        "consumption": {
+          "targets": [
+            { "type": "itemUses", "value": "1", "target": "", "scaling": { "mode": "", "formula": "" } }
+          ],
+          "scaling": { "allowed": false, "max": "" },
+          "spellSlot": false
+        },
+        "description": { "chatFlavor": "A gust carries you out of harm's way." },
+        "duration": { "value": "", "units": "inst", "concentration": false, "override": true },
+        "effects": [],
+        "range": { "value": "", "units": "self", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "", "type": "self", "choice": false, "special": "" },
+          "prompt": false,
+          "override": true
+        },
+        "roll": { "formula": "@attributes.movement.walk", "name": "Move up to (ft)", "prompt": false, "visible": true },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      }
+    },
+    "uses": {
+      "spent": 0,
+      "max": "@scale.hurricane-knight.defensive-gust-uses",
+      "recovery": [{ "period": "lr", "type": "recoverAll", "formula": "" }]
+    },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 9 }
+  }
+}

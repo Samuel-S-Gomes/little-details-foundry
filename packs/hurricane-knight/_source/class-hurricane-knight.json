@@ -1,0 +1,546 @@
+{
+  "_id": "HKCmainHurricane",
+  "_key": "!items!HKCmainHurricane",
+  "name": "Hurricane Knight",
+  "type": "class",
+  "img": "icons/magic/air/wind-tornado-stream-blue.webp",
+  "folder": "HKOclasssub00001",
+  "sort": 100,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p><em>Fierce warriors that use the power of winds in combat. They hurl powerful gusts of wind towards their enemies, summon storms and ride the tempests, fighting as the embodiment of the destructive force of hurricanes and storms.</em></p><p>The origin of this power is unknown, but those capable of controlling it usually develop this ability by themselves, attuning with the environment and feeling the weather, bending the forces of nature to their will.</p><p>You can find these warriors in places were the environment is favorable to strong winds, like high mountain tops, vast deserts, coastal areas and the open sea.</p><h2>Creating a Hurricane Knight</h2><p>When creating your hurricane knight, you can ask the following questions to guide your character creation: From were the power over the wind come from? The knight have the blood of storm giants, genies or other inherently magical creature tied to the primordial plane of air? Maybe you have discovered how to control the air through a ancient and forgotten method. Or, maybe you were trained by a secretive order or an old master of hurricane knights.</p><p>How and why did you developed this powers? Through constant training or they just grew in power as you got older and wiser? Maybe the constant use of those powers could be a reason. Maybe a life on the sea, blowing winds on the sails, or fighting sand storms on deserts to find a hideout for a caravan.</p><h3>Quick Build</h3><p>You can make a Hurricane Knight quickly by following these suggestions. First, Strength or Dexterity should be your highest ability score, depending on your choice of weapon and armor, followed by Charisma. Second, choose the <em>Sailor</em> background. Third, choose Trident, Scale Mail, and Net.</p><h2>Class Features</h2><p>As a Hurricane Knight you gain the following class features.</p><h3>Hit Points</h3><ul><li><strong>Hit Dice:</strong> 1d10 per Hurricane Knight level</li><li><strong>Hit Points at 1st Level:</strong> 10 + your Constitution modifier</li><li><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + your Constitution modifier per Hurricane Knight level after 1st</li></ul><h3>Proficiencies</h3><ul><li><strong>Armor:</strong> Light armor, medium armor</li><li><strong>Weapons:</strong> Simple weapons, martial weapons</li><li><strong>Tools:</strong> Navigator's tools, vehicles (water)</li><li><strong>Saving Throws:</strong> Dexterity, Charisma</li><li><strong>Skills:</strong> Choose two from Acrobatics, Athletics, Intimidation, Nature, Performance, Persuasion, and Survival</li></ul><h3>Equipment</h3><p>You start with the following equipment, in addition to the equipment granted by your background:</p><ul><li>(<em>a</em>) a trident and a scimitar or (<em>b</em>) two martial weapons</li><li>(<em>a</em>) studded leather armor or (<em>b</em>) scale mail</li><li>a net, a dagger and navigator's tools</li><li>(<em>a</em>) an explorer's pack or (<em>b</em>) a dungeoneer's pack</li></ul><p>If you are using starting wealth, you have <strong>5d4 × 10 gp</strong> in funds.</p><h3>The Hurricane Knight</h3><table><thead><tr><th>Level</th><th>Proficiency<br>Bonus</th><th>Features</th></tr></thead><tbody><tr><td>1st</td><td>+2</td><td>Wind Armor, Air Blast</td></tr><tr><td>2nd</td><td>+2</td><td>Hurricane Strike, Destructive Tornado</td></tr><tr><td>3rd</td><td>+2</td><td>Knight Order, Gale Step</td></tr><tr><td>4th</td><td>+2</td><td>Ability Score Improvement</td></tr><tr><td>5th</td><td>+3</td><td>Extra Attack</td></tr><tr><td>6th</td><td>+3</td><td>Wind Heart, Knight Order Feature</td></tr><tr><td>7th</td><td>+3</td><td>Floating Step</td></tr><tr><td>8th</td><td>+3</td><td>Ability Score Improvement</td></tr><tr><td>9th</td><td>+4</td><td>Defensive Gust</td></tr><tr><td>10th</td><td>+4</td><td>Air Control</td></tr><tr><td>11th</td><td>+4</td><td>Knight Order Feature</td></tr><tr><td>12th</td><td>+4</td><td>Ability Score Improvement</td></tr><tr><td>13th</td><td>+5</td><td>Defensive Gust Improvement</td></tr><tr><td>14th</td><td>+5</td><td>Knight Order Feature</td></tr><tr><td>15th</td><td>+5</td><td>Air Bubble, One With the Storm</td></tr><tr><td>16th</td><td>+5</td><td>Ability Score Improvement</td></tr><tr><td>17th</td><td>+6</td><td>Defensive Gust Improvement</td></tr><tr><td>18th</td><td>+6</td><td>Flight</td></tr><tr><td>19th</td><td>+6</td><td>Ability Score Improvement</td></tr><tr><td>20th</td><td>+6</td><td>Wind Walker</td></tr></tbody></table><h3>Hurricane Save DC</h3><p>Some features require a saving throw to avoid the effects. The save DC equals <strong>8 + your proficiency bonus + your Charisma modifier</strong>.</p><h2>Multiclassing</h2><p><strong>Prerequisites.</strong> To qualify for multiclassing into the Hurricane Knight class, you must meet these prerequisites: 13 Dexterity, 13 Charisma.</p><p><strong>Proficiencies.</strong> When you multiclass into the Hurricane Knight class, you gain the following proficiencies: Light and medium armor, all weapons and navigator's tools.</p>",
+      "chat": ""
+    },
+    "source": {
+      "book": "",
+      "page": "",
+      "custom": "Hurricane Knight (5e Class) — D&D Wiki",
+      "license": "GNU Free Documentation License 1.3"
+    },
+    "identifier": "hurricane-knight",
+    "levels": 1,
+    "hitDice": "d10",
+    "hitDiceUsed": 0,
+    "primaryAbility": { "value": ["str", "dex"], "all": false },
+    "spellcasting": {
+      "progression": "none",
+      "ability": "",
+      "preparation": { "formula": "", "value": 0, "max": 0 }
+    },
+    "wealth": "5d4 * 10",
+    "startingEquipment": [
+      {
+        "_id": "seqWeaponsGroup0",
+        "group": null,
+        "sort": 100000,
+        "type": "OR",
+        "count": 1,
+        "key": "",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqWeaponsTrident",
+        "group": "seqWeaponsGroup0",
+        "sort": 100000,
+        "type": "AND",
+        "count": null,
+        "key": "",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqWeaponsTrid01",
+        "group": "seqWeaponsTrident",
+        "sort": 100000,
+        "type": "weapon",
+        "count": 1,
+        "key": "trident",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqWeaponsTrid02",
+        "group": "seqWeaponsTrident",
+        "sort": 200000,
+        "type": "weapon",
+        "count": 1,
+        "key": "scimitar",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqWeaponsMartl0",
+        "group": "seqWeaponsGroup0",
+        "sort": 200000,
+        "type": "weapon",
+        "count": 2,
+        "key": "martialM",
+        "requiresProficiency": true
+      },
+      {
+        "_id": "seqArmorGroup000",
+        "group": null,
+        "sort": 200000,
+        "type": "OR",
+        "count": 1,
+        "key": "",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqArmorStudded0",
+        "group": "seqArmorGroup000",
+        "sort": 100000,
+        "type": "armor",
+        "count": 1,
+        "key": "studded",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqArmorScalemai",
+        "group": "seqArmorGroup000",
+        "sort": 200000,
+        "type": "armor",
+        "count": 1,
+        "key": "scalemail",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqGearGroupNet0",
+        "group": null,
+        "sort": 300000,
+        "type": "AND",
+        "count": null,
+        "key": "",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqGearNet000001",
+        "group": "seqGearGroupNet0",
+        "sort": 100000,
+        "type": "weapon",
+        "count": 1,
+        "key": "net",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqGearDagger001",
+        "group": "seqGearGroupNet0",
+        "sort": 200000,
+        "type": "weapon",
+        "count": 1,
+        "key": "dagger",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqGearNavtools0",
+        "group": "seqGearGroupNet0",
+        "sort": 300000,
+        "type": "tool",
+        "count": 1,
+        "key": "navg",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqPackGroup0001",
+        "group": null,
+        "sort": 400000,
+        "type": "OR",
+        "count": 1,
+        "key": "",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqPackExplorer0",
+        "group": "seqPackGroup0001",
+        "sort": 100000,
+        "type": "linked",
+        "count": 1,
+        "key": "Compendium.dnd5e.equipment24.Item.phbpack3explorerP",
+        "requiresProficiency": false
+      },
+      {
+        "_id": "seqPackDungeon01",
+        "group": "seqPackGroup0001",
+        "sort": 200000,
+        "type": "linked",
+        "count": 1,
+        "key": "Compendium.dnd5e.equipment24.Item.phbpack2dungeonP0",
+        "requiresProficiency": false
+      }
+    ],
+    "advancement": [
+      {
+        "_id": "adv01HitPoints00",
+        "type": "HitPoints",
+        "configuration": {},
+        "value": {},
+        "title": "Hit Points",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv02SavesL10000",
+        "type": "Trait",
+        "level": 1,
+        "configuration": {
+          "hint": "Hurricane Knight saving throw proficiencies.",
+          "mode": "default",
+          "allowReplacements": false,
+          "grants": ["saves:dex", "saves:cha"],
+          "choices": []
+        },
+        "value": { "chosen": [] },
+        "title": "Saving Throw Proficiencies",
+        "icon": "",
+        "classRestriction": "primary"
+      },
+      {
+        "_id": "adv03ProfsL1args",
+        "type": "Trait",
+        "level": 1,
+        "configuration": {
+          "hint": "Armor, weapon and tool proficiencies granted by the class.",
+          "mode": "default",
+          "allowReplacements": false,
+          "grants": [
+            "armor:lgt",
+            "armor:med",
+            "weapon:sim",
+            "weapon:mar",
+            "tool:navg",
+            "tool:vehicle:water"
+          ],
+          "choices": []
+        },
+        "value": { "chosen": [] },
+        "title": "Armor, Weapons & Tools",
+        "icon": "",
+        "classRestriction": "primary"
+      },
+      {
+        "_id": "adv04SkillsL1000",
+        "type": "Trait",
+        "level": 1,
+        "configuration": {
+          "hint": "Choose two skills from the Hurricane Knight list.",
+          "mode": "default",
+          "allowReplacements": false,
+          "grants": [],
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "skills:acr",
+                "skills:ath",
+                "skills:itm",
+                "skills:nat",
+                "skills:prf",
+                "skills:per",
+                "skills:sur"
+              ]
+            }
+          ]
+        },
+        "value": { "chosen": [] },
+        "title": "Skill Proficiencies",
+        "icon": "",
+        "classRestriction": "primary"
+      },
+      {
+        "_id": "adv05ItemL1grant",
+        "type": "ItemGrant",
+        "level": 1,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFwindArmor0001", "optional": false },
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFairBlast00001", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv06ItemL2grant",
+        "type": "ItemGrant",
+        "level": 2,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFhurricaneStrk", "optional": false },
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFdestructTorn1", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv07ItemL3grant",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFknightOrder01", "optional": false },
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFgaleStep00001", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv08SubclassL30",
+        "type": "Subclass",
+        "level": 3,
+        "configuration": {},
+        "value": { "document": null },
+        "title": "Knight Order",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv09ASIL4000000",
+        "type": "AbilityScoreImprovement",
+        "level": 4,
+        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
+        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "title": "Ability Score Improvement",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv10ItemL5grant",
+        "type": "ItemGrant",
+        "level": 5,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFextraAttack01", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv11ItemL6grant",
+        "type": "ItemGrant",
+        "level": 6,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFwindHeart0001", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv12ItemL7grant",
+        "type": "ItemGrant",
+        "level": 7,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFfloatingStep1", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv13ASIL8000000",
+        "type": "AbilityScoreImprovement",
+        "level": 8,
+        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
+        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "title": "Ability Score Improvement",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv14ItemL9grant",
+        "type": "ItemGrant",
+        "level": 9,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFdefensiveGust", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv15ItemL10grnt",
+        "type": "ItemGrant",
+        "level": 10,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFairControl001", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv16ASIL1200000",
+        "type": "AbilityScoreImprovement",
+        "level": 12,
+        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
+        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "title": "Ability Score Improvement",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv17ItemL15grnt",
+        "type": "ItemGrant",
+        "level": 15,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFairBubble0001", "optional": false },
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFoneWithStorm1", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv18ASIL1600000",
+        "type": "AbilityScoreImprovement",
+        "level": 16,
+        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
+        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "title": "Ability Score Improvement",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv19ItemL18grnt",
+        "type": "ItemGrant",
+        "level": 18,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFflight0000001", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv20ASIL1900000",
+        "type": "AbilityScoreImprovement",
+        "level": 19,
+        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
+        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "title": "Ability Score Improvement",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv21ItemL20grnt",
+        "type": "ItemGrant",
+        "level": 20,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFwindWalker001", "optional": false }
+          ],
+          "optional": false,
+          "spell": null
+        },
+        "value": { "added": {} },
+        "title": "Features",
+        "icon": "",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv22SVAirBlastD",
+        "type": "ScaleValue",
+        "configuration": {
+          "identifier": "air-blast-distance",
+          "type": "distance",
+          "distance": { "units": "ft" },
+          "scale": {
+            "1": { "value": 10 },
+            "5": { "value": 15 },
+            "9": { "value": 20 },
+            "13": { "value": 25 },
+            "17": { "value": 30 }
+          }
+        },
+        "value": {},
+        "title": "Air Blast Distance",
+        "icon": "icons/magic/air/wind-stream-blue.webp",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv23SVDestrTorn",
+        "type": "ScaleValue",
+        "configuration": {
+          "identifier": "destructive-tornado-dice",
+          "type": "dice",
+          "scale": {
+            "2": { "number": 3, "faces": 6 },
+            "6": { "number": 4, "faces": 6 },
+            "11": { "number": 5, "faces": 6 },
+            "16": { "number": 6, "faces": 6 }
+          }
+        },
+        "value": {},
+        "title": "Destructive Tornado Damage",
+        "icon": "icons/magic/air/wind-tornado-cyclone-blue.webp",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv24SVDefenGust",
+        "type": "ScaleValue",
+        "configuration": {
+          "identifier": "defensive-gust-uses",
+          "type": "number",
+          "scale": {
+            "9": { "value": 1 },
+            "13": { "value": 2 },
+            "17": { "value": 3 }
+          }
+        },
+        "value": {},
+        "title": "Defensive Gust Uses",
+        "icon": "icons/magic/air/wind-vortex-yellow.webp",
+        "classRestriction": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "_id": "HKFthunderBlast1",
+  "_key": "!items!HKFthunderBlast1",
+  "name": "Thunder Blast",
+  "type": "feat",
+  "img": "icons/magic/lightning/bolt-strike-blue.webp",
+  "folder": "HKOstormKnightFt",
+  "sort": 100,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>At 3rd level, whenever you use your hurricane strike, you can choose to deal lighting damage, instead of bludgeoning damage.</p><p>In addition, you can infuse your Air Blast with lighting and thunder. When using the Air Blast feature, instead of taking the Shove action, you can choose to make a ranged attack, using your Charisma modifier. On a hit, you deal damage equal to <strong>1d4 + your Charisma modifier</strong>. The damage type is either lighting or thunder (your choice). The damage die increases to 1d6 at 5th level, 1d8 at 11th level and 1d10 at 17th level.</p><hr><p><strong>Current Thunder Blast die:</strong> @scale.storm-knight.thunder-blast-die.</p><p><em>Foundry note: the third activity of the <strong>Air Blast</strong> item executes this ranged attack with the scaling die.</em></p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "subclass", "subtype": "storm-knight" },
+    "requirements": "Storm Knight 3",
+    "activities": {},
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 3 }
+  }
+}

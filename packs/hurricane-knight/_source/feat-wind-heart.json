@@ -1,0 +1,26 @@
+{
+  "_id": "HKFwindHeart0001",
+  "_key": "!items!HKFwindHeart0001",
+  "name": "Wind Heart",
+  "type": "feat",
+  "img": "icons/magic/air/air-burst-spiral-pink.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 800,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Starting at 6th level, the damage dealt by your class features are considered magical for the purposes of overcoming resistance to nonmagical attacks and damage.</p><hr><p><em>Foundry note: damage parts from Hurricane Strike, Destructive Tornado, Rage Tornado, Electrify and similar features should be flagged as <code>magical</code> on use; with Midi-QOL this can be automated via the <code>flags.midi-qol.damage.magical</code> flag.</em></p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 6",
+    "activities": {},
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 6 }
+  }
+}
