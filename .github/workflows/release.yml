@@ -3,35 +3,87 @@ name: Release do Módulo
 on:
   push:
     tags:
-      - 'v*'   # Dispara em qualquer tag que comece com "v", ex: v0.2.0
+      - 'v*'         # Dispara em qualquer tag que comece com "v", ex: v0.3.0
+    branches:
+      - main         # Tambem dispara quando main recebe push (lê versão do module.json)
+  workflow_dispatch:  # Permite disparo manual pela aba Actions
 
 jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # Necessário para criar releases
+      contents: write   # Necessário para criar releases e tags
 
     steps:
       - name: 📥 Baixar código
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Necessário para detectar tags existentes
 
-      - name: 🏷️ Extrair versão da tag
+      - name: 🏷️ Determinar versão
         id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/v}"
+            echo "from=tag" >> $GITHUB_OUTPUT
+          else
+            VERSION=$(grep -m1 '"version"' module.json | sed 's/.*"version": *"\([^"]*\)".*/\1/')
+            echo "from=module.json" >> $GITHUB_OUTPUT
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "TAG=v$VERSION" >> $GITHUB_OUTPUT
+          echo "📌 Versão: $VERSION"
 
-      - name: 📦 Criar o .zip do módulo
+      - name: 🔍 Verificar se a release já existe
+        id: check_release
+        run: |
+          if git rev-parse --verify "refs/tags/${{ steps.get_version.outputs.TAG }}" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "⚠️ Tag ${{ steps.get_version.outputs.TAG }} já existe — pulando release."
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🟢 Configurar Node.js
+        if: steps.check_release.outputs.exists == 'false'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Instalar dependências de build
+        if: steps.check_release.outputs.exists == 'false'
+        run: npm install --no-audit --no-fund
+
+      - name: 🛠️ Compilar compêndios (LevelDB)
+        if: steps.check_release.outputs.exists == 'false'
+        run: npm run build:packs
+
+      - name: 🗜️ Criar o .zip do módulo
+        if: steps.check_release.outputs.exists == 'false'
         run: |
           zip -r meu-modulo-rpg.zip . \
-            --exclude "*.git*"       \
-            --exclude ".github/*"    \
-            --exclude "release.sh"   \
+            --exclude "*.git*"              \
+            --exclude ".github/*"           \
+            --exclude "release.sh"          \
+            --exclude "configurar-token.sh" \
+            --exclude "*.desktop"           \
+            --exclude "node_modules/*"      \
+            --exclude "tools/*"             \
+            --exclude "package.json"        \
+            --exclude "package-lock.json"   \
+            --exclude "packs/*/_source/*"   \
+            --exclude "CLAUDE.md"           \
             --exclude "*.zip"
 
-      - name: 🚀 Criar Release e anexar o .zip
+      - name: 🚀 Criar Release e anexar artefatos
+        if: steps.check_release.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
-          name: "v${{ steps.get_version.outputs.VERSION }}"
-          files: meu-modulo-rpg.zip
-          generate_release_notes: true   # Gera notas automáticas com base nos commits
+          tag_name: ${{ steps.get_version.outputs.TAG }}
+          name: ${{ steps.get_version.outputs.TAG }}
+          files: |
+            meu-modulo-rpg.zip
+            module.json
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

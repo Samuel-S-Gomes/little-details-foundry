@@ -1,0 +1,61 @@
+{
+  "_id": "HKFwreckingWind1",
+  "_key": "!items!HKFwreckingWind1",
+  "name": "Wrecking Wind",
+  "type": "feat",
+  "img": "icons/magic/air/wind-tornado-stream-blue.webp",
+  "folder": "HKOsteelwindFts1",
+  "sort": 300,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Starting at 6th level, you begin to embody the pure elemental power of tornadoes. You can use your Action to use your Hurricane Strike against an object or structure within 5 feet. When you do so, you hit automatically and deal double damage to it, ignoring damage threshold. If you are wielding a weapon that deals bludgeoning damage, you add the damage of the weapon twice, instead of once.</p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "subclass", "subtype": "steel-wind-warrior" },
+    "requirements": "Steel Wind Warrior 6",
+    "activities": {
+      "actWrkWindDmg001": {
+        "_id": "actWrkWindDmg001",
+        "type": "damage",
+        "name": "Wrecking Wind (vs Object)",
+        "img": "icons/magic/air/wind-tornado-stream-blue.webp",
+        "sort": 100,
+        "activation": { "type": "action", "value": 1, "condition": "Target an object or structure within 5 feet. Automatic hit; double damage; ignores damage threshold.", "override": true },
+        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
+        "description": { "chatFlavor": "An elemental gust shatters mundane works." },
+        "duration": { "value": "", "units": "inst", "concentration": false, "override": true },
+        "effects": [],
+        "range": { "value": "5", "units": "ft", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "1", "type": "object", "choice": false, "special": "" },
+          "prompt": true,
+          "override": true
+        },
+        "damage": {
+          "critical": { "allow": false, "bonus": "" },
+          "includeBase": false,
+          "parts": [
+            {
+              "number": 2,
+              "denomination": 6,
+              "bonus": "",
+              "custom": { "enabled": false, "formula": "" },
+              "types": ["bludgeoning"],
+              "scaling": { "mode": "", "number": 1, "formula": "" }
+            }
+          ]
+        },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      }
+    },
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 6 }
+  }
+}

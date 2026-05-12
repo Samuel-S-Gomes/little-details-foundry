@@ -1,0 +1,57 @@
+{
+  "_id": "HKFairBubble0001",
+  "_key": "!items!HKFairBubble0001",
+  "name": "Air Bubble",
+  "type": "feat",
+  "img": "icons/magic/air/air-burst-spiral-pink.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 1200,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [
+    {
+      "_id": "aefAirBubblePass",
+      "_key": "!items.effects!HKFairBubble0001.aefAirBubblePass",
+      "name": "Air Bubble — Thunder Resistance",
+      "img": "icons/magic/air/air-burst-spiral-pink.webp",
+      "origin": "",
+      "disabled": false,
+      "transfer": true,
+      "changes": [
+        {
+          "key": "system.traits.dr.value",
+          "mode": 2,
+          "value": "thunder",
+          "priority": 20
+        }
+      ],
+      "duration": {
+        "rounds": null,
+        "seconds": null,
+        "startTime": null,
+        "startRound": null,
+        "startTurn": null,
+        "turns": null,
+        "combat": null
+      },
+      "description": "<p>Resistance to thunder damage; immunity to effects requiring inhalation.</p>",
+      "tint": null,
+      "statuses": [],
+      "flags": {}
+    }
+  ],
+  "system": {
+    "description": {
+      "value": "<p>Starting at 15th level, you can extract breathable air regardless of were you are, creating a bubble of air around your body. You can't suffocate anymore, and become immune to any effects that require you to inhale something (like poisons and some spells).</p><p>You also gain resistance to thunder damage.</p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 15",
+    "activities": {},
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 15 }
+  }
+}

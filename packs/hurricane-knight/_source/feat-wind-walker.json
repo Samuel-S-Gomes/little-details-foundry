@@ -1,0 +1,75 @@
+{
+  "_id": "HKFwindWalker001",
+  "_key": "!items!HKFwindWalker001",
+  "name": "Wind Walker",
+  "type": "feat",
+  "img": "icons/magic/air/wind-vortex-large-yellow.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 1500,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [
+    {
+      "_id": "aefWindWalkerPas",
+      "_key": "!items.effects!HKFwindWalker001.aefWindWalkerPas",
+      "name": "Wind Walker",
+      "img": "icons/magic/air/wind-vortex-large-yellow.webp",
+      "origin": "",
+      "disabled": false,
+      "transfer": true,
+      "changes": [
+        {
+          "key": "system.abilities.dex.max",
+          "mode": 4,
+          "value": "24",
+          "priority": 10
+        },
+        {
+          "key": "system.abilities.dex.value",
+          "mode": 2,
+          "value": "4",
+          "priority": 20
+        },
+        {
+          "key": "flags.midi-qol.advantage.ability.check.dex",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.midi-qol.grants.disadvantage.attack.opportunity",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "duration": {
+        "rounds": null,
+        "seconds": null,
+        "startTime": null,
+        "startRound": null,
+        "startTurn": null,
+        "turns": null,
+        "combat": null
+      },
+      "description": "<p>+4 Dexterity (max 24), no opportunity attacks against you, advantage on all Dex checks.</p>",
+      "tint": null,
+      "statuses": [],
+      "flags": {}
+    }
+  ],
+  "system": {
+    "description": {
+      "value": "<p>At 20th level, you can move like the wind. Your Dexterity increase by 4, to a maximum of 24.</p><p>In addition, your movement no longer provoke opportunity attacks, and you have advantage on all your Dexterity checks.</p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 20",
+    "activities": {},
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 20 }
+  }
+}

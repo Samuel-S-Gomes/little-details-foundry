@@ -1,0 +1,12 @@
+{
+  "_id": "HKOfeatures00001",
+  "_key": "!folders!HKOfeatures00001",
+  "name": "Class Features",
+  "type": "Item",
+  "sorting": "m",
+  "folder": null,
+  "description": "Features granted by the Hurricane Knight class progression.",
+  "color": "#4a7aa8",
+  "sort": 200,
+  "flags": {}
+}

@@ -18,5 +18,15 @@ package-lock.json
 dist/
 *.zip
 
+# Compêndios LevelDB (gerados pelo build, fontes ficam em packs/*/_source/)
+packs/*/CURRENT
+packs/*/LOCK
+packs/*/LOG
+packs/*/LOG.old
+packs/*/MANIFEST*
+packs/*/*.ldb
+packs/*/*.log
+packs/*/*.sst
+
 # Token local (nunca enviar ao GitHub)
 .token

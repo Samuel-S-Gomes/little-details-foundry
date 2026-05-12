@@ -1,0 +1,117 @@
+{
+  "_id": "HKFairBlast00001",
+  "_key": "!items!HKFairBlast00001",
+  "name": "Air Blast",
+  "type": "feat",
+  "img": "icons/magic/air/wind-tornado-stream-blue.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 200,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Starting at 1st level, you can blow a strong stream of air onto a creature within 10 feet of you, allowing you to take the Shove action at this distance. In addition, whenever you use your Action to Air Blast a creature, you can do it again using your bonus action. If you can make more than one attack as part of your Attack action, you can also make additional air blasts when taking an action to use this feature. The targets make the contested check against your Hurricane save DC.</p><p>The distance increases to 15 feet at 5th level, 20 feet at 9th level, 25 feet at 13th level and 30 feet at 17th level.</p><hr><p><strong>Range:</strong> @scale.hurricane-knight.air-blast-distance ft.</p><p><strong>Storm Knight order:</strong> the third activity below (a Charisma-based ranged attack dealing lightning or thunder damage) only functions if you took the Thunder Blast feature; otherwise it can be ignored.</p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 1",
+    "activities": {
+      "actAirBlstActn1": {
+        "_id": "actAirBlstActn1",
+        "type": "save",
+        "name": "Air Blast (Action — Shove)",
+        "img": "icons/magic/air/wind-tornado-stream-blue.webp",
+        "sort": 100,
+        "activation": { "type": "action", "value": 1, "condition": "", "override": true },
+        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
+        "description": { "chatFlavor": "Blow a stream of air to shove a creature within range." },
+        "duration": { "value": "", "units": "inst", "concentration": false, "override": true },
+        "effects": [],
+        "range": { "value": "@scale.hurricane-knight.air-blast-distance", "units": "ft", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "1", "type": "creature", "choice": false, "special": "" },
+          "prompt": true,
+          "override": true
+        },
+        "save": {
+          "ability": ["str"],
+          "dc": { "calculation": "cha", "formula": "" }
+        },
+        "damage": { "onSave": "none", "parts": [] },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      },
+      "actAirBlstBonus0": {
+        "_id": "actAirBlstBonus0",
+        "type": "save",
+        "name": "Air Blast (Bonus — Shove)",
+        "img": "icons/magic/air/wind-tornado-stream-blue.webp",
+        "sort": 200,
+        "activation": { "type": "bonus", "value": 1, "condition": "After taking the Action version of Air Blast", "override": true },
+        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
+        "description": { "chatFlavor": "Follow-up bonus action shove." },
+        "duration": { "value": "", "units": "inst", "concentration": false, "override": true },
+        "effects": [],
+        "range": { "value": "@scale.hurricane-knight.air-blast-distance", "units": "ft", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "1", "type": "creature", "choice": false, "special": "" },
+          "prompt": true,
+          "override": true
+        },
+        "save": {
+          "ability": ["str"],
+          "dc": { "calculation": "cha", "formula": "" }
+        },
+        "damage": { "onSave": "none", "parts": [] },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      },
+      "actAirBlstAtk01": {
+        "_id": "actAirBlstAtk01",
+        "type": "attack",
+        "name": "Thunder Blast (Storm Knight)",
+        "img": "icons/magic/lightning/bolt-strike-blue.webp",
+        "sort": 300,
+        "activation": { "type": "action", "value": 1, "condition": "Requires the Thunder Blast feature (Storm Knight)", "override": true },
+        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
+        "description": { "chatFlavor": "Hurl a thunder/lightning charged gust of wind." },
+        "duration": { "value": "", "units": "inst", "concentration": false, "override": true },
+        "effects": [],
+        "range": { "value": "@scale.hurricane-knight.air-blast-distance", "units": "ft", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "1", "type": "creature", "choice": false, "special": "" },
+          "prompt": true,
+          "override": true
+        },
+        "attack": {
+          "ability": "cha",
+          "bonus": "",
+          "critical": { "threshold": null, "damage": "" },
+          "flat": false,
+          "type": { "value": "ranged", "classification": "unarmed" }
+        },
+        "damage": {
+          "includeBase": false,
+          "parts": [
+            {
+              "number": null,
+              "denomination": null,
+              "bonus": "@abilities.cha.mod",
+              "custom": { "enabled": true, "formula": "@scale.storm-knight.thunder-blast-die + @abilities.cha.mod" },
+              "types": ["lightning"],
+              "scaling": { "mode": "", "number": 1, "formula": "" }
+            }
+          ]
+        },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      }
+    },
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 1 }
+  }
+}

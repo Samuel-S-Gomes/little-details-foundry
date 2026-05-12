@@ -1,0 +1,26 @@
+{
+  "_id": "HKFthunderousStm",
+  "_key": "!items!HKFthunderousStm",
+  "name": "Thunderous Storm",
+  "type": "feat",
+  "img": "icons/magic/lightning/bolt-strike-forked-blue.webp",
+  "folder": "HKOstormKnightFt",
+  "sort": 600,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Starting at 11th level, whenever a creature fails the saving throw of your Destructive Tornado becomes stunned until the end of your next turn.</p><hr><p><em>Foundry note: apply the <code>stunned</code> condition (status effect) to any creature that fails your Destructive Tornado save. With Midi-QOL, you can automate this on the Destructive Tornado item by attaching an Active Effect with the stunned condition and applying it on a failed save.</em></p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "subclass", "subtype": "storm-knight" },
+    "requirements": "Storm Knight 11",
+    "activities": {},
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 11 }
+  }
+}

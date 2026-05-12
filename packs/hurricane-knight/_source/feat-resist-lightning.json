@@ -1,0 +1,52 @@
+{
+  "_id": "HKFresistLightng",
+  "_key": "!items!HKFresistLightng",
+  "name": "Resistance: Lightning",
+  "type": "feat",
+  "img": "icons/magic/lightning/bolt-strike-yellow.webp",
+  "folder": "HKOstormKnightFt",
+  "sort": 300,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [
+    {
+      "_id": "aefResistLightng",
+      "_key": "!items.effects!HKFresistLightng.aefResistLightng",
+      "name": "Resistance: Lightning",
+      "img": "icons/magic/lightning/bolt-strike-yellow.webp",
+      "origin": "",
+      "disabled": false,
+      "transfer": true,
+      "changes": [
+        { "key": "system.traits.dr.value", "mode": 2, "value": "lightning", "priority": 20 }
+      ],
+      "duration": {
+        "rounds": null,
+        "seconds": null,
+        "startTime": null,
+        "startRound": null,
+        "startTurn": null,
+        "turns": null,
+        "combat": null
+      },
+      "description": "<p>Resistance to lightning damage.</p>",
+      "tint": null,
+      "statuses": [],
+      "flags": {}
+    }
+  ],
+  "system": {
+    "description": {
+      "value": "<p>At 3rd level, you become resistant to lightning damage.</p><p>At 14th level you can choose whichever type you haven't chosen yet (take Resistance: Thunder).</p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "subclass", "subtype": "storm-knight" },
+    "requirements": "Storm Knight 3",
+    "activities": {},
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 3 }
+  }
+}

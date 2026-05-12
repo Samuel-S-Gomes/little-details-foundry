@@ -1,0 +1,26 @@
+{
+  "_id": "HKFsteelCyclone1",
+  "_key": "!items!HKFsteelCyclone1",
+  "name": "Steel Cyclone",
+  "type": "feat",
+  "img": "icons/skills/melee/strike-sword-greatsword-yellow.webp",
+  "folder": "HKOsteelwindFts1",
+  "sort": 100,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Starting at 3rd level, you can use a weapon to empower your Hurricane Strike. When you use a weapon that lacks the two handed and heavy properties, you can add its damage die to the damage of your Hurricane Strike. You don't add your ability score to this damage.</p><hr><p><em>Foundry note: when rolling Hurricane Strike, add an extra damage formula matching your weapon's damage die. Example for a longsword (1d8): add a 1d8 piercing/slashing line manually, or duplicate Hurricane Strike with the bonus die baked in.</em></p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "subclass", "subtype": "steel-wind-warrior" },
+    "requirements": "Steel Wind Warrior 3",
+    "activities": {},
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 3 }
+  }
+}

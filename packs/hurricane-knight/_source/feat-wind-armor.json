@@ -1,0 +1,106 @@
+{
+  "_id": "HKFwindArmor0001",
+  "_key": "!items!HKFwindArmor0001",
+  "name": "Wind Armor",
+  "type": "feat",
+  "img": "icons/magic/air/wind-stream-blue.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 100,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [
+    {
+      "_id": "aefWindArmACBst1",
+      "_key": "!items.effects!HKFwindArmor0001.aefWindArmACBst1",
+      "name": "Wind Armor — Swirling Winds",
+      "img": "icons/magic/air/wind-stream-blue.webp",
+      "origin": "",
+      "disabled": true,
+      "transfer": false,
+      "changes": [
+        {
+          "key": "system.attributes.ac.bonus",
+          "mode": 2,
+          "value": "@prof",
+          "priority": 20
+        }
+      ],
+      "duration": {
+        "rounds": 1,
+        "seconds": 6,
+        "startTime": null,
+        "startRound": null,
+        "startTurn": null,
+        "turns": null,
+        "combat": null
+      },
+      "description": "<p>Winds swirl around you, giving you +PB to AC until the start of your next turn. (The homebrew text applies the penalty to incoming ranged attack rolls — for an AC bonus that strictly affects ranged attackers, use a Midi-QOL macro/flag; the AE applied here is a simplification.)</p>",
+      "tint": "#7ec8ff",
+      "statuses": [],
+      "flags": {}
+    }
+  ],
+  "system": {
+    "description": {
+      "value": "<p>Winds swirl around your body, protecting you from harm. At 1st level, you can use your bonus action to cause all ranged attacks made against you until the start of your next turn to have a penalty equal to your proficiency bonus.</p><p>In addition, whenever a creature enters the space within 5 feet of you, you can use your reaction to blast a gust of wind onto that creature, moving the creature 5 feet back on a failed Strength save.</p><hr><p><em>Foundry note: the bonus-action defense applies an Active Effect granting +PB AC for one round. Combine with a Midi-QOL flag (e.g. <code>flags.midi-qol.grants.disadvantage.attack.rwak</code>) if you want it to affect ranged attackers only.</em></p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 1",
+    "activities": {
+      "actWindArmBoost1": {
+        "_id": "actWindArmBoost1",
+        "type": "utility",
+        "name": "Swirl Winds (Defensive)",
+        "img": "icons/magic/air/wind-stream-blue.webp",
+        "sort": 100,
+        "activation": { "type": "bonus", "value": 1, "condition": "", "override": true },
+        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
+        "description": { "chatFlavor": "Swirling winds protect you until the start of your next turn." },
+        "duration": { "value": "1", "units": "round", "concentration": false, "override": true },
+        "effects": [
+          { "_id": "aefWindArmACBst1" }
+        ],
+        "range": { "value": "", "units": "self", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "", "type": "self", "choice": false, "special": "" },
+          "prompt": false,
+          "override": true
+        },
+        "uses": { "spent": 0, "max": "", "recovery": [] },
+        "roll": { "formula": "", "name": "", "prompt": false, "visible": false }
+      },
+      "actWindArmReact1": {
+        "_id": "actWindArmReact1",
+        "type": "save",
+        "name": "Reactive Gust",
+        "img": "icons/magic/air/wind-stream-blue.webp",
+        "sort": 200,
+        "activation": { "type": "reaction", "value": 1, "condition": "When a creature enters the space within 5 feet of you", "override": true },
+        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
+        "description": { "chatFlavor": "Blast a gust of wind at the intruder, pushing them 5 ft on a failed save." },
+        "duration": { "value": "", "units": "inst", "concentration": false, "override": true },
+        "effects": [],
+        "range": { "value": "5", "units": "ft", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "1", "type": "creature", "choice": false, "special": "" },
+          "prompt": true,
+          "override": true
+        },
+        "save": {
+          "ability": ["str"],
+          "dc": { "calculation": "cha", "formula": "" }
+        },
+        "damage": { "onSave": "none", "parts": [] },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      }
+    },
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 1 }
+  }
+}

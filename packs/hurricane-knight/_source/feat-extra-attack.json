@@ -1,0 +1,26 @@
+{
+  "_id": "HKFextraAttack01",
+  "_key": "!items!HKFextraAttack01",
+  "name": "Extra Attack",
+  "type": "feat",
+  "img": "icons/skills/melee/strike-sword-blade-yellow.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 700,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn.</p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 5",
+    "activities": {},
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 5 }
+  }
+}

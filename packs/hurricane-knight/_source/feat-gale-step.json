@@ -1,0 +1,48 @@
+{
+  "_id": "HKFgaleStep00001",
+  "_key": "!items!HKFgaleStep00001",
+  "name": "Gale Step",
+  "type": "feat",
+  "img": "icons/magic/air/air-burst-spiral-blue.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 600,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>At 3rd level, you can use your ability to control the air around you to ride the wind, creating a miniature tornado that carry you on the air. As a bonus action, you can fly 10 feet for each point of proficiency bonus you have. You must end your flight movement on ground, or you fall, and you can't be wearing armor heavier than light or shield.</p><hr><p><strong>Current flight distance:</strong> 10 × @prof feet (rolls below).</p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 3",
+    "activities": {
+      "actGaleStpUtl001": {
+        "_id": "actGaleStpUtl001",
+        "type": "utility",
+        "name": "Gale Step",
+        "img": "icons/magic/air/air-burst-spiral-blue.webp",
+        "sort": 100,
+        "activation": { "type": "bonus", "value": 1, "condition": "Cannot wear armor heavier than light or use a shield.", "override": true },
+        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
+        "description": { "chatFlavor": "Ride a miniature tornado through the air." },
+        "duration": { "value": "", "units": "inst", "concentration": false, "override": true },
+        "effects": [],
+        "range": { "value": "", "units": "self", "special": "", "override": true },
+        "target": {
+          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "", "type": "self", "choice": false, "special": "" },
+          "prompt": false,
+          "override": true
+        },
+        "roll": { "formula": "10 * @prof", "name": "Flight distance (ft)", "prompt": false, "visible": true },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      }
+    },
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 3 }
+  }
+}

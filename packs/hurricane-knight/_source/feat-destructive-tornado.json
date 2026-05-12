@@ -1,0 +1,75 @@
+{
+  "_id": "HKFdestructTorn1",
+  "_key": "!items!HKFdestructTorn1",
+  "name": "Destructive Tornado",
+  "type": "feat",
+  "img": "icons/magic/air/wind-tornado-cyclone-blue.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 400,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Starting at 2nd level, you can use your action to create a powerful tornado around you, forcing all creatures within 10 feet to succeed on a Strength saving throw against your Hurricane save DC, or take 3d6 bludgeoning damage. On a failed save, the creature is also pushed 5 feet back and knocked prone. On a success, the creature take half damage and isn't pushed back or knocked prone.</p><p>The damage increases to 4d6 at 6th level, 5d6 at 11th level and 6d6 at 16th level.</p><p>Once you use this feature, you can't use it again until you finish a short rest or a long rest.</p><hr><p><strong>Storm Knight — Storm Heart (3rd level):</strong> deals an additional 1d6 lightning or thunder damage (2d6 at 11th); creatures that fail the save can't use reactions until the end of your next turn.</p><p><strong>Storm Knight — Thunderous Storm (11th level):</strong> creatures that fail the save are stunned until the end of your next turn.</p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 2",
+    "activities": {
+      "actDesTornSave01": {
+        "_id": "actDesTornSave01",
+        "type": "save",
+        "name": "Destructive Tornado",
+        "img": "icons/magic/air/wind-tornado-cyclone-blue.webp",
+        "sort": 100,
+        "activation": { "type": "action", "value": 1, "condition": "", "override": true },
+        "consumption": {
+          "targets": [
+            { "type": "itemUses", "value": "1", "target": "", "scaling": { "mode": "", "formula": "" } }
+          ],
+          "scaling": { "allowed": false, "max": "" },
+          "spellSlot": false
+        },
+        "description": { "chatFlavor": "A devastating tornado tears out around you." },
+        "duration": { "value": "", "units": "inst", "concentration": false, "override": true },
+        "effects": [],
+        "range": { "value": "", "units": "self", "special": "", "override": true },
+        "target": {
+          "template": { "count": "1", "contiguous": false, "type": "circle", "size": "10", "width": "", "height": "", "units": "ft" },
+          "affects": { "count": "", "type": "creature", "choice": false, "special": "" },
+          "prompt": true,
+          "override": true
+        },
+        "save": {
+          "ability": ["str"],
+          "dc": { "calculation": "cha", "formula": "" }
+        },
+        "damage": {
+          "onSave": "half",
+          "includeBase": false,
+          "parts": [
+            {
+              "number": null,
+              "denomination": null,
+              "bonus": "",
+              "custom": { "enabled": true, "formula": "@scale.hurricane-knight.destructive-tornado-dice" },
+              "types": ["bludgeoning"],
+              "scaling": { "mode": "", "number": 1, "formula": "" }
+            }
+          ]
+        },
+        "uses": { "spent": 0, "max": "", "recovery": [] }
+      }
+    },
+    "uses": {
+      "spent": 0,
+      "max": "1",
+      "recovery": [{ "period": "sr", "type": "recoverAll", "formula": "" }]
+    },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 2 }
+  }
+}

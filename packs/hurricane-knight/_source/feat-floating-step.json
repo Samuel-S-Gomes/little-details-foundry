@@ -1,0 +1,63 @@
+{
+  "_id": "HKFfloatingStep1",
+  "_key": "!items!HKFfloatingStep1",
+  "name": "Floating Step",
+  "type": "feat",
+  "img": "icons/magic/air/wind-vortex-yellow.webp",
+  "folder": "HKOfeatures00001",
+  "sort": 900,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "effects": [
+    {
+      "_id": "aefFloatingStep1",
+      "_key": "!items.effects!HKFfloatingStep1.aefFloatingStep1",
+      "name": "Floating Step",
+      "img": "icons/magic/air/wind-vortex-yellow.webp",
+      "origin": "",
+      "disabled": false,
+      "transfer": true,
+      "changes": [
+        {
+          "key": "flags.midi-qol.advantage.ability.save.escape.grapple",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.midi-qol.advantage.ability.save.str",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "duration": {
+        "rounds": null,
+        "seconds": null,
+        "startTime": null,
+        "startRound": null,
+        "startTurn": null,
+        "turns": null,
+        "combat": null
+      },
+      "description": "<p>Advantage on checks/saves to avoid forced movement, being knocked prone or being grappled/restrained. Difficult terrain ignored.</p>",
+      "tint": null,
+      "statuses": [],
+      "flags": {}
+    }
+  ],
+  "system": {
+    "description": {
+      "value": "<p>At 7th level, you have advantage to any checks that would move you unwillingly move you, knock you prone or impose you the grappled or restrained conditions.</p><p>You also not affected by difficult terrain anymore.</p><hr><p><em>Foundry note: a Midi-QOL Active Effect is attached that grants advantage on Strength saves and grapple-escape rolls. \"Ignoring difficult terrain\" must be handled by the GM (no core flag exists for it).</em></p>",
+      "chat": ""
+    },
+    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
+    "type": { "value": "class", "subtype": "hurricane-knight" },
+    "requirements": "Hurricane Knight 7",
+    "activities": {},
+    "uses": { "spent": 0, "max": "", "recovery": [] },
+    "recharge": { "value": null, "charged": true },
+    "properties": [],
+    "prerequisites": { "level": 7 }
+  }
+}
