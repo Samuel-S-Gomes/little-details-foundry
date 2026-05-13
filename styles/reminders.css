@@ -1,0 +1,177 @@
+/* =============================================================================
+   Meu Módulo RPG — reminders.css
+   Estilo dos post-its de lembrete + janela de gerenciamento.
+   ============================================================================= */
+
+/* ----------------------------------------------------------------------------
+   Post-it
+   ---------------------------------------------------------------------------- */
+.mmr-postit {
+  position: fixed;
+  width: 220px;
+  min-height: 110px;
+  padding: 14px 28px 14px 16px;
+  background: #fff7a8;
+  color: #2d2d2d;
+  border-radius: 2px;
+  box-shadow:
+    3px 6px 14px rgba(0, 0, 0, 0.30),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+  transform: rotate(-1.2deg);
+  font-family: var(--font-primary), "Signika", sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+  z-index: 100;
+  cursor: move;
+  user-select: none;
+  animation: mmr-postit-in 220ms ease-out;
+}
+
+.mmr-postit.mmr-postit-leaving {
+  animation: mmr-postit-out 280ms ease-in forwards;
+}
+
+.mmr-postit-body {
+  pointer-events: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.mmr-postit-close {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  color: #555;
+}
+
+.mmr-postit-close:hover {
+  color: #000;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.mmr-postit-close:focus-visible {
+  outline: 2px solid #555;
+  outline-offset: 1px;
+}
+
+@keyframes mmr-postit-in {
+  from {
+    opacity: 0;
+    transform: rotate(-1.2deg) translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-1.2deg) translateY(0) scale(1);
+  }
+}
+
+@keyframes mmr-postit-out {
+  from {
+    opacity: 1;
+    transform: rotate(-1.2deg) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: rotate(-1.2deg) translateY(-10px);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Janela de gerenciamento (ApplicationV2)
+   ---------------------------------------------------------------------------- */
+#mmr-reminders-config .mmr-reminders-header {
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 4px 12px 4px;
+}
+
+#mmr-reminders-config .mmr-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #f0e8c8;
+  border: 1px solid #c9bd91;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#mmr-reminders-config .mmr-add-btn:hover {
+  background: #ebe0b3;
+}
+
+#mmr-reminders-config .mmr-reminders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 4px;
+  margin-bottom: 12px;
+}
+
+#mmr-reminders-config .mmr-reminder-card {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  padding: 8px;
+  background: #faf6e8;
+  border: 1px solid #d6cfb3;
+  border-radius: 4px;
+}
+
+#mmr-reminders-config .mmr-reminder-card textarea {
+  flex: 1;
+  min-height: 56px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 6px;
+  border: 1px solid #c9bd91;
+  border-radius: 3px;
+  background: #fffef5;
+}
+
+#mmr-reminders-config .mmr-remove-btn {
+  width: 36px;
+  flex: 0 0 auto;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #8a2a2a;
+}
+
+#mmr-reminders-config .mmr-remove-btn:hover {
+  background: rgba(138, 42, 42, 0.08);
+  border-color: rgba(138, 42, 42, 0.3);
+}
+
+#mmr-reminders-config .mmr-empty {
+  color: #888;
+  font-style: italic;
+  padding: 18px 12px;
+  text-align: center;
+}
+
+#mmr-reminders-config .mmr-reminders-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 4px 4px 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#mmr-reminders-config .mmr-reminders-footer button[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  font-weight: 600;
+}

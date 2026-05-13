@@ -1,0 +1,25 @@
+<header class="mmr-reminders-header">
+    <button type="button" data-action="addMessage" class="mmr-add-btn">
+        <i class="fas fa-plus"></i> Adicionar mensagem
+    </button>
+</header>
+
+<section class="mmr-reminders-list">
+    {{#each messages}}
+        <div class="mmr-reminder-card" data-id="{{this.id}}">
+            <textarea data-id="{{this.id}}" rows="3" placeholder="Digite o lembrete...">{{this.text}}</textarea>
+            <button type="button" data-action="removeMessage" data-id="{{this.id}}" class="mmr-remove-btn" title="Remover">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    {{/each}}
+    {{#unless messages.length}}
+        <p class="mmr-empty">Nenhum lembrete cadastrado. Clique em "Adicionar mensagem" para começar.</p>
+    {{/unless}}
+</section>
+
+<footer class="mmr-reminders-footer">
+    <button type="submit">
+        <i class="fas fa-save"></i> Salvar
+    </button>
+</footer>
