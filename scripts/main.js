@@ -3,16 +3,90 @@
 //  FoundryVTT v13 | D&D 5e
 // =============================================================================
 
-const MODULE_ID = 'meu-modulo-rpg';
+import { MODULE_ID, ReminderManager } from './reminders.js';
+import { ReminderListConfig } from './reminders-config.js';
 
 // UUID do item do mundo que será monitorado
 const WATCHED_ITEM_UUID = 'Item.0otYDkF02RnuX8Gy';
+
+// ---------------------------------------------------------------------------
+//  Registro de settings + menu de gerenciamento de lembretes
+// ---------------------------------------------------------------------------
+Hooks.once('init', () => {
+  const notifyManager = (key) => () => {
+    ReminderManager.instance?.handleSettingChange(key);
+  };
+
+  game.settings.register(MODULE_ID, 'reminder-enabled', {
+    name: 'Ativar lembretes do GM',
+    hint: 'Quando ligado, exibe lembretes em pop-up estilo post-it apenas para o GM.',
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: false,
+    restricted: true,
+    onChange: notifyManager('reminder-enabled')
+  });
+
+  game.settings.register(MODULE_ID, 'reminder-interval-seconds', {
+    name: 'Intervalo entre lembretes (segundos)',
+    hint: 'Tempo de espera entre o desaparecimento de um post-it e o aparecimento do próximo.',
+    scope: 'world',
+    config: true,
+    type: Number,
+    default: 600,
+    restricted: true,
+    onChange: notifyManager('reminder-interval-seconds')
+  });
+
+  game.settings.register(MODULE_ID, 'reminder-duration-seconds', {
+    name: 'Duração do post-it (segundos)',
+    hint: 'Por quanto tempo cada post-it permanece visível antes de sumir.',
+    scope: 'world',
+    config: true,
+    type: Number,
+    default: 10,
+    restricted: true,
+    onChange: notifyManager('reminder-duration-seconds')
+  });
+
+  game.settings.register(MODULE_ID, 'reminder-messages', {
+    name: 'Lista de lembretes',
+    scope: 'world',
+    config: false,
+    type: Array,
+    default: [],
+    restricted: true,
+    onChange: notifyManager('reminder-messages')
+  });
+
+  game.settings.register(MODULE_ID, 'reminder-position', {
+    name: 'Posição do post-it',
+    scope: 'client',
+    config: false,
+    type: Object,
+    default: { x: 20, y: 80 },
+    onChange: notifyManager('reminder-position')
+  });
+
+  game.settings.registerMenu(MODULE_ID, 'reminder-list-menu', {
+    name: 'Lista de Lembretes',
+    label: 'Gerenciar Lembretes',
+    hint: 'Adicione, edite ou remova as mensagens que serão exibidas no carrossel.',
+    icon: 'fas fa-sticky-note',
+    type: ReminderListConfig,
+    restricted: true
+  });
+
+  loadTemplates(['modules/meu-modulo-rpg/templates/reminders-config.hbs']);
+});
 
 // ---------------------------------------------------------------------------
 //  Inicialização
 // ---------------------------------------------------------------------------
 Hooks.once('ready', () => {
   console.log(`${MODULE_ID} | Módulo carregado com sucesso! ✅`);
+  if (game.user.isGM) ReminderManager.init();
 });
 
 // ---------------------------------------------------------------------------
