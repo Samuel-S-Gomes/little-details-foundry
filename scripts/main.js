@@ -23,6 +23,8 @@ Hooks.once('ready', () => {
  * Captura o HP atual do ator ANTES da atualização, guardando no objeto
  * de opções para comparação posterior no hook updateActor.
  */
+// FUNCIONALIDADE DESATIVADA — preservada para possível reativação futura
+/*
 Hooks.on('preUpdateActor', (actor, changes, options) => {
   // Verifica se haverá mudança de HP nesta atualização
   const newHp = changes?.system?.attributes?.hp?.value;
@@ -32,6 +34,7 @@ Hooks.on('preUpdateActor', (actor, changes, options) => {
   options[MODULE_ID] ??= {};
   options[MODULE_ID].previousHp = actor.system?.attributes?.hp?.value ?? null;
 });
+*/
 
 /**
  * Após a atualização do ator, verifica se:
@@ -39,6 +42,8 @@ Hooks.on('preUpdateActor', (actor, changes, options) => {
  *   2. O ator possui o item vigiado EQUIPADO
  * Se ambas as condições forem atendidas, exibe um pop-up exclusivo ao GM.
  */
+// FUNCIONALIDADE DESATIVADA — preservada para possível reativação futura
+/*
 Hooks.on('updateActor', (actor, changes, options) => {
   // Executa apenas no cliente do GM
   if (!game.user.isGM) return;
@@ -110,3 +115,4 @@ Hooks.on('updateActor', (actor, changes, options) => {
     default: 'ok'
   }).render(true);
 });
+*/
