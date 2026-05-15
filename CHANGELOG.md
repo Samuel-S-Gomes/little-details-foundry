@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.4.1] — 2026-05-15
+
+### Corrigido
+- Erro ao abrir o menu **"Gerenciar Lembretes"**: `Template part "form" must render a single HTML element`. O template `templates/reminders-config.hbs` tinha `<header>`, `<section>` e `<footer>` como irmãos no topo, mas o `ApplicationV2 + HandlebarsApplicationMixin` do Foundry v13 exige que cada part renderize um único elemento raiz. Tudo foi envolvido em um `<div class="mmr-reminders-root">`; CSS não precisou ser ajustado (seletores já são descendentes de `#mmr-reminders-config`).
+
+---
+
 ## [0.4.0] — 2026-05-13
 
 ### Adicionado
