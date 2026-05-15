@@ -6,6 +6,26 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.4.0] — 2026-05-13
+
+### Adicionado
+- Sistema de **lembretes em pop-up para o GM** (estilo post-it):
+  - Carrossel cíclico de mensagens visíveis apenas para o GM.
+  - Cada post-it aparece a cada `X` segundos e some sozinho após `Y` segundos (ambos configuráveis).
+  - Botão `×` no canto do card para dispensar manualmente sem esperar o tempo.
+  - Card arrastável com posição salva por usuário (client setting).
+- Janela dedicada **"Gerenciar Lembretes"** acessível pelas configurações do módulo:
+  - Adicionar, editar e remover mensagens individualmente.
+  - Mensagens vazias são descartadas automaticamente ao salvar.
+- Toggle global **"Ativar lembretes do GM"** nas settings para ligar/desligar todo o sistema.
+
+### Infraestrutura
+- Primeira UI configurável do módulo: ApplicationV2 + HandlebarsApplicationMixin (Foundry v13).
+- `module.json` agora declara `styles/reminders.css`.
+- Novo template Handlebars em `templates/reminders-config.hbs`.
+
+---
+
 ## [0.3.1] — 2026-05-12
 
 ### Corrigido

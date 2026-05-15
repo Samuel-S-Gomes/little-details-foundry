@@ -2,7 +2,7 @@
   "id": "meu-modulo-rpg",
   "title": "Meu Módulo RPG",
   "description": "Conjunto de funções customizadas para mesas de RPG com D&D 5e.",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "authors": [{ "name": "GM" }],
   "compatibility": {
     "minimum": "13",
@@ -16,6 +16,7 @@
     }]
   },
   "esmodules": ["scripts/main.js"],
+  "styles": ["styles/reminders.css"],
   "packs": [
     {
       "name": "hurricane-knight",
