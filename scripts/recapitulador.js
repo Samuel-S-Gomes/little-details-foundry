@@ -18,18 +18,16 @@ const EFFECT_NAME = 'Recapitulador';
 const EFFECT_ICON = 'icons/magic/time/clock-stopwatch-white-blue.webp';
 const BONUS = 2;
 
+// Marca colocada na PROCESS config compartilhada entre buildRollConfig e
+// postRollConfiguration (é o mesmo objeto durante uma rolagem), sinalizando
+// que o efeito deve ser consumido quando a rolagem for confirmada.
+const CONSUME_KEY = '_mmrRecapituladorConsume';
+
 // Chave da setting que liga/desliga a feature inteira.
 export const RECAP_SETTING = 'recapitulador-enabled';
 
-// ---------------------------------------------------------------------------
-//  Estado por-cliente (não persiste): atores "armados" na rolagem corrente,
-//  ou seja, com a checkbox marcada no último rebuild antes do submit.
-// ---------------------------------------------------------------------------
-const armed = new Set();
-
 // A feature só roda se a setting estiver ligada. Lê em runtime para refletir
-// mudanças sem reload. Protegido com try porque pode ser chamado antes de
-// 'ready' em cenários atípicos.
+// mudanças sem reload.
 function isEnabled() {
   try {
     return game.settings.get(MODULE_ID, RECAP_SETTING);
@@ -42,7 +40,7 @@ function isEnabled() {
 //  Helpers de resolução de ator/efeito
 // ---------------------------------------------------------------------------
 
-// O subject da config pode ser um Actor OU uma Activity. Resolve para o Actor.
+// O subject da process config pode ser um Actor OU uma Activity. Resolve p/ Actor.
 const getActor = (cfg) => {
   const s = cfg?.subject;
   if (!s) return null;
@@ -53,24 +51,39 @@ const getActor = (cfg) => {
 const findEffect = (actor) =>
   actor?.effects?.find((e) => e.getFlag(FLAG_SCOPE, FLAG_KEY)) ?? null;
 
+// Lê o estado da checkbox a partir do FormData (FormDataExtended converte
+// checkbox para boolean; checkbox desmarcada nem aparece no form).
+function isChecked(formData) {
+  if (!formData) return false;
+  let v;
+  if (typeof formData.get === 'function') v = formData.get('recapitulador');
+  if (v === undefined && formData.object) v = formData.object.recapitulador;
+  return v === true || v === 'on' || v === 'true' || v === 1 || v === '1';
+}
+
 // ---------------------------------------------------------------------------
-//  1) Render do diálogo → injeta a checkbox
+//  1) Render do diálogo → injeta a checkbox DENTRO do <form>
+//     (precisa estar no form para entrar no FormData e disparar rebuild)
 // ---------------------------------------------------------------------------
-function onRenderRollDialog(app, html) {
+function onRenderRollDialog(app, element) {
   try {
     if (!isEnabled()) return;
-
-    // Em AppV2 o 2º arg é HTMLElement; fallback jQuery por segurança.
-    const root = html instanceof HTMLElement ? html : html?.[0];
-    if (!root) return;
 
     const actor = getActor(app?.config);
     if (!findEffect(actor)) return; // só injeta se o ator tem o efeito
 
-    // Evita duplicar em re-render.
-    if (root.querySelector('[name="recapitulador"]')) return;
+    // app.form é o <form> real do diálogo; fallback robusto se indisponível.
+    const root = element instanceof HTMLElement ? element : element?.[0];
+    const form =
+      app?.form instanceof HTMLFormElement
+        ? app.form
+        : root?.tagName === 'FORM'
+          ? root
+          : root?.querySelector('form') ?? root;
+    if (!form) return;
 
-    const form = root.tagName === 'FORM' ? root : root.querySelector('form') ?? root;
+    // Evita duplicar em re-render.
+    if (form.querySelector('[name="recapitulador"]')) return;
 
     // Monta o grupo da checkbox (sem innerHTML).
     const group = document.createElement('div');
@@ -83,9 +96,11 @@ function onRenderRollDialog(app, html) {
     label.append(input, document.createTextNode(' Usar Recapitulador (+2)'));
     group.append(label);
 
-    // Insere antes do rodapé/botões; senão, anexa ao fim.
-    const anchor = form.querySelector('footer, .dialog-buttons, .form-footer, .buttons');
-    if (anchor) anchor.parentNode.insertBefore(group, anchor);
+    // Insere antes dos botões (mantendo o grupo dentro do form); senão, anexa.
+    const buttons = form.querySelector(
+      '.dialog-buttons, footer, .form-footer, [data-application-part="buttons"]'
+    );
+    if (buttons?.parentElement) buttons.parentElement.insertBefore(group, buttons);
     else form.appendChild(group);
 
     app.setPosition?.({ height: 'auto' });
@@ -95,26 +110,31 @@ function onRenderRollDialog(app, html) {
 }
 
 // ---------------------------------------------------------------------------
-//  2) dnd5e.buildRollConfig → aplica o +2 e arma/desarma
-//     Roda a cada rebuild do modal (e em fast-forward com app stub).
+//  2) dnd5e.buildRollConfig → aplica o +2 e marca a process config p/ consumo
+//     Assinatura: (app, config, formData, index). Roda a cada rebuild do modal.
+//     `app.config` é a PROCESS config (mesmo objeto recebido em
+//     postRollConfiguration), então marcamos a intenção de consumo nela.
 // ---------------------------------------------------------------------------
-function onBuildRollConfig(app, config, formData) {
+function onBuildRollConfig(app, config, formData /*, index */) {
   try {
     if (!isEnabled()) return;
 
-    const actor = getActor(app?.config);
+    const process = app?.config;
+    const actor = getActor(process);
     if (!findEffect(actor)) return;
 
-    const checked = !!(formData?.object?.recapitulador ?? formData?.get?.('recapitulador'));
+    const checked = isChecked(formData);
 
     if (checked) {
-      // A config é reconstruída do zero a cada rebuild, então somar é seguro.
+      // A config de cada rolagem é reconstruída do zero a cada rebuild, então
+      // somar o +2 aqui é seguro (não duplica entre rebuilds).
       config.parts ??= [];
       config.parts.push(String(BONUS));
-      armed.add(actor.uuid);
-    } else {
-      armed.delete(actor.uuid);
     }
+
+    // Marca/desmarca a intenção de consumo no objeto compartilhado. O último
+    // rebuild antes do submit define o estado final.
+    if (process) process[CONSUME_KEY] = checked;
   } catch (err) {
     console.error(`${MODULE_ID} | recapitulador (buildRollConfig):`, err);
   }
@@ -122,33 +142,24 @@ function onBuildRollConfig(app, config, formData) {
 
 // ---------------------------------------------------------------------------
 //  3) dnd5e.postRollConfiguration → consome o efeito (uma vez)
-//     Dispara quando a rolagem é confirmada, antes de avaliar.
+//     Assinatura: (rolls, config, dialog, message). `config` é a MESMA process
+//     config marcada em buildRollConfig. Dispara quando a rolagem é confirmada,
+//     antes de avaliar.
 // ---------------------------------------------------------------------------
 async function onPostRollConfiguration(rolls, config /*, dialog, message */) {
   try {
     if (!isEnabled()) return;
+    if (!config?.[CONSUME_KEY]) return;
 
-    const actor = getActor(config); // aqui config é o process config (tem subject)
-    if (actor && armed.has(actor.uuid)) {
-      armed.delete(actor.uuid);
-      const eff = findEffect(actor);
-      // O cliente de quem rolou é dono do ator → pode deletar sem socket/GM.
-      if (eff) await eff.delete();
-    }
+    // Evita consumir de novo se o hook reentrar por algum motivo.
+    config[CONSUME_KEY] = false;
+
+    const actor = getActor(config);
+    const eff = findEffect(actor);
+    // O cliente de quem rolou é dono do ator → pode deletar sem socket/GM.
+    if (eff) await eff.delete();
   } catch (err) {
     console.error(`${MODULE_ID} | recapitulador (postRollConfiguration):`, err);
-  }
-}
-
-// ---------------------------------------------------------------------------
-//  4) Close do diálogo → limpa estado se fechou sem rolar
-// ---------------------------------------------------------------------------
-function onCloseRollDialog(app) {
-  try {
-    const actor = getActor(app?.config);
-    if (actor) armed.delete(actor.uuid);
-  } catch (err) {
-    console.error(`${MODULE_ID} | recapitulador (close):`, err);
   }
 }
 
@@ -156,8 +167,8 @@ function onCloseRollDialog(app) {
 //  Registro dos hooks — chamado no 'init' do main.js (em todos os clientes)
 // ---------------------------------------------------------------------------
 export function registerRecapituladorHooks() {
-  // Render: o nome do hook em AppV2 é render${ClassName}. Registramos em todos
-  // os nomes plausíveis; nomes inexistentes são inócuos.
+  // Render: o nome do hook em AppV2 é render${ClassName}. A classe d20 do dnd5e
+  // é D20RollConfigurationDialog; registramos em todos os nomes plausíveis.
   const renderHooks = [
     'renderD20RollConfigurationDialog',
     'renderRollConfigurationDialog',
@@ -166,16 +177,9 @@ export function registerRecapituladorHooks() {
   ];
   for (const name of renderHooks) Hooks.on(name, onRenderRollDialog);
 
+  // buildRollConfig (variante "") sempre dispara, independentemente do tipo.
   Hooks.on('dnd5e.buildRollConfig', onBuildRollConfig);
   Hooks.on('dnd5e.postRollConfiguration', onPostRollConfiguration);
-
-  const closeHooks = [
-    'closeD20RollConfigurationDialog',
-    'closeRollConfigurationDialog',
-    'closeDamageRollConfigurationDialog',
-    'closeBasicRollConfigurationDialog'
-  ];
-  for (const name of closeHooks) Hooks.on(name, onCloseRollDialog);
 }
 
 // ---------------------------------------------------------------------------
@@ -190,6 +194,8 @@ function buildEffectData() {
     description: `Concede +${BONUS} a uma única rolagem. Some após o uso.`,
     disabled: false,
     transfer: false,
+    // `statuses` torna o efeito "temporário" → o ícone aparece no token.
+    statuses: [FLAG_KEY],
     changes: [], // bônus aplicado via hook, não via change automático
     flags: { [FLAG_SCOPE]: { [FLAG_KEY]: true } }
   };
