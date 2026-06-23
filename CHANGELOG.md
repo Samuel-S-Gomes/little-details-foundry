@@ -6,6 +6,21 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.5.0] — 2026-06-23
+
+### Adicionado
+- Feature **Recapitulador**: um Active Effect que concede **+2 de uso único** a qualquer rolagem do dnd5e.
+  - Enquanto o ator tem o efeito, toda rolagem abre o modal padrão com uma checkbox extra **"Usar Recapitulador (+2)"**.
+  - Marcar a checkbox e confirmar a rolagem soma o `+2` na fórmula e **consome o efeito** (deleta automaticamente). Marcar/desmarcar sem rolar, ou fechar o modal, não consome nada.
+  - Funciona para o **GM e todos os jogadores**, cada um na própria rolagem — os hooks são carregados via esmodule em todos os clientes.
+  - Nova setting **"Ativar Recapitulador"** (world, restrita ao GM) para ligar/desligar a feature.
+  - API do módulo (`game.modules.get('meu-modulo-rpg').api`) com `apply`, `remove`, `toggle`, `applyToSelected`, `toggleSelected` para uso via macro.
+
+### Corrigido
+- Legibilidade da janela **"Gerenciar Lembretes"**: o texto das mensagens e dos botões ficava claro sobre fundo claro (invisível) quando o Foundry aplicava tema escuro à janela. Agora a janela usa fundo de pergaminho com texto escuro explícito.
+
+---
+
 ## [0.4.1] — 2026-05-15
 
 ### Corrigido

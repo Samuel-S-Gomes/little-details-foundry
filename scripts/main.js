@@ -5,6 +5,11 @@
 
 import { MODULE_ID, ReminderManager } from './reminders.js';
 import { ReminderListConfig } from './reminders-config.js';
+import {
+  RECAP_SETTING,
+  registerRecapituladorHooks,
+  recapituladorApi
+} from './recapitulador.js';
 
 // UUID do item do mundo que será monitorado
 const WATCHED_ITEM_UUID = 'Item.0otYDkF02RnuX8Gy';
@@ -77,6 +82,25 @@ Hooks.once('init', () => {
     type: ReminderListConfig,
     restricted: true
   });
+
+  // Setting que liga/desliga a feature Recapitulador (checkbox de +2 nas rolagens).
+  game.settings.register(MODULE_ID, RECAP_SETTING, {
+    name: 'Ativar Recapitulador',
+    hint: 'Quando ligado, atores com o efeito "Recapitulador" ganham uma checkbox de +2 de uso único no modal de rolagem do dnd5e.',
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: true,
+    restricted: true
+  });
+
+  // Hooks do Recapitulador precisam ser registrados em TODOS os clientes
+  // (não só no do GM) para a checkbox aparecer na rolagem de cada jogador.
+  registerRecapituladorHooks();
+
+  // Expõe a API para uso via macro: game.modules.get('meu-modulo-rpg').api
+  const mod = game.modules.get(MODULE_ID);
+  if (mod) mod.api = recapituladorApi;
 
   loadTemplates(['modules/meu-modulo-rpg/templates/reminders-config.hbs']);
 });

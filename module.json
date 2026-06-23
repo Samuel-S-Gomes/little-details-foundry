@@ -2,7 +2,7 @@
   "id": "meu-modulo-rpg",
   "title": "Meu Módulo RPG",
   "description": "Conjunto de funções customizadas para mesas de RPG com D&D 5e.",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "authors": [{ "name": "GM" }],
   "compatibility": {
     "minimum": "13",

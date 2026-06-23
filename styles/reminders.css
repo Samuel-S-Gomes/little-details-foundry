@@ -87,6 +87,15 @@
 /* ----------------------------------------------------------------------------
    Janela de gerenciamento (ApplicationV2)
    ---------------------------------------------------------------------------- */
+/* Fundo claro de pergaminho + texto escuro garantem legibilidade
+   independente do tema (claro/escuro) que o Foundry aplique à janela. */
+#mmr-reminders-config .mmr-reminders-root {
+  background: #f4eeda;
+  color: #2d2d2d;
+  padding: 8px;
+  border-radius: 4px;
+}
+
 #mmr-reminders-config .mmr-reminders-header {
   display: flex;
   justify-content: flex-start;
@@ -103,6 +112,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
+  color: #4a3f1a;
 }
 
 #mmr-reminders-config .mmr-add-btn:hover {
@@ -137,6 +147,11 @@
   border: 1px solid #c9bd91;
   border-radius: 3px;
   background: #fffef5;
+  color: #2d2d2d;
+}
+
+#mmr-reminders-config .mmr-reminder-card textarea::placeholder {
+  color: #9a9277;
 }
 
 #mmr-reminders-config .mmr-remove-btn {
@@ -174,4 +189,26 @@
   gap: 6px;
   padding: 6px 16px;
   font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------------
+   Recapitulador — checkbox injetada nos diálogos de rolagem do dnd5e
+   ---------------------------------------------------------------------------- */
+.mmr-recapitulador-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.mmr-recapitulador-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.mmr-recapitulador-group input[type="checkbox"] {
+  flex: 0 0 auto;
 }

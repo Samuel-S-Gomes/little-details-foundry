@@ -61,6 +61,28 @@ Adiciona a classe **Hurricane Knight** (1–20) ao compêndio do módulo, com au
 
 ---
 
+### 4. Recapitulador (+2 de uso único)
+
+Active Effect chamado **Recapitulador** que concede um bônus de **+2 de uso único** a *qualquer* rolagem do dnd5e (teste de atributo, salvaguarda, perícia, ataque, dano etc.).
+
+**Como funciona:**
+- Enquanto o ator tiver o efeito ativo, toda rolagem abre o modal padrão do Foundry com uma checkbox extra: **`Usar Recapitulador (+2)`**.
+- Se a checkbox estiver **marcada quando a rolagem for confirmada**, o `+2` entra na fórmula e o **efeito é consumido (deletado) automaticamente** — é uso único.
+- Marcar/desmarcar a checkbox sem rolar, ou fechar o modal, **não consome** o efeito.
+- Funciona para o **GM e para todos os jogadores**, cada um na própria rolagem (a lógica é carregada via esmodule em todos os clientes).
+
+**Ligar/desligar:** em **Game Settings → Configurar Módulos → Meu Módulo RPG**, use a checkbox **"Ativar Recapitulador"** (visível apenas ao GM).
+
+**Aplicar o efeito (macro de 1 linha):** selecione o token e rode uma macro de script com:
+
+```js
+game.modules.get("meu-modulo-rpg").api.toggleSelected();
+```
+
+Essa macro **alterna** o efeito: aplica no token selecionado se ele ainda não tiver, e remove se já tiver. A API também expõe `apply`, `remove`, `toggle` e `applyToSelected` caso você queira comportamentos específicos.
+
+---
+
 ## 📁 Estrutura do projeto
 
 ```
