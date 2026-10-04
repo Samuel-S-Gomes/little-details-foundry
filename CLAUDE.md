@@ -1,6 +1,6 @@
 # CLAUDE.md — Module Implementation State
 
-> Estado da implementação do módulo `meu-modulo-rpg` (FoundryVTT v13 + dnd5e 5.3.x). Cobre duas features principais: o compêndio **Hurricane Knight** e o **sistema de lembretes do GM**. Use-o como ponto de retomada entre sessões.
+> Estado da implementação do módulo `meu-modulo-rpg` (FoundryVTT v13 + dnd5e 5.3.x). Cobre o compêndio **Hurricane Knight**, o **sistema de lembretes do GM**, o **Recapitulador** e o **ocultar elevação dos tokens**. Use-o como ponto de retomada entre sessões.
 
 ---
 
@@ -188,6 +188,38 @@ E um `registerMenu`: `reminder-list-menu` → `ReminderListConfig`, label "Geren
 
 ---
 
+## Ocultar elevação dos tokens (v0.6.0)
+
+Esconde o tooltip de elevação do core (`Token#tooltip`, texto vindo de `_getTooltipText()`, só aparece quando elevação ≠ 0) para quem não estiver marcado como "pode ver".
+
+### Decisões tomadas com o usuário
+1. Oculta **só para quem não está marcado**; por padrão só o GM vê.
+2. Liga/desliga por setting + escolha **por usuário via checkbox** em janela dedicada.
+3. Mudanças valem para todos os conectados sem reload.
+
+### Arquivos da feature
+- `scripts/elevation-tooltip.js` — constantes das settings, `canUserView(user, viewers?)`, `refreshElevationTooltips()`, `registerElevationTooltipHooks()`.
+- `scripts/elevation-viewers-config.js` — `ElevationViewersConfig` (ApplicationV2 + HandlebarsApplicationMixin, `tag: 'form'`), lista `game.users` com checkbox `name=<userId>`.
+- `templates/elevation-viewers-config.hbs` — raiz única `.mmr-elev-root`.
+- CSS no fim de `styles/reminders.css` (escopo `#mmr-elevation-viewers`, pergaminho explícito como a janela de lembretes).
+
+### Settings
+| Key | Scope | Tipo | Default | Restricted | Config UI |
+|---|---|---|---|---|---|
+| `elevation-tooltip-hide-enabled` | world | Boolean | `true` | true | true |
+| `elevation-tooltip-viewers` | world | Object `{userId: bool}` | `{}` | true | false |
+
+Menu `elevation-viewers-menu` → `ElevationViewersConfig`. Usuário **sem entrada** no mapa segue o padrão `user.isGM` (jogador novo nasce oculto).
+
+### Mecânica
+- Hook `refreshToken` (todos os clientes) → `token.tooltip.visible = false` se o usuário atual não pode ver. O core chama o hook **depois** de `_applyRenderFlags`, então sobrescreve o `tooltip.visible = !isSecret` de `_refreshState`.
+- Decisão cacheada em `hideForMe` (o hook dispara a cada frame de animação de movimento).
+- `onChange` das duas settings → `refreshElevationTooltips()`: recalcula o cache e marca `refreshState` em todos os tokens (o core restaura a visibilidade; o hook oculta de novo se preciso).
+- `updateUser` do próprio usuário com mudança de `role` também recalcula.
+- **Conflito com o Levels:** a setting `levels.hideElevation` zera `tooltip.text` em `refreshToken`. Se estiver ativa, nossa checkbox não consegue mostrar o número de volta → recomendar "Não ocultar" no Levels.
+
+---
+
 ## Infraestrutura de release (atualizada após v0.4.0)
 
 ### Arquivos da pipeline
@@ -308,3 +340,8 @@ A instalação atual do usuário (v0.2.1) foi feita manualmente (zip baixado pel
 - Sintaxe validada com `node --check`.
 - Commit `fd4caf8` na branch `claude/gm-reminder-notifications-zVBDp`; push feito.
 - PR ainda **não criado** — aguardando confirmação do usuário antes de abrir.
+
+### 2026-10-03 — ocultar elevação dos tokens (v0.6.0)
+- Pedido no contexto de mapas com Levels (subsolo/chão/telhado): o "-10 ft" acima do token incomodava.
+- Implementado `elevation-tooltip.js` + `elevation-viewers-config.js` + template + CSS; settings e menu em `main.js`.
+- Sintaxe validada com `node --check`. Teste real no Foundry pendente.

@@ -83,6 +83,21 @@ Essa macro **alterna** o efeito: aplica no token selecionado se ele ainda não t
 
 ---
 
+### 5. Ocultar elevação dos tokens
+
+Esconde o número de elevação (ex.: **`-10 ft`**) que o Foundry desenha acima dos tokens. Útil em mapas de vários andares (ex.: com o módulo Levels), onde o número fica sempre visível.
+
+**Como configurar** — em **Game Settings → Configurar Módulos → Meu Módulo RPG** (visível apenas ao GM):
+- **"Ocultar elevação dos tokens"** — liga/desliga a feature.
+- **"Quem vê a elevação" → Escolher usuários** — uma checkbox por usuário. Marcados continuam vendo o número; os demais não. Por padrão, **só o GM vê**.
+
+As mudanças valem **na hora para todos os conectados**, sem recarregar.
+
+> [!NOTE]
+> O Levels tem uma opção própria, **"Ocultar Elevação"**. Deixe-a em **"Não ocultar"**: se ela esconder o número, a checkbox deste módulo não consegue mostrá-lo de volta.
+
+---
+
 ## 📁 Estrutura do projeto
 
 ```

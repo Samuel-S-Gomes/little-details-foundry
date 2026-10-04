@@ -212,3 +212,81 @@
 .mmr-recapitulador-group input[type="checkbox"] {
   flex: 0 0 auto;
 }
+
+/* ----------------------------------------------------------------------------
+   Ocultar elevação — janela "Quem vê a elevação" (ApplicationV2)
+   Mesmo pergaminho da janela de lembretes, pelo mesmo motivo (tema escuro).
+   ---------------------------------------------------------------------------- */
+#mmr-elevation-viewers .mmr-elev-root {
+  background: #f4eeda;
+  color: #2d2d2d;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+#mmr-elevation-viewers .mmr-elev-hint {
+  margin: 4px 4px 10px 4px;
+  font-size: 13px;
+}
+
+#mmr-elevation-viewers .mmr-elev-list {
+  list-style: none;
+  margin: 0 0 12px 0;
+  padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#mmr-elevation-viewers .mmr-elev-user label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: #faf6e8;
+  border: 1px solid #d6cfb3;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#mmr-elevation-viewers .mmr-elev-user input[type="checkbox"] {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+#mmr-elevation-viewers .mmr-elev-dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #b5ad93;
+}
+
+#mmr-elevation-viewers .mmr-elev-dot.online {
+  background: #3c9a3c;
+}
+
+#mmr-elevation-viewers .mmr-elev-name {
+  flex: 1;
+  font-weight: 600;
+}
+
+#mmr-elevation-viewers .mmr-elev-role {
+  font-size: 12px;
+  color: #6b6450;
+}
+
+#mmr-elevation-viewers .mmr-elev-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 4px 4px 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#mmr-elevation-viewers .mmr-elev-footer button[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  font-weight: 600;
+}

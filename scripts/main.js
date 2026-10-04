@@ -10,6 +10,13 @@ import {
   registerRecapituladorHooks,
   recapituladorApi
 } from './recapitulador.js';
+import {
+  ELEV_SETTING_ENABLED,
+  ELEV_SETTING_VIEWERS,
+  registerElevationTooltipHooks,
+  refreshElevationTooltips
+} from './elevation-tooltip.js';
+import { ElevationViewersConfig } from './elevation-viewers-config.js';
 
 // UUID do item do mundo que será monitorado
 const WATCHED_ITEM_UUID = 'Item.0otYDkF02RnuX8Gy';
@@ -98,11 +105,49 @@ Hooks.once('init', () => {
   // (não só no do GM) para a checkbox aparecer na rolagem de cada jogador.
   registerRecapituladorHooks();
 
+  // Ocultar elevação dos tokens: liga/desliga + mapa de quem pode ver.
+  // Settings de mundo → onChange roda em todos os clientes conectados.
+  game.settings.register(MODULE_ID, ELEV_SETTING_ENABLED, {
+    name: 'Ocultar elevação dos tokens',
+    hint: 'Esconde o número de elevação ("-10 ft") acima dos tokens para quem não estiver marcado em "Quem vê a elevação". Por padrão, só o GM vê.',
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: true,
+    restricted: true,
+    onChange: refreshElevationTooltips
+  });
+
+  game.settings.register(MODULE_ID, ELEV_SETTING_VIEWERS, {
+    name: 'Usuários que veem a elevação',
+    scope: 'world',
+    config: false,
+    type: Object,
+    default: {},
+    restricted: true,
+    onChange: refreshElevationTooltips
+  });
+
+  game.settings.registerMenu(MODULE_ID, 'elevation-viewers-menu', {
+    name: 'Quem vê a elevação',
+    label: 'Escolher usuários',
+    hint: 'Marque quais usuários continuam vendo o número de elevação acima dos tokens.',
+    icon: 'fas fa-layer-group',
+    type: ElevationViewersConfig,
+    restricted: true
+  });
+
+  // Em todos os clientes: cada um decide localmente se oculta o tooltip.
+  registerElevationTooltipHooks();
+
   // Expõe a API para uso via macro: game.modules.get('meu-modulo-rpg').api
   const mod = game.modules.get(MODULE_ID);
   if (mod) mod.api = recapituladorApi;
 
-  loadTemplates(['modules/meu-modulo-rpg/templates/reminders-config.hbs']);
+  loadTemplates([
+    'modules/meu-modulo-rpg/templates/reminders-config.hbs',
+    'modules/meu-modulo-rpg/templates/elevation-viewers-config.hbs'
+  ]);
 });
 
 // ---------------------------------------------------------------------------

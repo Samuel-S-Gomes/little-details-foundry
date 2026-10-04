@@ -1,0 +1,25 @@
+<div class="mmr-elev-root">
+    <p class="mmr-elev-hint">
+        Marque quem continua vendo o número de elevação acima dos tokens.
+        Vale para todos os conectados assim que você salvar.
+    </p>
+
+    <ul class="mmr-elev-list">
+        {{#each users}}
+            <li class="mmr-elev-user">
+                <label>
+                    <input type="checkbox" name="{{this.id}}" {{checked this.canView}}>
+                    <span class="mmr-elev-dot {{#if this.active}}online{{/if}}" title="{{#if this.active}}Conectado{{else}}Desconectado{{/if}}"></span>
+                    <span class="mmr-elev-name">{{this.name}}</span>
+                    <span class="mmr-elev-role">{{this.role}}</span>
+                </label>
+            </li>
+        {{/each}}
+    </ul>
+
+    <footer class="mmr-elev-footer">
+        <button type="submit">
+            <i class="fas fa-save"></i> Salvar
+        </button>
+    </footer>
+</div>

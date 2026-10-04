@@ -6,7 +6,15 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
-## [0.5.1] — 2026-06-23
+## [0.6.0] — 2026-10-03
+
+### Adicionado
+- Feature **Ocultar elevação dos tokens**: esconde o número de elevação (ex.: `-10 ft`) que o Foundry desenha acima dos tokens.
+  - Nova setting **"Ocultar elevação dos tokens"** (world, restrita ao GM, ligada por padrão) para ligar/desligar.
+  - Novo menu **"Quem vê a elevação"** com uma checkbox por usuário (nome, papel e status de conexão). Por padrão só o GM vê.
+  - Mudanças valem na hora para todos os clientes conectados, sem recarregar.
+
+ — 2026-06-23
 
 ### Corrigido
 - **Recapitulador não era consumido** após a rolagem (o efeito permanecia no ator). A causa: o consumo dependia de casar o estado da checkbox entre dois hooks via um `Set` de UUIDs, frágil em alguns fluxos. Agora a intenção de consumo é gravada **no próprio objeto de configuração da rolagem** (compartilhado entre `dnd5e.buildRollConfig` e `dnd5e.postRollConfiguration`), garantindo que o efeito seja deletado exatamente quando a rolagem é confirmada com a checkbox marcada.
