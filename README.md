@@ -98,6 +98,17 @@ As mudanças valem **na hora para todos os conectados**, sem recarregar.
 
 ---
 
+### 6. Esconder clima abaixo do chão
+
+Esconde a neve, a chuva e as outras partículas do **FXMaster** para quem está vendo um andar **abaixo do chão** (elevação negativa), como o subsolo de um mapa com Levels. Cada um vê conforme o próprio andar:
+- **Token selecionado** → elevação dele (com vários, vale o mais alto).
+- **GM sem token selecionado** → andar escolhido no widget do Levels.
+- **Jogador sem token selecionado** → token do personagem dele.
+
+**Como configurar** — **"Esconder clima abaixo do chão"** (ligada por padrão).
+
+---
+
 ## 📁 Estrutura do projeto
 
 ```

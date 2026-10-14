@@ -17,6 +17,11 @@ import {
   refreshElevationTooltips
 } from './elevation-tooltip.js';
 import { ElevationViewersConfig } from './elevation-viewers-config.js';
+import {
+  CLIMA_SETTING,
+  registerClimaPorAndarHooks,
+  atualizarClimaPorAndar
+} from './clima-por-andar.js';
 
 // UUID do item do mundo que será monitorado
 const WATCHED_ITEM_UUID = 'Item.0otYDkF02RnuX8Gy';
@@ -139,6 +144,19 @@ Hooks.once('init', () => {
 
   // Em todos os clientes: cada um decide localmente se oculta o tooltip.
   registerElevationTooltipHooks();
+
+  // Clima por andar: esconde as partículas do FXMaster abaixo do chão.
+  game.settings.register(MODULE_ID, CLIMA_SETTING, {
+    name: 'Esconder clima abaixo do chão',
+    hint: 'Esconde as partículas do FXMaster (neve, chuva...) para quem está vendo um andar com elevação negativa: token selecionado, andar escolhido no Levels (GM) ou o token do próprio jogador.',
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: true,
+    restricted: true,
+    onChange: atualizarClimaPorAndar
+  });
+  registerClimaPorAndarHooks();
 
   // Expõe a API para uso via macro: game.modules.get('meu-modulo-rpg').api
   const mod = game.modules.get(MODULE_ID);

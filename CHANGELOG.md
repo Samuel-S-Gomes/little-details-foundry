@@ -6,6 +6,14 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.7.0] — 2026-10-14
+
+### Adicionado
+- Feature **Esconder clima abaixo do chão**: some com as partículas do FXMaster (neve, chuva...) na tela de quem está vendo um andar com elevação negativa — token selecionado, andar do widget do Levels (GM) ou token do próprio jogador. Decisão local por cliente; atualiza ao selecionar token, mudar elevação ou trocar de andar no Levels.
+  - Nova setting **"Esconder clima abaixo do chão"** (world, restrita ao GM, ligada por padrão).
+
+---
+
 ## [0.6.0] — 2026-10-03
 
 ### Adicionado

@@ -1,6 +1,6 @@
 # CLAUDE.md — Module Implementation State
 
-> Estado da implementação do módulo `meu-modulo-rpg` (FoundryVTT v13 + dnd5e 5.3.x). Cobre o compêndio **Hurricane Knight**, o **sistema de lembretes do GM**, o **Recapitulador** e o **ocultar elevação dos tokens**. Use-o como ponto de retomada entre sessões.
+> Estado da implementação do módulo `meu-modulo-rpg` (FoundryVTT v13 + dnd5e 5.3.x). Cobre o compêndio **Hurricane Knight**, o **sistema de lembretes do GM**, o **Recapitulador**, o **ocultar elevação dos tokens** e o **clima por andar**. Use-o como ponto de retomada entre sessões.
 
 ---
 
@@ -220,6 +220,17 @@ Menu `elevation-viewers-menu` → `ElevationViewersConfig`. Usuário **sem entra
 
 ---
 
+## Esconder clima abaixo do chão (v0.7.0)
+
+Pedido na mesa `vontade-tempestuosa` (Monastério com Levels): a neve do FXMaster aparecia no subsolo. A região "Sem neve — Subsolo" (gate `pov` do FXMaster) só age com token **selecionado**.
+
+- `scripts/clima-por-andar.js` — `andarVisto()` (token selecionado → maior elevação; GM sem token → `CONFIG.Levels.UI.range[0]` se `rangeEnabled`; jogador → `game.user.character` ou primeiro token próprio) e `atualizarClimaPorAndar()` → `canvas.particleeffects.visible = !(andar < 0)`. Nenhum código do FXMaster mexe em `visible` da camada (só nos containers), então não há disputa.
+- Hooks (todos os clientes, coalescidos num frame): `canvasReady`, `controlToken`, `updateToken` com `elevation`, `levelsUiChangeLevel`, `renderLevelsUI`, `closeLevelsUI` (o `close` do Levels zera `rangeEnabled` antes do hook).
+- Setting `clima-oculto-abaixo-do-chao` (world, Boolean, default `true`, restricted) → `onChange: atualizarClimaPorAndar`.
+- Esconde a camada inteira de partículas (inclusive efeitos de região do FXMaster) — aceitável enquanto só houver clima de cena.
+
+---
+
 ## Infraestrutura de release (atualizada após v0.4.0)
 
 ### Arquivos da pipeline
@@ -345,3 +356,7 @@ A instalação atual do usuário (v0.2.1) foi feita manualmente (zip baixado pel
 - Pedido no contexto de mapas com Levels (subsolo/chão/telhado): o "-10 ft" acima do token incomodava.
 - Implementado `elevation-tooltip.js` + `elevation-viewers-config.js` + template + CSS; settings e menu em `main.js`.
 - Sintaxe validada com `node --check`. Teste real no Foundry pendente.
+
+### 2026-10-14 — clima por andar (v0.7.0)
+- Neve do FXMaster no subsolo para quem não tinha token selecionado. Lido o código do FXMaster 7.2.2 (gate `pov`) e do Levels 6 (`levelsUiChangeLevel`).
+- Implementado `clima-por-andar.js` + setting. `node --check` ok. Teste real no Foundry pendente.
