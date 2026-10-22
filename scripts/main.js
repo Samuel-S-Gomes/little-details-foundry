@@ -22,6 +22,7 @@ import {
   registerClimaPorAndarHooks,
   atualizarClimaPorAndar
 } from './clima-por-andar.js';
+import { TELHADO_SETTING, registerTelhadoTochaHooks } from './telhado-tocha.js';
 
 // UUID do item do mundo que será monitorado
 const WATCHED_ITEM_UUID = 'Item.0otYDkF02RnuX8Gy';
@@ -157,6 +158,19 @@ Hooks.once('init', () => {
     onChange: atualizarClimaPorAndar
   });
   registerClimaPorAndarHooks();
+
+  // Telhado à luz da tocha: telhado visto de fora recortado pelo alcance da luz/visão.
+  game.settings.register(MODULE_ID, TELHADO_SETTING, {
+    name: 'Telhado à luz da tocha',
+    hint: 'Nos tiles marcados com "Telhado à luz da tocha" (aba Sobreposição), o telhado visto de fora aparece só até onde a luz ou a visão do token alcança — inteiro de dia.',
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: true,
+    restricted: true,
+    onChange: () => canvas.ready && canvas.perception.update({ refreshVision: true, refreshLighting: true })
+  });
+  registerTelhadoTochaHooks();
 
   // Expõe a API para uso via macro: game.modules.get('meu-modulo-rpg').api
   const mod = game.modules.get(MODULE_ID);

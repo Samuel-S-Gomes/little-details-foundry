@@ -109,6 +109,21 @@ Esconde a neve, a chuva e as outras partículas do **FXMaster** para quem está 
 
 ---
 
+### 7. Telhado à luz da tocha
+
+Do lado de fora de um prédio, as paredes cortam a visão do token e o telhado some na névoa. Com esta opção, o telhado aparece **só até onde o token consegue ver**:
+- **De dia** (luz global da cena) → o telhado inteiro.
+- **No escuro** → um círculo em volta do token, do tamanho da luz que ele carrega (tocha, lanterna) ou da visão no escuro.
+
+Só vale quando o token enxerga algum pedaço do prédio e está abaixo do telhado; ao entrar no prédio, o telhado esmaece normalmente.
+
+**Como configurar** — marque **"Telhado à luz da tocha"** na aba **Sobreposição** da configuração de cada tile de telhado e deixe desligado o "Reveals Fog of War" do Better Roofs nesses tiles. A setting **"Telhado à luz da tocha"** (ligada por padrão) desliga tudo de uma vez.
+
+> [!NOTE]
+> Por enquanto só a luz e a visão do próprio token recortam o telhado; um lampião do cenário iluminando o telhado não entra na conta.
+
+---
+
 ## 📁 Estrutura do projeto
 
 ```

@@ -6,6 +6,17 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.8.0] — 2026-10-22
+
+### Adicionado
+- Feature **Telhado à luz da tocha**: o telhado de um prédio, visto de fora, aparece só até onde a luz que o token carrega (tocha, lanterna) ou a visão no escuro alcança — e inteiro de dia (luz global da cena). Resolve o telhado sumindo na névoa porque as paredes cortam a linha de visão, sem o "Reveals Fog of War" do Better Roofs revelar o telhado inteiro no escuro.
+  - Só age quando o token enxerga algum pedaço do prédio, está abaixo do telhado e o telhado não está esmaecido (token embaixo dele).
+  - Nova opção **"Telhado à luz da tocha"** na aba Sobreposição da configuração do tile (liga por telhado).
+  - Nova setting **"Telhado à luz da tocha"** (world, restrita ao GM, ligada por padrão) para desligar tudo.
+  - Por cliente: recorte na máscara de visão + luz virtual local (sem paredes, sem cor) para o telhado não ficar escuro. Luzes do cenário não entram no recorte.
+
+---
+
 ## [0.7.0] — 2026-10-14
 
 ### Adicionado

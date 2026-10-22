@@ -1,6 +1,6 @@
 # CLAUDE.md — Module Implementation State
 
-> Estado da implementação do módulo `meu-modulo-rpg` (FoundryVTT v13 + dnd5e 5.3.x). Cobre o compêndio **Hurricane Knight**, o **sistema de lembretes do GM**, o **Recapitulador**, o **ocultar elevação dos tokens** e o **clima por andar**. Use-o como ponto de retomada entre sessões.
+> Estado da implementação do módulo `meu-modulo-rpg` (FoundryVTT v13 + dnd5e 5.3.x). Cobre o compêndio **Hurricane Knight**, o **sistema de lembretes do GM**, o **Recapitulador**, o **ocultar elevação dos tokens**, o **clima por andar** e o **telhado à luz da tocha**. Use-o como ponto de retomada entre sessões.
 
 ---
 
@@ -231,6 +231,20 @@ Pedido na mesa `vontade-tempestuosa` (Monastério com Levels): a neve do FXMaste
 
 ---
 
+## Telhado à luz da tocha (v0.8.0)
+
+Pedido na mesa `vontade-tempestuosa`: de fora do templo, as paredes cortam a LOS e o telhado (elev 9) some na névoa. O "Reveals Fog of War" do Better Roofs (versão instalada só tem o modo "mostrar tile inteiro"; o antigo modo Mask foi removido) revela o telhado todo mesmo no escuro — usuário rejeitou.
+
+- `scripts/telhado-tocha.js`, hook `sightRefresh` (todos os clientes, nada gravado):
+  1. **Máscara de visão**: `PIXI.Container` dentro de `canvas.masks.vision` (irmão do container `vision` do core); por tile, `SpriteMesh` da textura com shader branco×alfa (igual ao Better Roofs) e `sprite.mask` = `PIXI.Graphics` com círculos (stencil; o PIXI 7.4 chama `forceStencil` sozinho). Raio = max(`token.light.radius` se ativa, `visionSource.radius`); dia (`globalLightSource` ativa e escuridão dentro da faixa dele) → sem máscara (inteiro).
+  2. **Iluminação**: o telhado restringe luz e a tocha real é cortada pelas paredes → ficaria escuro. `PointLightSource` local (`sourceId` `meu-modulo-rpg.telhado.<tokenId>`, `walls: false`, `vision: false`, `color: null`, `alpha: 0`, animação copiada da tocha). Illumination/background usam MAX_COLOR, então não clareia em dobro onde a tocha real já ilumina. Só chama `perception.update({refreshLighting})` quando a luz muda (evita laço com o próprio `sightRefresh`).
+  - Condições: fonte de visão ativa de um Token, `tile.visible && !tile.occluded && !hidden`, olho (`losHeight`) abaixo da elevação do tile, e LOS toca o tile (pontos/meios do `los`, 5 px para fora, `mesh.containsCanvasPoint`).
+- Flag por tile `flags.meu-modulo-rpg.telhadoTocha` (checkbox injetada em `renderTileConfig`, aba `overhead`). Setting `telhado-tocha-ativo` (world, Boolean, default `true`, restricted).
+- Limitações: só luz/visão do próprio token (lampiões do cenário não recortam); luz virtual sem paredes também acenderia o chão dentro do prédio para outro token do mesmo cliente que esteja lá dentro.
+- Teste real no Foundry pendente.
+
+---
+
 ## Infraestrutura de release (atualizada após v0.4.0)
 
 ### Arquivos da pipeline
@@ -356,6 +370,9 @@ A instalação atual do usuário (v0.2.1) foi feita manualmente (zip baixado pel
 - Pedido no contexto de mapas com Levels (subsolo/chão/telhado): o "-10 ft" acima do token incomodava.
 - Implementado `elevation-tooltip.js` + `elevation-viewers-config.js` + template + CSS; settings e menu em `main.js`.
 - Sintaxe validada com `node --check`. Teste real no Foundry pendente.
+
+### 2026-10-22 — telhado à luz da tocha (v0.8.0)
+- Lido o código do core v13 (máscara de visão, iluminação por profundidade, fontes de luz), do Better Roofs (só modo "mostrar") e do Levels 6 (visibilidade de tile/névoa). Implementado `telhado-tocha.js` + setting + checkbox no tile. `node --check` ok. Teste real pendente.
 
 ### 2026-10-14 — clima por andar (v0.7.0)
 - Neve do FXMaster no subsolo para quem não tinha token selecionado. Lido o código do FXMaster 7.2.2 (gate `pov`) e do Levels 6 (`levelsUiChangeLevel`).
