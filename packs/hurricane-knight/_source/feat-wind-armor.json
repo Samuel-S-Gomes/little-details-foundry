@@ -56,7 +56,7 @@
       "value": "class",
       "subtype": "hurricane-knight"
     },
-    "requirements": "Hurricane Knight 1",
+    "requirements": "Tempestuoso 1",
     "activities": {
       "actWindArmBoost1": {
         "_id": "actWindArmBoost1",

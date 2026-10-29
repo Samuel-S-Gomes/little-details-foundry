@@ -102,7 +102,7 @@
               "bonus": "",
               "custom": {
                 "enabled": true,
-                "formula": "@scale.storm-knight.electrify-dice"
+                "formula": "(1 + floor((@details.level + 1) / 6))d8"
               },
               "types": [
                 "lightning"

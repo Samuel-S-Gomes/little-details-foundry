@@ -354,6 +354,11 @@ A instalação atual do usuário (v0.2.1) foi feita manualmente (zip baixado pel
 - Erro "no manifest URL" no Foundry → diagnóstico: repo é privado, GitHub retorna 404 para clientes anônimos.
 - Usuário aprovou tornar o repo público.
 
+### 2026-10-29 — entrega por feature (v0.8.3)
+- O GM **não dá a classe**: entrega as features direto na ficha conforme a afinidade. Por isso nada pode depender de `@scale` (só existe com classe/subclasse na ficha). Fórmulas com `@details.level` (nível total) e `@prof`, conferidas contra as tabelas nos níveis 1–20. Os ScaleValues da classe continuam lá, sem uso pelas features.
+- Pré-requisito exibido: "Tempestuoso N" (subclasses mantêm "Storm Knight N" / "Steel Wind Warrior N").
+- Gramática de rolagem do v13 aceita `(expr)dN` e `1d(expr)` (lido em `client/dice/grammar.pegjs`).
+
 ### 2026-10-29 — revisão da classe no VTT (v0.8.1)
 - Usuário revisou a classe no Foundry (dnd5e **5.1.10** instalado, não 5.3). Ajustes descritos no CHANGELOG [0.8.1].
 - `npm run build:packs` local ok (41 keys). Publicada v0.8.1 e instalada no servidor (troca de pasta com o Foundry sem mundo aberto + `pm2 restart foundry`; backup da 0.7.0 em `~/backup-modulos/`).

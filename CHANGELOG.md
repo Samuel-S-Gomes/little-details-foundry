@@ -6,6 +6,16 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.8.3] — 2026-10-29
+
+### Alterado — Hurricane Knight entregue por feature (sem a classe na ficha)
+- Valores de escala (`@scale.hurricane-knight.*`, `@scale.storm-knight.*`, `@scale.steel-wind-warrior.*`) trocados por fórmulas sobre o **nível total do personagem** (`@details.level`) e o PB — mesmos números da tabela original, funcionam sem classe/subclasse: alcance do Air Blast/Thunder Blast (`5 × PB`), voo do Gale Step/Defensive Gust (`10 × PB`), dano de Destructive Tornado, Thunder Blast, Storm Heart, Electrify e Rage Tornado, usos de Defensive Gust e Wind Body.
+- Linhas "Current …" removidas do texto (o valor aparece nas etiquetas da ação e no card de chat).
+- Defensive Gust: a ação usa a distância do Gale Step (antes usava o deslocamento a pé).
+- Pré-requisito das features da classe: "Hurricane Knight N" → "Tempestuoso N".
+
+---
+
 ## [0.8.2] — 2026-10-29
 
 ### Alterado

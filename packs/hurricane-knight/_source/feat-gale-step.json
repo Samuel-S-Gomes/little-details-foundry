@@ -13,7 +13,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>At 3rd level, you can use your ability to control the air around you to ride the wind, creating a miniature tornado that carries you through the air. As a bonus action, you can fly 10 feet for each point of proficiency bonus you have. You must end your flight movement on ground, or you fall, and you can't be wearing armor heavier than light or a shield.</p><hr><p><strong>Current flight distance:</strong> [[lookup @scale.hurricane-knight.gale-step-distance]] ft.</p>",
+      "value": "<p>At 3rd level, you can use your ability to control the air around you to ride the wind, creating a miniature tornado that carries you through the air. As a bonus action, you can fly 10 feet for each point of proficiency bonus you have. You must end your flight movement on ground, or you fall, and you can't be wearing armor heavier than light or a shield.</p>",
       "chat": ""
     },
     "source": {
@@ -26,7 +26,7 @@
       "value": "class",
       "subtype": "hurricane-knight"
     },
-    "requirements": "Hurricane Knight 3",
+    "requirements": "Tempestuoso 3",
     "activities": {
       "actGaleStpUtl001": {
         "_id": "actGaleStpUtl001",
@@ -59,8 +59,8 @@
         },
         "effects": [],
         "range": {
-          "value": "",
-          "units": "self",
+          "value": "10 * @prof",
+          "units": "ft",
           "special": "",
           "override": true
         },

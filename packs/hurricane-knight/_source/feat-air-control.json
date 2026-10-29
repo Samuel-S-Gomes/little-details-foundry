@@ -26,7 +26,7 @@
       "value": "class",
       "subtype": "hurricane-knight"
     },
-    "requirements": "Hurricane Knight 10",
+    "requirements": "Tempestuoso 10",
     "activities": {
       "actAirCtrlUtl001": {
         "_id": "actAirCtrlUtl001",

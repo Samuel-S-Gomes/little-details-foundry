@@ -102,7 +102,7 @@
               "bonus": "",
               "custom": {
                 "enabled": true,
-                "formula": "@scale.steel-wind-warrior.rage-tornado-dice"
+                "formula": "(4 + 2 * floor(@details.level / 17))d6"
               },
               "types": [
                 "bludgeoning"

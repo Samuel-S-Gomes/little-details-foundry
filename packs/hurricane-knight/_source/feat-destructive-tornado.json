@@ -26,7 +26,7 @@
       "value": "class",
       "subtype": "hurricane-knight"
     },
-    "requirements": "Hurricane Knight 2",
+    "requirements": "Tempestuoso 2",
     "activities": {
       "actDesTornSave01": {
         "_id": "actDesTornSave01",
@@ -112,7 +112,7 @@
               "bonus": "",
               "custom": {
                 "enabled": true,
-                "formula": "@scale.hurricane-knight.destructive-tornado-dice"
+                "formula": "(3 + min(3, floor((@details.level - 1) / 5)))d6"
               },
               "types": [
                 "bludgeoning"

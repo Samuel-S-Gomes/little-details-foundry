@@ -102,7 +102,7 @@
     },
     "uses": {
       "spent": 0,
-      "max": "@scale.steel-wind-warrior.wind-body-uses",
+      "max": "1 + floor(@details.level / 17)",
       "recovery": [
         {
           "period": "lr",

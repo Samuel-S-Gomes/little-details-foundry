@@ -13,7 +13,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>Starting at 1st level, you can blow a strong stream of air onto a creature within 10 feet of you, allowing you to take the Shove action at this distance. In addition, whenever you use your Action to Air Blast a creature, you can do it again using your bonus action. If you can make more than one attack as part of your Attack action, you can also make additional air blasts when taking an action to use this feature. The targets make the contested check against your Hurricane save DC.</p><p>The distance increases to 15 feet at 5th level, 20 feet at 9th level, 25 feet at 13th level and 30 feet at 17th level.</p><hr><p><strong>Current range:</strong> [[lookup @scale.hurricane-knight.air-blast-distance]] ft.</p>",
+      "value": "<p>Starting at 1st level, you can blow a strong stream of air onto a creature within 10 feet of you, allowing you to take the Shove action at this distance. In addition, whenever you use your Action to Air Blast a creature, you can do it again using your bonus action. If you can make more than one attack as part of your Attack action, you can also make additional air blasts when taking an action to use this feature. The targets make the contested check against your Hurricane save DC.</p><p>The distance increases to 15 feet at 5th level, 20 feet at 9th level, 25 feet at 13th level and 30 feet at 17th level.</p>",
       "chat": ""
     },
     "source": {
@@ -26,7 +26,7 @@
       "value": "class",
       "subtype": "hurricane-knight"
     },
-    "requirements": "Hurricane Knight 1",
+    "requirements": "Tempestuoso 1",
     "activities": {
       "actAirBlstActn01": {
         "_id": "actAirBlstActn01",
@@ -59,7 +59,7 @@
         },
         "effects": [],
         "range": {
-          "value": "@scale.hurricane-knight.air-blast-distance",
+          "value": "5 * @prof",
           "units": "ft",
           "special": "",
           "override": true
@@ -133,7 +133,7 @@
         },
         "effects": [],
         "range": {
-          "value": "@scale.hurricane-knight.air-blast-distance",
+          "value": "5 * @prof",
           "units": "ft",
           "special": "",
           "override": true
