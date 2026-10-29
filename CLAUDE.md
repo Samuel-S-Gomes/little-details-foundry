@@ -11,7 +11,8 @@
 - ✅ Pipeline de build (JSON-fonte → LevelDB) via `@foundryvtt/foundryvtt-cli`
 - ✅ Workflow do GitHub Actions com 3 triggers e idempotência
 - ✅ Release **v0.3.1** publicada (fix de ícones em cima da v0.3.0)
-- ⏳ Pendente teste real no Foundry (level-up wizard, scale values, active effects)
+- ✅ Testado em parte no VTT (29/10): escolha de resistência no 14 ok; revisão gerou a v0.8.1 (ver CHANGELOG)
+- ⏳ Conferir v0.8.1 no VTT (lookup dos scale values, Thunder Blast só no Storm Knight, marcador do Wind Armor)
 
 ### Sistema de Lembretes do GM (v0.4.0)
 - ✅ Código completo na branch `claude/gm-reminder-notifications-zVBDp` (commit `fd4caf8`)
@@ -41,11 +42,14 @@ A classe deve "parecer oficial" — integrada com level-up wizard, starting equi
 Hurricane Knight (5e Class) — D&D Wiki (GNU FDL 1.3). O texto integral foi colado pelo usuário e está fielmente reproduzido nos documentos. Subclasses: **Steel Wind Warrior** e **Storm Knight**.
 
 ### Decisões tomadas com o usuário
-1. **Wind Armor** → +PB de AC por 1 round via Active Effect; nota indicando que Midi-QOL pode refinar para ranged-only.
+1. **Wind Armor** → (29/10) só marcador visual no token até o início do próximo turno (DAE `turnStart`), sem mudar números; a penalidade é lembrada na mesa.
 2. **Hurricane Strike** → standalone Action; sistema não consegue forçar "consome 1 ataque do Attack action".
-3. **Defensive Gust** → "floating step speed" interpretado como velocidade de movimento atual do personagem.
-4. **Wind Body** → spell `investiture of wind` incluído no texto da feature (não está no SRD do dnd5e).
-5. **Thunder Blast** → modifica Air Blast (3ª activity Attack adicionada) **e** existe como feat descritivo separado.
+3. **Defensive Gust** → (29/10) "floating step speed" era erro de digitação: usa a distância do Gale Step (`gale-step-distance`).
+4. **Wind Body** → (29/10) só link para `Compendium.coisas-dnd.magia.Item.atLnHck2yPXyuqoH` (Investiture of Wind, no Foundry do usuário).
+5. **Thunder Blast** → (29/10) activities no próprio item (só Storm Knight): ataque à distância (arma, CHA, relâmpago/trovão) + Hurricane Strike (Lightning). Air Blast não tem mais a 3ª activity.
+10. **Floating Step** → (29/10) só informativo, sem efeito. **Wind Walker** passa de 24 com o +4 — aceito, não será usado. **Air Control** com CHA ≤ 0 = 0 usos — aceito.
+11. **Escolha de tipo de dano** → partes com 2 tipos (`["lightning","thunder"]`) mostram seletor no diálogo de dano do dnd5e (lido no 5.1.10). Se o Midi pular o diálogo (fast-forward), vale o 1º tipo.
+12. **Valores no texto** → `[[lookup @scale.x.y]]` (enricher do dnd5e). `@scale` cru não é substituído na descrição.
 6. **Build** → roda no **GitHub Actions** (não local), via `@foundryvtt/foundryvtt-cli`.
 7. **dnd5e target**: 5.3.x (Foundry v13, regras 2014).
 8. **Idioma**: inglês original.
@@ -116,6 +120,7 @@ Folders (4):
   - `air-blast-distance` (distance ft): 10 / 15 (5) / 20 (9) / 25 (13) / 30 (17)
   - `destructive-tornado-dice` (dice): 3d6 / 4d6 (6) / 5d6 (11) / 6d6 (16)
   - `defensive-gust-uses` (number): 1 / 2 (13) / 3 (17)
+  - `gale-step-distance` (distance ft): 20 (3) / 30 (5) / 40 (9) / 50 (13) / 60 (17) — = 10 × PB
 - **Steel Wind Warrior (`@scale.steel-wind-warrior.*`):**
   - `rage-tornado-dice` (dice): 4d6 (11) / 6d6 (17)
   - `wind-body-uses` (number): 1 (14) / 2 (17)
@@ -124,9 +129,8 @@ Folders (4):
   - `storm-heart-bonus-dice` (dice): 1d6 (3) / 2d6 (11)
   - `electrify-dice` (dice): 2d8 (6) / 3d8 (11) / 4d8 (17)
 
-### Active Effects embarcados (8)
-- `aefWindArmACBst1` — Wind Armor (on-use, +PB AC, 1 round; disabled+transfer=false na activity)
-- `aefFloatingStep1` — Floating Step (passivo; Midi flags advantage str-save / escape-grapple)
+### Active Effects embarcados (7)
+- `aefWindArmACBst1` — Wind Armor (on-use, sem changes: marcador no token até o início do próximo turno)
 - `aefAirBubblePass` — Air Bubble (passivo; resistance thunder)
 - `aefFlightPassive` — Flight (passivo; upgrade fly = 60 ft)
 - `aefWindWalkerPas` — Wind Walker (passivo; dex +4 / dex.max 24 / Midi flags advantage dex-check + grants disadvantage attack.opportunity)
@@ -349,6 +353,10 @@ A instalação atual do usuário (v0.2.1) foi feita manualmente (zip baixado pel
 - PR #1 mergeado em main, sha `13b8cdd`; workflow rodou e publicou v0.3.0.
 - Erro "no manifest URL" no Foundry → diagnóstico: repo é privado, GitHub retorna 404 para clientes anônimos.
 - Usuário aprovou tornar o repo público.
+
+### 2026-10-29 — revisão da classe no VTT (v0.8.1, a publicar)
+- Usuário revisou a classe no Foundry (dnd5e **5.1.10** instalado, não 5.3). Ajustes descritos no CHANGELOG [0.8.1].
+- `npm run build:packs` local ok (41 keys). Publicar com "Publicar Módulo" (`release.sh`).
 
 ### 2026-05-13 — sistema de lembretes do GM (v0.4.0 em branch)
 - Pesquisa do código existente (apenas alerta de combate em `main.js`, sem settings, sem CSS, sem i18n).

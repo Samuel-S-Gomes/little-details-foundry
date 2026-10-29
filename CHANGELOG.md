@@ -6,6 +6,24 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.8.1] — 2026-10-29
+
+### Alterado — Hurricane Knight (revisão no VTT)
+- **Thunder Blast** saiu do Air Blast e virou activity do próprio item Thunder Blast (só o Storm Knight recebe). Ataque à distância (classificação "arma"), dano relâmpago **ou** trovão escolhido no diálogo de dano.
+- **Thunder Blast** ganhou a activity **Hurricane Strike (Lightning)**: a opção de relâmpago só existe para o Storm Knight.
+- **Storm Heart**: dano extra com escolha relâmpago/trovão no diálogo de dano.
+- **Floating Step**: efeito Midi-QOL removido; a feature é só informativa.
+- **Wind Armor**: o efeito não mexe mais na CA. Vira marcador no token até o início do próximo turno (DAE `turnStart`; 1 rodada/6 s de reserva).
+- **Defensive Gust**: move até a distância do Gale Step (era "floating step speed", erro de digitação do original). Novo scale value `@scale.hurricane-knight.gale-step-distance` (20/30/40/50/60 ft nos níveis 3/5/9/13/17), mostrado no texto do Gale Step e do Defensive Gust.
+- **Wind Body**: texto da magia removido; link para *Investiture of Wind* do compêndio Magia (`coisas-dnd`).
+
+### Corrigido
+- Valores de escala no texto das features (`@scale...`) apareciam crus; agora usam `[[lookup ...]]` e mostram o valor atual quando o item está numa ficha.
+- IDs de activity do Air Blast com 15 caracteres (o Foundry exige 16).
+- Erros de texto: "lighting" → "lightning", "were" → "where", concordâncias e frases quebradas (Floating Step, Gale Step, Whirlwind Ward, Rage Tornado, Electrify etc.). Knight Order agora cita os níveis reais da subclasse (6, 11, 14).
+
+---
+
 ## [0.8.0] — 2026-10-22
 
 ### Adicionado

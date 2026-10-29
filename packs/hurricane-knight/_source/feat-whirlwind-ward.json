@@ -6,7 +6,9 @@
   "img": "icons/magic/air/wind-tornado-spiral-blue-gray.webp",
   "folder": "HKOsteelwindFts1",
   "sort": 200,
-  "ownership": { "default": 0 },
+  "ownership": {
+    "default": 0
+  },
   "flags": {},
   "effects": [
     {
@@ -18,10 +20,30 @@
       "disabled": true,
       "transfer": false,
       "changes": [
-        { "key": "system.traits.dr.value", "mode": 2, "value": "bludgeoning", "priority": 20 },
-        { "key": "system.traits.dr.value", "mode": 2, "value": "piercing", "priority": 20 },
-        { "key": "system.traits.dr.value", "mode": 2, "value": "slashing", "priority": 20 },
-        { "key": "system.traits.dr.bypasses", "mode": 2, "value": "mgc", "priority": 20 }
+        {
+          "key": "system.traits.dr.value",
+          "mode": 2,
+          "value": "bludgeoning",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.dr.value",
+          "mode": 2,
+          "value": "piercing",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.dr.value",
+          "mode": 2,
+          "value": "slashing",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.dr.bypasses",
+          "mode": 2,
+          "value": "mgc",
+          "priority": 20
+        }
       ],
       "duration": {
         "rounds": 1,
@@ -40,11 +62,19 @@
   ],
   "system": {
     "description": {
-      "value": "<p>At 3rd level, when you use an Action, instead of an Attack action, to use your Hurricane Strike. When you do so, you gain resistance to bludgeoning, piercing and slashing damage from nonmagical sources until the start of your next turn.</p><p>If you have more than one attack in each of your turns, you need to forgo your additional attack to benefit from the whirlwind ward.</p>",
+      "value": "<p>At 3rd level, you can use your action, instead of the Attack action, to use your Hurricane Strike. When you do so, you gain resistance to bludgeoning, piercing and slashing damage from nonmagical sources until the start of your next turn.</p><p>If you have more than one attack in each of your turns, you need to forgo your additional attack to benefit from Whirlwind Ward.</p>",
       "chat": ""
     },
-    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
-    "type": { "value": "subclass", "subtype": "steel-wind-warrior" },
+    "source": {
+      "book": "",
+      "page": "",
+      "custom": "Hurricane Knight (5e Class)",
+      "license": "GNU Free Documentation License 1.3"
+    },
+    "type": {
+      "value": "subclass",
+      "subtype": "steel-wind-warrior"
+    },
     "requirements": "Steel Wind Warrior 3",
     "activities": {
       "actWhirlWardUtl1": {
@@ -53,26 +83,78 @@
         "name": "Engage Whirlwind Ward",
         "img": "icons/magic/air/wind-tornado-spiral-blue-gray.webp",
         "sort": 100,
-        "activation": { "type": "action", "value": 1, "condition": "Use as part of a Hurricane Strike taken with the Action (not Attack action).", "override": true },
-        "consumption": { "targets": [], "scaling": { "allowed": false, "max": "" }, "spellSlot": false },
-        "description": { "chatFlavor": "Whirling winds shield you against mundane strikes." },
-        "duration": { "value": "1", "units": "round", "concentration": false, "override": true },
+        "activation": {
+          "type": "action",
+          "value": 1,
+          "condition": "Use as part of a Hurricane Strike taken with the Action (not Attack action).",
+          "override": true
+        },
+        "consumption": {
+          "targets": [],
+          "scaling": {
+            "allowed": false,
+            "max": ""
+          },
+          "spellSlot": false
+        },
+        "description": {
+          "chatFlavor": "Whirling winds shield you against mundane strikes."
+        },
+        "duration": {
+          "value": "1",
+          "units": "round",
+          "concentration": false,
+          "override": true
+        },
         "effects": [
-          { "_id": "aefWhirlWardBuff" }
+          {
+            "_id": "aefWhirlWardBuff"
+          }
         ],
-        "range": { "value": "", "units": "self", "special": "", "override": true },
+        "range": {
+          "value": "",
+          "units": "self",
+          "special": "",
+          "override": true
+        },
         "target": {
-          "template": { "count": "", "contiguous": false, "type": "", "size": "", "width": "", "height": "", "units": "ft" },
-          "affects": { "count": "", "type": "self", "choice": false, "special": "" },
+          "template": {
+            "count": "",
+            "contiguous": false,
+            "type": "",
+            "size": "",
+            "width": "",
+            "height": "",
+            "units": "ft"
+          },
+          "affects": {
+            "count": "",
+            "type": "self",
+            "choice": false,
+            "special": ""
+          },
           "prompt": false,
           "override": true
         },
-        "uses": { "spent": 0, "max": "", "recovery": [] }
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "recovery": []
+        }
       }
     },
-    "uses": { "spent": 0, "max": "", "recovery": [] },
-    "recharge": { "value": null, "charged": true },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "recovery": []
+    },
+    "recharge": {
+      "value": null,
+      "charged": true
+    },
     "properties": [],
-    "prerequisites": { "level": 3 }
+    "prerequisites": {
+      "level": 3
+    }
   }
 }

@@ -6,7 +6,9 @@
   "img": "icons/magic/air/wind-stream-purple-blue.webp",
   "folder": "HKOclasssub00001",
   "sort": 100,
-  "ownership": { "default": 0 },
+  "ownership": {
+    "default": 0
+  },
   "flags": {},
   "effects": [],
   "system": {
@@ -24,11 +26,21 @@
     "levels": 1,
     "hitDice": "d10",
     "hitDiceUsed": 0,
-    "primaryAbility": { "value": ["str", "dex"], "all": false },
+    "primaryAbility": {
+      "value": [
+        "str",
+        "dex"
+      ],
+      "all": false
+    },
     "spellcasting": {
       "progression": "none",
       "ability": "",
-      "preparation": { "formula": "", "value": 0, "max": 0 }
+      "preparation": {
+        "formula": "",
+        "value": 0,
+        "max": 0
+      }
     },
     "wealth": "5d4 * 10",
     "startingEquipment": [
@@ -186,10 +198,15 @@
           "hint": "Hurricane Knight saving throw proficiencies.",
           "mode": "default",
           "allowReplacements": false,
-          "grants": ["saves:dex", "saves:cha"],
+          "grants": [
+            "saves:dex",
+            "saves:cha"
+          ],
           "choices": []
         },
-        "value": { "chosen": [] },
+        "value": {
+          "chosen": []
+        },
         "title": "Saving Throw Proficiencies",
         "icon": "",
         "classRestriction": "primary"
@@ -212,7 +229,9 @@
           ],
           "choices": []
         },
-        "value": { "chosen": [] },
+        "value": {
+          "chosen": []
+        },
         "title": "Armor, Weapons & Tools",
         "icon": "",
         "classRestriction": "primary"
@@ -241,7 +260,9 @@
             }
           ]
         },
-        "value": { "chosen": [] },
+        "value": {
+          "chosen": []
+        },
         "title": "Skill Proficiencies",
         "icon": "",
         "classRestriction": "primary"
@@ -252,13 +273,21 @@
         "level": 1,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFwindArmor0001", "optional": false },
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFairBlast00001", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFwindArmor0001",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFairBlast00001",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -269,13 +298,21 @@
         "level": 2,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFhurricaneStrk", "optional": false },
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFdestructTorn1", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFhurricaneStrk",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFdestructTorn1",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -286,13 +323,21 @@
         "level": 3,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFknightOrder01", "optional": false },
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFgaleStep00001", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFknightOrder01",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFgaleStep00001",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -302,7 +347,9 @@
         "type": "Subclass",
         "level": 3,
         "configuration": {},
-        "value": { "document": null },
+        "value": {
+          "document": null
+        },
         "title": "Knight Order",
         "icon": "",
         "classRestriction": ""
@@ -311,8 +358,17 @@
         "_id": "adv09ASIL4000000",
         "type": "AbilityScoreImprovement",
         "level": 4,
-        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
-        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "configuration": {
+          "points": 2,
+          "fixed": {},
+          "cap": 20,
+          "locked": []
+        },
+        "value": {
+          "type": "asi",
+          "assignments": {},
+          "feat": {}
+        },
         "title": "Ability Score Improvement",
         "icon": "",
         "classRestriction": ""
@@ -323,12 +379,17 @@
         "level": 5,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFextraAttack01", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFextraAttack01",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -339,12 +400,17 @@
         "level": 6,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFwindHeart0001", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFwindHeart0001",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -355,12 +421,17 @@
         "level": 7,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFfloatingStep1", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFfloatingStep1",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -369,8 +440,17 @@
         "_id": "adv13ASIL8000000",
         "type": "AbilityScoreImprovement",
         "level": 8,
-        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
-        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "configuration": {
+          "points": 2,
+          "fixed": {},
+          "cap": 20,
+          "locked": []
+        },
+        "value": {
+          "type": "asi",
+          "assignments": {},
+          "feat": {}
+        },
         "title": "Ability Score Improvement",
         "icon": "",
         "classRestriction": ""
@@ -381,12 +461,17 @@
         "level": 9,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFdefensiveGust", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFdefensiveGust",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -397,12 +482,17 @@
         "level": 10,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFairControl001", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFairControl001",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -411,8 +501,17 @@
         "_id": "adv16ASIL1200000",
         "type": "AbilityScoreImprovement",
         "level": 12,
-        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
-        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "configuration": {
+          "points": 2,
+          "fixed": {},
+          "cap": 20,
+          "locked": []
+        },
+        "value": {
+          "type": "asi",
+          "assignments": {},
+          "feat": {}
+        },
         "title": "Ability Score Improvement",
         "icon": "",
         "classRestriction": ""
@@ -423,13 +522,21 @@
         "level": 15,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFairBubble0001", "optional": false },
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFoneWithStorm1", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFairBubble0001",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFoneWithStorm1",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -438,8 +545,17 @@
         "_id": "adv18ASIL1600000",
         "type": "AbilityScoreImprovement",
         "level": 16,
-        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
-        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "configuration": {
+          "points": 2,
+          "fixed": {},
+          "cap": 20,
+          "locked": []
+        },
+        "value": {
+          "type": "asi",
+          "assignments": {},
+          "feat": {}
+        },
         "title": "Ability Score Improvement",
         "icon": "",
         "classRestriction": ""
@@ -450,12 +566,17 @@
         "level": 18,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFflight0000001", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFflight0000001",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -464,8 +585,17 @@
         "_id": "adv20ASIL1900000",
         "type": "AbilityScoreImprovement",
         "level": 19,
-        "configuration": { "points": 2, "fixed": {}, "cap": 20, "locked": [] },
-        "value": { "type": "asi", "assignments": {}, "feat": {} },
+        "configuration": {
+          "points": 2,
+          "fixed": {},
+          "cap": 20,
+          "locked": []
+        },
+        "value": {
+          "type": "asi",
+          "assignments": {},
+          "feat": {}
+        },
         "title": "Ability Score Improvement",
         "icon": "",
         "classRestriction": ""
@@ -476,12 +606,17 @@
         "level": 20,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFwindWalker001", "optional": false }
+            {
+              "uuid": "Compendium.meu-modulo-rpg.hurricane-knight.Item.HKFwindWalker001",
+              "optional": false
+            }
           ],
           "optional": false,
           "spell": null
         },
-        "value": { "added": {} },
+        "value": {
+          "added": {}
+        },
         "title": "Features",
         "icon": "",
         "classRestriction": ""
@@ -492,13 +627,25 @@
         "configuration": {
           "identifier": "air-blast-distance",
           "type": "distance",
-          "distance": { "units": "ft" },
+          "distance": {
+            "units": "ft"
+          },
           "scale": {
-            "1": { "value": 10 },
-            "5": { "value": 15 },
-            "9": { "value": 20 },
-            "13": { "value": 25 },
-            "17": { "value": 30 }
+            "1": {
+              "value": 10
+            },
+            "5": {
+              "value": 15
+            },
+            "9": {
+              "value": 20
+            },
+            "13": {
+              "value": 25
+            },
+            "17": {
+              "value": 30
+            }
           }
         },
         "value": {},
@@ -513,10 +660,22 @@
           "identifier": "destructive-tornado-dice",
           "type": "dice",
           "scale": {
-            "2": { "number": 3, "faces": 6 },
-            "6": { "number": 4, "faces": 6 },
-            "11": { "number": 5, "faces": 6 },
-            "16": { "number": 6, "faces": 6 }
+            "2": {
+              "number": 3,
+              "faces": 6
+            },
+            "6": {
+              "number": 4,
+              "faces": 6
+            },
+            "11": {
+              "number": 5,
+              "faces": 6
+            },
+            "16": {
+              "number": 6,
+              "faces": 6
+            }
           }
         },
         "value": {},
@@ -531,14 +690,52 @@
           "identifier": "defensive-gust-uses",
           "type": "number",
           "scale": {
-            "9": { "value": 1 },
-            "13": { "value": 2 },
-            "17": { "value": 3 }
+            "9": {
+              "value": 1
+            },
+            "13": {
+              "value": 2
+            },
+            "17": {
+              "value": 3
+            }
           }
         },
         "value": {},
         "title": "Defensive Gust Uses",
         "icon": "icons/magic/air/air-burst-spiral-yellow.webp",
+        "classRestriction": ""
+      },
+      {
+        "_id": "adv25SVGaleStepD",
+        "type": "ScaleValue",
+        "configuration": {
+          "identifier": "gale-step-distance",
+          "type": "distance",
+          "distance": {
+            "units": "ft"
+          },
+          "scale": {
+            "3": {
+              "value": 20
+            },
+            "5": {
+              "value": 30
+            },
+            "9": {
+              "value": 40
+            },
+            "13": {
+              "value": 50
+            },
+            "17": {
+              "value": 60
+            }
+          }
+        },
+        "value": {},
+        "title": "Gale Step Distance",
+        "icon": "icons/magic/air/air-burst-spiral-blue-gray.webp",
         "classRestriction": ""
       }
     ]

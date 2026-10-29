@@ -6,21 +6,231 @@
   "img": "icons/magic/lightning/bolt-forked-blue.webp",
   "folder": "HKOstormKnightFt",
   "sort": 100,
-  "ownership": { "default": 0 },
+  "ownership": {
+    "default": 0
+  },
   "flags": {},
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>At 3rd level, whenever you use your hurricane strike, you can choose to deal lighting damage, instead of bludgeoning damage.</p><p>In addition, you can infuse your Air Blast with lighting and thunder. When using the Air Blast feature, instead of taking the Shove action, you can choose to make a ranged attack, using your Charisma modifier. On a hit, you deal damage equal to <strong>1d4 + your Charisma modifier</strong>. The damage type is either lighting or thunder (your choice). The damage die increases to 1d6 at 5th level, 1d8 at 11th level and 1d10 at 17th level.</p><hr><p><strong>Current Thunder Blast die:</strong> @scale.storm-knight.thunder-blast-die.</p><p><em>Foundry note: the third activity of the <strong>Air Blast</strong> item executes this ranged attack with the scaling die.</em></p>",
+      "value": "<p>At 3rd level, whenever you use your Hurricane Strike, you can choose to deal lightning damage, instead of bludgeoning damage.</p><p>In addition, you can infuse your Air Blast with lightning and thunder. When using the Air Blast feature, instead of taking the Shove action, you can choose to make a ranged attack, using your Charisma modifier. On a hit, you deal damage equal to <strong>1d4 + your Charisma modifier</strong>. The damage type is either lightning or thunder (your choice). The damage die increases to 1d6 at 5th level, 1d8 at 11th level and 1d10 at 17th level.</p><hr><p><strong>Current Thunder Blast die:</strong> [[lookup @scale.storm-knight.thunder-blast-die]].</p><p><em>Foundry note: use the activities of this item — <strong>Thunder Blast</strong> (ranged attack; pick lightning or thunder in the damage dialog) and <strong>Hurricane Strike (Lightning)</strong>.</em></p>",
       "chat": ""
     },
-    "source": { "book": "", "page": "", "custom": "Hurricane Knight (5e Class)", "license": "GNU Free Documentation License 1.3" },
-    "type": { "value": "subclass", "subtype": "storm-knight" },
+    "source": {
+      "book": "",
+      "page": "",
+      "custom": "Hurricane Knight (5e Class)",
+      "license": "GNU Free Documentation License 1.3"
+    },
+    "type": {
+      "value": "subclass",
+      "subtype": "storm-knight"
+    },
     "requirements": "Storm Knight 3",
-    "activities": {},
-    "uses": { "spent": 0, "max": "", "recovery": [] },
-    "recharge": { "value": null, "charged": true },
+    "activities": {
+      "actThndBlastAtk1": {
+        "_id": "actThndBlastAtk1",
+        "type": "attack",
+        "name": "Thunder Blast",
+        "img": "icons/magic/lightning/bolt-forked-blue.webp",
+        "sort": 100,
+        "activation": {
+          "type": "action",
+          "value": 1,
+          "condition": "Instead of the Shove from Air Blast",
+          "override": true
+        },
+        "consumption": {
+          "targets": [],
+          "scaling": {
+            "allowed": false,
+            "max": ""
+          },
+          "spellSlot": false
+        },
+        "description": {
+          "chatFlavor": "Hurl a thunder/lightning charged gust of wind."
+        },
+        "duration": {
+          "value": "",
+          "units": "inst",
+          "concentration": false,
+          "override": true
+        },
+        "effects": [],
+        "range": {
+          "value": "@scale.hurricane-knight.air-blast-distance",
+          "units": "ft",
+          "special": "",
+          "override": true
+        },
+        "target": {
+          "template": {
+            "count": "",
+            "contiguous": false,
+            "type": "",
+            "size": "",
+            "width": "",
+            "height": "",
+            "units": "ft"
+          },
+          "affects": {
+            "count": "1",
+            "type": "creature",
+            "choice": false,
+            "special": ""
+          },
+          "prompt": true,
+          "override": true
+        },
+        "attack": {
+          "ability": "cha",
+          "bonus": "",
+          "critical": {
+            "threshold": null,
+            "damage": ""
+          },
+          "flat": false,
+          "type": {
+            "value": "ranged",
+            "classification": "weapon"
+          }
+        },
+        "damage": {
+          "includeBase": false,
+          "parts": [
+            {
+              "number": null,
+              "denomination": null,
+              "bonus": "",
+              "custom": {
+                "enabled": true,
+                "formula": "@scale.storm-knight.thunder-blast-die + @abilities.cha.mod"
+              },
+              "types": [
+                "lightning",
+                "thunder"
+              ],
+              "scaling": {
+                "mode": "",
+                "number": 1,
+                "formula": ""
+              }
+            }
+          ]
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "recovery": []
+        }
+      },
+      "actThndBlastHurr": {
+        "_id": "actThndBlastHurr",
+        "type": "save",
+        "name": "Hurricane Strike (Lightning)",
+        "img": "icons/magic/lightning/bolt-strike-blue.webp",
+        "sort": 200,
+        "activation": {
+          "type": "action",
+          "value": 1,
+          "condition": "Replaces one attack from your Attack action.",
+          "override": true
+        },
+        "consumption": {
+          "targets": [],
+          "scaling": {
+            "allowed": false,
+            "max": ""
+          },
+          "spellSlot": false
+        },
+        "description": {
+          "chatFlavor": "A swirl of wind whirls around you, battering nearby foes."
+        },
+        "duration": {
+          "value": "",
+          "units": "inst",
+          "concentration": false,
+          "override": true
+        },
+        "effects": [],
+        "range": {
+          "value": "",
+          "units": "self",
+          "special": "",
+          "override": true
+        },
+        "target": {
+          "template": {
+            "count": "1",
+            "contiguous": false,
+            "type": "circle",
+            "size": "5",
+            "width": "",
+            "height": "",
+            "units": "ft"
+          },
+          "affects": {
+            "count": "",
+            "type": "creature",
+            "choice": false,
+            "special": ""
+          },
+          "prompt": true,
+          "override": true
+        },
+        "save": {
+          "ability": [
+            "str"
+          ],
+          "dc": {
+            "calculation": "cha",
+            "formula": ""
+          }
+        },
+        "damage": {
+          "onSave": "none",
+          "includeBase": false,
+          "parts": [
+            {
+              "number": 1,
+              "denomination": 6,
+              "bonus": "",
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              },
+              "types": [
+                "lightning"
+              ],
+              "scaling": {
+                "mode": "",
+                "number": 1,
+                "formula": ""
+              }
+            }
+          ]
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "recovery": []
+        }
+      }
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "recovery": []
+    },
+    "recharge": {
+      "value": null,
+      "charged": true
+    },
     "properties": [],
-    "prerequisites": { "level": 3 }
+    "prerequisites": {
+      "level": 3
+    }
   }
 }
