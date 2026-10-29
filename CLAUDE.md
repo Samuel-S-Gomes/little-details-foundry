@@ -356,7 +356,7 @@ A instalação atual do usuário (v0.2.1) foi feita manualmente (zip baixado pel
 
 ### 2026-10-29 — entrega por feature (v0.8.3)
 - O GM **não dá a classe**: entrega as features direto na ficha conforme a afinidade. Por isso nada pode depender de `@scale` (só existe com classe/subclasse na ficha). Fórmulas com `@details.level` (nível total) e `@prof`, conferidas contra as tabelas nos níveis 1–20. Os ScaleValues da classe continuam lá, sem uso pelas features.
-- Pré-requisito exibido: "Tempestuoso N" (subclasses mantêm "Storm Knight N" / "Steel Wind Warrior N").
+- Pré-requisito exibido: "Tempestuoso N" ; subclasses (v0.8.4): "Trovão da Tempestade N" (Storm Knight) e "Gume da Tempestade N" (Steel Wind Warrior). Só a etiqueta — nomes dos itens seguem em inglês.
 - Gramática de rolagem do v13 aceita `(expr)dN` e `1d(expr)` (lido em `client/dice/grammar.pegjs`).
 
 ### 2026-10-29 — revisão da classe no VTT (v0.8.1)

@@ -75,7 +75,7 @@
       "value": "subclass",
       "subtype": "steel-wind-warrior"
     },
-    "requirements": "Steel Wind Warrior 3",
+    "requirements": "Gume da Tempestade 3",
     "activities": {
       "actWhirlWardUtl1": {
         "_id": "actWhirlWardUtl1",

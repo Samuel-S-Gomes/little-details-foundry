@@ -26,7 +26,7 @@
       "value": "subclass",
       "subtype": "storm-knight"
     },
-    "requirements": "Storm Knight 3",
+    "requirements": "Trovão da Tempestade 3",
     "activities": {
       "actThndBlastAtk1": {
         "_id": "actThndBlastAtk1",

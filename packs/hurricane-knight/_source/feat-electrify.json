@@ -26,7 +26,7 @@
       "value": "subclass",
       "subtype": "storm-knight"
     },
-    "requirements": "Storm Knight 6",
+    "requirements": "Trovão da Tempestade 6",
     "activities": {
       "actElectrifySav1": {
         "_id": "actElectrifySav1",

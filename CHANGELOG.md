@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.8.4] — 2026-10-29
+
+### Alterado
+- Hurricane Knight: pré-requisito exibido nas features das subclasses — "Steel Wind Warrior N" → "Gume da Tempestade N", "Storm Knight N" → "Trovão da Tempestade N".
+
+---
+
 ## [0.8.3] — 2026-10-29
 
 ### Alterado — Hurricane Knight entregue por feature (sem a classe na ficha)

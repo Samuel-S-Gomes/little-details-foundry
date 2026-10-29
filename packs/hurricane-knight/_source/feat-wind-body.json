@@ -26,7 +26,7 @@
       "value": "subclass",
       "subtype": "steel-wind-warrior"
     },
-    "requirements": "Steel Wind Warrior 14",
+    "requirements": "Gume da Tempestade 14",
     "activities": {
       "actWndBodyUtl001": {
         "_id": "actWndBodyUtl001",
