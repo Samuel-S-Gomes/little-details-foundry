@@ -354,9 +354,10 @@ A instalação atual do usuário (v0.2.1) foi feita manualmente (zip baixado pel
 - Erro "no manifest URL" no Foundry → diagnóstico: repo é privado, GitHub retorna 404 para clientes anônimos.
 - Usuário aprovou tornar o repo público.
 
-### 2026-10-29 — revisão da classe no VTT (v0.8.1, a publicar)
+### 2026-10-29 — revisão da classe no VTT (v0.8.1)
 - Usuário revisou a classe no Foundry (dnd5e **5.1.10** instalado, não 5.3). Ajustes descritos no CHANGELOG [0.8.1].
-- `npm run build:packs` local ok (41 keys). Publicar com "Publicar Módulo" (`release.sh`).
+- `npm run build:packs` local ok (41 keys). Publicada v0.8.1 e instalada no servidor (troca de pasta com o Foundry sem mundo aberto + `pm2 restart foundry`; backup da 0.7.0 em `~/backup-modulos/`).
+- **Armadilha do release:** enviar commit e tag no mesmo push faz os dois runs do workflow verem a tag e pularem a release. Enviar `main` primeiro (como o `release.sh`) ou só `main` + deixar o workflow criar a tag. Conserto usado: apagar a tag remota + `gh workflow run release.yml`.
 
 ### 2026-05-13 — sistema de lembretes do GM (v0.4.0 em branch)
 - Pesquisa do código existente (apenas alerta de combate em `main.js`, sem settings, sem CSS, sem i18n).

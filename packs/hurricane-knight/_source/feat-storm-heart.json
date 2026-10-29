@@ -13,7 +13,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>Starting at 3rd level, you can enhance the power of the winds you create with electricity. When you use your Destructive Tornado feature, you deal an additional 1d6 lightning or thunder damage, and all creatures in the area that fail the saving throw can't use reactions until the end of your next turn.</p><p>The additional damage increases to 2d6 at 11th level.</p><hr><p><strong>Current bonus damage:</strong> [[lookup @scale.storm-knight.storm-heart-bonus-dice]] (lightning or thunder, your choice).</p><p><em>Foundry note: roll the <strong>Storm Heart Bonus</strong> activity together with Destructive Tornado and pick the damage type in the damage dialog.</em></p>",
+      "value": "<p>Starting at 3rd level, you can enhance the power of the winds you create with electricity. When you use your Destructive Tornado feature, you deal an additional 1d6 lightning or thunder damage, and all creatures in the area that fail the saving throw can't use reactions until the end of your next turn.</p><p>The additional damage increases to 2d6 at 11th level.</p><hr><p><strong>Current bonus damage:</strong> [[lookup @scale.storm-knight.storm-heart-bonus-dice]] (lightning or thunder, your choice).</p>",
       "chat": ""
     },
     "source": {

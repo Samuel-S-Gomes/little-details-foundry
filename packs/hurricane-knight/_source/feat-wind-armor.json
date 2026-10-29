@@ -43,7 +43,7 @@
   ],
   "system": {
     "description": {
-      "value": "<p>Winds swirl around your body, protecting you from harm. At 1st level, you can use your bonus action to cause all ranged attacks made against you until the start of your next turn to have a penalty equal to your proficiency bonus.</p><p>In addition, whenever a creature enters the space within 5 feet of you, you can use your reaction to blast a gust of wind onto that creature, moving the creature 5 feet back on a failed Strength save.</p><hr><p><em>Foundry note: <strong>Swirl Winds</strong> places a reminder effect on your token until the start of your next turn. It changes no numbers — subtract your proficiency bonus from ranged attacks against you at the table.</em></p>",
+      "value": "<p>Winds swirl around your body, protecting you from harm. At 1st level, you can use your bonus action to cause all ranged attacks made against you until the start of your next turn to have a penalty equal to your proficiency bonus.</p><p>In addition, whenever a creature enters the space within 5 feet of you, you can use your reaction to blast a gust of wind onto that creature, moving the creature 5 feet back on a failed Strength save.</p>",
       "chat": ""
     },
     "source": {

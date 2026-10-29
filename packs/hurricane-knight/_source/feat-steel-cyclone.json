@@ -13,7 +13,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>Starting at 3rd level, you can use a weapon to empower your Hurricane Strike. When you use a weapon that lacks the two-handed and heavy properties, you can add its damage die to the damage of your Hurricane Strike. You don't add your ability score to this damage.</p><hr><p><em>Foundry note: when rolling Hurricane Strike, add an extra damage formula matching your weapon's damage die. Example for a longsword (1d8): add a 1d8 piercing/slashing line manually, or duplicate Hurricane Strike with the bonus die baked in.</em></p>",
+      "value": "<p>Starting at 3rd level, you can use a weapon to empower your Hurricane Strike. When you use a weapon that lacks the two-handed and heavy properties, you can add its damage die to the damage of your Hurricane Strike. You don't add your ability score to this damage.</p>",
       "chat": ""
     },
     "source": {

@@ -13,7 +13,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>At 3rd level, whenever you use your Hurricane Strike, you can choose to deal lightning damage, instead of bludgeoning damage.</p><p>In addition, you can infuse your Air Blast with lightning and thunder. When using the Air Blast feature, instead of taking the Shove action, you can choose to make a ranged attack, using your Charisma modifier. On a hit, you deal damage equal to <strong>1d4 + your Charisma modifier</strong>. The damage type is either lightning or thunder (your choice). The damage die increases to 1d6 at 5th level, 1d8 at 11th level and 1d10 at 17th level.</p><hr><p><strong>Current Thunder Blast die:</strong> [[lookup @scale.storm-knight.thunder-blast-die]].</p><p><em>Foundry note: use the activities of this item — <strong>Thunder Blast</strong> (ranged attack; pick lightning or thunder in the damage dialog) and <strong>Hurricane Strike (Lightning)</strong>.</em></p>",
+      "value": "<p>At 3rd level, whenever you use your Hurricane Strike, you can choose to deal lightning damage, instead of bludgeoning damage.</p><p>In addition, you can infuse your Air Blast with lightning and thunder. When using the Air Blast feature, instead of taking the Shove action, you can choose to make a ranged attack, using your Charisma modifier. On a hit, you deal damage equal to <strong>1d4 + your Charisma modifier</strong>. The damage type is either lightning or thunder (your choice). The damage die increases to 1d6 at 5th level, 1d8 at 11th level and 1d10 at 17th level.</p><hr><p><strong>Current Thunder Blast die:</strong> [[lookup @scale.storm-knight.thunder-blast-die]].</p>",
       "chat": ""
     },
     "source": {

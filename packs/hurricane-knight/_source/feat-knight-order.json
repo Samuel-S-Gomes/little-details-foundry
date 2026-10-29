@@ -13,7 +13,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>Starting at 3rd level, you can choose one order that defines your way of fighting. You can choose the following orders: the <strong>Steel Wind Warriors</strong> and the <strong>Storm Knights</strong>.</p><p>You gain additional features when you reach the 6th, 11th, and 14th levels.</p><p><em>Foundry note: the chosen Order is applied via the Subclass slot at 3rd level — your subclass features will appear automatically as you level up.</em></p>",
+      "value": "<p>Starting at 3rd level, you can choose one order that defines your way of fighting. You can choose the following orders: the <strong>Steel Wind Warriors</strong> and the <strong>Storm Knights</strong>.</p><p>You gain additional features when you reach the 6th, 11th, and 14th levels.</p>",
       "chat": ""
     },
     "source": {

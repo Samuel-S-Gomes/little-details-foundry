@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.8.2] — 2026-10-29
+
+### Alterado
+- Hurricane Knight: removidas as "Foundry notes" do texto das features (One With the Storm, Floating Step, Knight Order, Steel Cyclone, Storm Heart, Thunder Blast, Thunderous Storm, Wind Armor, Wind Heart) e a observação de template do Air Control.
+
+---
+
 ## [0.8.1] — 2026-10-29
 
 ### Alterado — Hurricane Knight (revisão no VTT)

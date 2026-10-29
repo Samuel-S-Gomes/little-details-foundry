@@ -13,7 +13,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>At 7th level, you have advantage on any checks that would move you unwillingly, knock you prone, or impose the grappled or restrained conditions on you.</p><p>You are also no longer affected by difficult terrain.</p><hr><p><em>Foundry note: not automated — the player and the GM apply the advantage and ignore difficult terrain at the table.</em></p>",
+      "value": "<p>At 7th level, you have advantage on any checks that would move you unwillingly, knock you prone, or impose the grappled or restrained conditions on you.</p><p>You are also no longer affected by difficult terrain.</p>",
       "chat": ""
     },
     "source": {

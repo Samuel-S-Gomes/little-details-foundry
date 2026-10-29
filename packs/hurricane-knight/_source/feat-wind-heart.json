@@ -13,7 +13,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>Starting at 6th level, the damage dealt by your class features is considered magical for the purposes of overcoming resistance to nonmagical attacks and damage.</p><hr><p><em>Foundry note: damage parts from Hurricane Strike, Destructive Tornado, Rage Tornado, Electrify and similar features should be flagged as <code>magical</code> on use; with Midi-QOL this can be automated via the <code>flags.midi-qol.damage.magical</code> flag.</em></p>",
+      "value": "<p>Starting at 6th level, the damage dealt by your class features is considered magical for the purposes of overcoming resistance to nonmagical attacks and damage.</p>",
       "chat": ""
     },
     "source": {
