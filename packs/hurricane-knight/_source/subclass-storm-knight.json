@@ -11,7 +11,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p><em>Storm Knights learn how to control the winds to generate the lightning and thunder, being able to attack their enemies with the rage of a perfect storm.</em></p><h3>Storm Knight Features</h3><table><thead><tr><th>Hurricane Knight Level</th><th>Feature</th></tr></thead><tbody><tr><td>3rd</td><td>Thunder Blast, Storm Heart, Resistance</td></tr><tr><td>6th</td><td>Electrify</td></tr><tr><td>11th</td><td>Thunderous Storm</td></tr><tr><td>14th</td><td>Lighting Destruction, Resistance (second type)</td></tr></tbody></table>",
+      "value": "<p><em>Storm Knights learn how to control the winds to generate the lightning and thunder, being able to attack their enemies with the rage of a perfect storm.</em></p><h3>Storm Knight Features</h3><table><thead><tr><th>Hurricane Knight Level</th><th>Feature</th></tr></thead><tbody><tr><td>3rd</td><td>Thunder Blast, Storm Heart, Resistance</td></tr><tr><td>6th</td><td>Electrify</td></tr><tr><td>11th</td><td>Thunderous Storm</td></tr><tr><td>14th</td><td>Lightning Destruction, Resistance (second type)</td></tr></tbody></table>",
       "chat": ""
     },
     "source": {

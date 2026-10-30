@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.9.1] — 2026-10-30
+
+### Corrigido
+- Hurricane Knight: nome da feature "Lighting Destruction" → **"Lightning Destruction"** (item e tabela da subclasse Storm Knight).
+
+---
+
 ## [0.9.0] — 2026-10-30
 
 ### Adicionado
