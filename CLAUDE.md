@@ -15,7 +15,15 @@
 - ✅ v0.8.5: Lightning Destruction só com link para Chain Lightning do SRD (`dnd5e.spells`)
 - ⏳ Conferir v0.8.1 no VTT (lookup dos scale values, Thunder Blast só no Storm Knight, marcador do Wind Armor)
 
-### Notas condicionais do Hurricane Knight (v0.9.0)
+### Fixar janelas (v0.10.0)
+
+`scripts/fixar-janelas.js`. O ESC do core (`ClientKeybindings.#onDismiss`) chama `app.close({closeKey: true})` em `ui.windows` (v1) e em `foundry.applications.instances` com frame (v2). Fixar troca o `close` **da instância** (shadow do protótipo) por um que recusa `closeKey` — necessário porque subclasses fazem limpeza antes do `super.close()` (Levels 6: `LevelsUI.close` desliga `rangeEnabled`, salva e recalcula visibilidade). Botão ✕ (v2 `[data-action=close]`, v1 `.header-button.close`) barrado por listener de captura em `document`. Fechamento por código passa (Levels fecha com `close(true)` no `canvasInit`) e os hooks `closeApplication`/`closeApplicationV2` soltam o pin. Gesto: `pointerdown` em captura na `.window-header` (setting de cliente `fixar-janela-gesto`); alfinete `.mmr-pin` após `.window-title`, clique solta. Keybinding `fixar-janela-ativa` sem tecla (usa `ui.activeWindow`). Testado com janelas falsas v1/v2 no Brave headless; teste real pendente.
+
+## Módulos só para o Mestre (v0.10.0)
+
+`scripts/modulos-so-mestre.js`: hook `renderSettings` remove `[data-app=modules]`, `[data-app=support]` e `.modules` para não-GM; `_canRender` de `ModuleManagement` e `SupportDetails` lança erro (o core mostra como aviso e não abre). Setting de mundo `modulos-so-mestre` (default true). Limitação: client-scope settings de módulos ainda aparecem como abas em Configurar Configurações; `game.modules` no console.
+
+## Notas condicionais do Hurricane Knight (v0.9.0)
 
 `scripts/hk-notas.js` registra o enricher `@HKSe[<id>]{Título: texto}` (em `init`, via `registerHkNotas`). Cada nota fica sozinha num `<p>` (o v13 aplica enrichers por nó de texto e `replaceParent` troca o `<p>` inteiro); o texto não pode ter `}` nem HTML. Mostra se a ficha dona (`relativeTo` → item → actor; o dnd5e 5.1.10 passa o item em tooltip, ficha e card de chat) tem a feature (flag `hurricaneKnight`, `compendiumSource` ou nome do índice do compêndio); sem ficha, mostra sempre. CSS no fim de `styles/reminders.css` (separador na 1ª nota visível). Testado num harness que reproduz `#replaceTextNode`; teste real pendente.
 

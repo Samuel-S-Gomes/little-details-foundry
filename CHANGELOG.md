@@ -6,6 +6,16 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.10.0] — 2026-10-30
+
+### Adicionado
+- **Fixar janelas**: uma janela fixada não fecha com ESC nem com o botão ✕ (nem a do Levels, cuja limpeza ao fechar nem chega a rodar). Fixar = **duplo clique direito** na barra de título; soltar = clicar no alfinete que aparece ao lado do título. Fechamentos feitos pelo próprio sistema (troca de cena, documento apagado) continuam valendo e soltam o pin.
+  - Setting de cliente **"Gesto para fixar janela"**: duplo clique direito (padrão), Shift + clique direito, duplo clique do meio ou desligado.
+  - Atalho de teclado opcional **"Fixar/soltar a janela ativa"** (sem tecla padrão; definir em Configurar Controles).
+- **Módulos visíveis só para o Mestre** (setting de mundo, ligada por padrão): jogadores não veem "Gerenciar Módulos", "Detalhes de Suporte" (que também lista os módulos) nem a contagem de módulos na aba Configurações, e essas janelas se recusam a abrir para eles. Só interface — os dados continuam acessíveis pelo console.
+
+---
+
 ## [0.9.1] — 2026-10-30
 
 ### Corrigido

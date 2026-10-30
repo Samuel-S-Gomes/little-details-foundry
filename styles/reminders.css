@@ -298,3 +298,25 @@
   margin-top: 6px;
 }
 .mmr-hk-nota-oculta { display: none; }
+
+/* Fixar janelas — alfinete na barra de título e ✕ esmaecido */
+.window-header .mmr-pin {
+  flex: 0 0 auto;
+  margin: 0 6px;
+  color: #ff8a3d;
+  cursor: pointer;
+  transform: rotate(-30deg);
+}
+.window-header .mmr-pin:hover { color: #ffb37a; }
+.mmr-fixada > .window-header [data-action="close"],
+.mmr-fixada > .window-header .header-button.close {
+  opacity: .35;
+  cursor: not-allowed;
+}
+.mmr-fixada { box-shadow: 0 0 0 1px rgba(255, 138, 61, .55), 0 0 12px rgba(0, 0, 0, .6); }
+.window-header .mmr-pin.mmr-pin-pulso { animation: mmr-pin-pulso .45s ease-out; }
+@keyframes mmr-pin-pulso {
+  0%   { transform: rotate(-30deg) scale(1); }
+  40%  { transform: rotate(-10deg) scale(1.6); color: #fff; }
+  100% { transform: rotate(-30deg) scale(1); }
+}

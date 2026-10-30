@@ -24,6 +24,12 @@ import {
 } from './clima-por-andar.js';
 import { TELHADO_SETTING, registerTelhadoTochaHooks } from './telhado-tocha.js';
 import { registerHkNotas } from './hk-notas.js';
+import {
+  FIXAR_SETTING_GESTO,
+  registerFixarJanelasHooks,
+  registerFixarJanelasKeybinding
+} from './fixar-janelas.js';
+import { MODULOS_SETTING, registerModulosSoMestreHooks } from './modulos-so-mestre.js';
 
 // UUID do item do mundo que será monitorado
 const WATCHED_ITEM_UUID = 'Item.0otYDkF02RnuX8Gy';
@@ -175,6 +181,37 @@ Hooks.once('init', () => {
 
   // Notas do Hurricane Knight que só aparecem se a ficha tiver a feature citada.
   registerHkNotas();
+
+  // Fixar janelas (ESC e ✕ não fecham a janela fixada).
+  game.settings.register(MODULE_ID, FIXAR_SETTING_GESTO, {
+    name: 'Gesto para fixar janela',
+    hint: 'Gesto na barra de título que fixa a janela (ela deixa de fechar com ESC ou com o ✕). Para soltar, clique no alfinete.',
+    scope: 'client',
+    config: true,
+    type: String,
+    choices: {
+      'duplo-direito': 'Duplo clique direito',
+      'shift-direito': 'Shift + clique direito',
+      'duplo-meio': 'Duplo clique do botão do meio',
+      'nenhum': 'Desligado'
+    },
+    default: 'duplo-direito'
+  });
+  registerFixarJanelasKeybinding();
+  registerFixarJanelasHooks();
+
+  // Gerenciar Módulos só para o Mestre.
+  game.settings.register(MODULE_ID, MODULOS_SETTING, {
+    name: 'Módulos visíveis só para o Mestre',
+    hint: 'Jogadores não veem "Gerenciar Módulos", "Detalhes de Suporte" nem a contagem de módulos na aba Configurações.',
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: true,
+    restricted: true,
+    onChange: () => ui.sidebar?.tabs?.settings?.render()
+  });
+  registerModulosSoMestreHooks();
 
   // Expõe a API para uso via macro: game.modules.get('meu-modulo-rpg').api
   const mod = game.modules.get(MODULE_ID);
