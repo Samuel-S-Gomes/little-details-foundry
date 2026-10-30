@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.8.5] — 2026-10-30
+
+### Alterado
+- Hurricane Knight — **Lightning Destruction**: o texto da magia saiu da feature; fica só o link para *Chain Lightning* do SRD (`dnd5e.spells`). A ação da feature continua igual.
+
+---
+
 ## [0.8.4] — 2026-10-29
 
 ### Alterado
