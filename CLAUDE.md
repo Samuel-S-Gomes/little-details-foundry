@@ -12,9 +12,14 @@
 - ✅ Workflow do GitHub Actions com 3 triggers e idempotência
 - ✅ Release **v0.3.1** publicada (fix de ícones em cima da v0.3.0)
 - ✅ Testado em parte no VTT (29/10): escolha de resistência no 14 ok; revisão gerou a v0.8.1 (ver CHANGELOG)
+- ✅ v0.8.5: Lightning Destruction só com link para Chain Lightning do SRD (`dnd5e.spells`)
 - ⏳ Conferir v0.8.1 no VTT (lookup dos scale values, Thunder Blast só no Storm Knight, marcador do Wind Armor)
 
-### Sistema de Lembretes do GM (v0.4.0)
+### Notas condicionais do Hurricane Knight (v0.9.0)
+
+`scripts/hk-notas.js` registra o enricher `@HKSe[<id>]{Título: texto}` (em `init`, via `registerHkNotas`). Cada nota fica sozinha num `<p>` (o v13 aplica enrichers por nó de texto e `replaceParent` troca o `<p>` inteiro); o texto não pode ter `}` nem HTML. Mostra se a ficha dona (`relativeTo` → item → actor; o dnd5e 5.1.10 passa o item em tooltip, ficha e card de chat) tem a feature (flag `hurricaneKnight`, `compendiumSource` ou nome do índice do compêndio); sem ficha, mostra sempre. CSS no fim de `styles/reminders.css` (separador na 1ª nota visível). Testado num harness que reproduz `#replaceTextNode`; teste real pendente.
+
+## Sistema de Lembretes do GM (v0.4.0)
 - ✅ Código completo na branch `claude/gm-reminder-notifications-zVBDp` (commit `fd4caf8`)
 - ✅ `ReminderManager` (carrossel + drag + persist), `ReminderListConfig` (ApplicationV2), CSS e template Handlebars
 - ✅ 5 settings + 1 menu registrados em `main.js`

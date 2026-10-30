@@ -290,3 +290,11 @@
   padding: 6px 16px;
   font-weight: 600;
 }
+
+/* Hurricane Knight — notas condicionais (@HKSe): linha separando a 1ª nota visível do texto da feature */
+:not(.mmr-hk-nota) + .mmr-hk-nota {
+  border-top: 1px solid currentColor;
+  padding-top: 6px;
+  margin-top: 6px;
+}
+.mmr-hk-nota-oculta { display: none; }

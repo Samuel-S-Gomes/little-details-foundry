@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.9.0] — 2026-10-30
+
+### Adicionado
+- Hurricane Knight — **notas condicionais** nas descrições: `@HKSe[<id da feature>]{Título: texto}` só aparece se a ficha tiver aquela feature (fora de ficha, no compêndio, aparece sempre). Usado em Destructive Tornado (Storm Heart, Thunderous Storm) e Hurricane Strike (Thunder Blast, Steel Cyclone). A linha separadora só aparece quando há nota visível.
+
+---
+
 ## [0.8.5] — 2026-10-30
 
 ### Alterado

@@ -23,6 +23,7 @@ import {
   atualizarClimaPorAndar
 } from './clima-por-andar.js';
 import { TELHADO_SETTING, registerTelhadoTochaHooks } from './telhado-tocha.js';
+import { registerHkNotas } from './hk-notas.js';
 
 // UUID do item do mundo que será monitorado
 const WATCHED_ITEM_UUID = 'Item.0otYDkF02RnuX8Gy';
@@ -171,6 +172,9 @@ Hooks.once('init', () => {
     onChange: () => canvas.ready && canvas.perception.update({ refreshVision: true, refreshLighting: true })
   });
   registerTelhadoTochaHooks();
+
+  // Notas do Hurricane Knight que só aparecem se a ficha tiver a feature citada.
+  registerHkNotas();
 
   // Expõe a API para uso via macro: game.modules.get('meu-modulo-rpg').api
   const mod = game.modules.get(MODULE_ID);

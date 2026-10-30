@@ -13,7 +13,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>Starting at 2nd level, you finally start to control the hurricane technique. When you take the Attack action, you can choose to, instead of attacking, create a swirl of wind around you, forcing all creatures within 5 feet to succeed on a Strength saving throw against your Hurricane save DC, or take 1d6 bludgeoning damage. You can use this feature on your turn as many times as you can make attacks, on your Attack action.</p><hr><p><strong>Storm Knight — Thunder Blast (3rd level):</strong> you may deal lightning damage instead of bludgeoning.</p><p><strong>Steel Wind Warrior — Steel Cyclone (3rd level):</strong> when wielding a weapon that lacks the two-handed and heavy properties, add its damage die to this damage. You don't add your ability score to this damage.</p>",
+      "value": "<p>Starting at 2nd level, you finally start to control the hurricane technique. When you take the Attack action, you can choose to, instead of attacking, create a swirl of wind around you, forcing all creatures within 5 feet to succeed on a Strength saving throw against your Hurricane save DC, or take 1d6 bludgeoning damage. You can use this feature on your turn as many times as you can make attacks, on your Attack action.</p><p>@HKSe[HKFthunderBlast1]{Storm Knight — Thunder Blast (3rd level): you may deal lightning damage instead of bludgeoning.}</p><p>@HKSe[HKFsteelCyclone1]{Steel Wind Warrior — Steel Cyclone (3rd level): when wielding a weapon that lacks the two-handed and heavy properties, add its damage die to this damage. You don't add your ability score to this damage.}</p>",
       "chat": ""
     },
     "source": {
