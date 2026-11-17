@@ -248,6 +248,10 @@ Pedido na mesa `vontade-tempestuosa` (Monastério com Levels): a neve do FXMaste
 
 ---
 
+## Ajustes do clima do Calendaria (v0.11.0)
+
+`scripts/clima-ajustes.js`. Calendaria 1.0.17 só manda ao FXMaster o nome do preset (densidade/velocidade relativas só quando o clima é escolhido à mão; clima sorteado não leva). O FXMaster 8 grava o efeito em `scene.flags.fxmaster.effects.apiPreset_<preset>_p<n>` com opções **comprimidas** (scale/speed/density/lifetime de 0.1–5 viram 0.1–1). No `updateScene` com `flags.fxmaster`, `canvasReady` e `calendaria.weatherChange` (coalescidos 250 ms), o GM principal lê o clima atual da zona da cena (`CALENDARIA.managers.WeatherManager.getCurrentWeather(null, scene)` → `getPreset(id).fxAjustes`, chaveado por tipo de partícula, valores na escala antiga) e grava só o que difere, convertendo com `CONFIG.fxmaster.normalizeEffectOptionsForStorageFromLegacy(def, valores)`. Idempotente pela comparação (não entra em laço com a própria gravação). Registro em `flags.meu-modulo-rpg.climaAjuste`. Setting `clima-ajustes-calendaria` (world, default true). Testado com stubs em Node; teste real pendente. Valores usados na mesa vontade-tempestuosa: `Foundry/macros/vontade-clima/instalar-clima.js`.
+
 ## Telhado à luz da tocha (v0.8.0)
 
 Pedido na mesa `vontade-tempestuosa`: de fora do templo, as paredes cortam a LOS e o telhado (elev 9) some na névoa. O "Reveals Fog of War" do Better Roofs (versão instalada só tem o modo "mostrar tile inteiro"; o antigo modo Mask foi removido) revela o telhado todo mesmo no escuro — usuário rejeitou.

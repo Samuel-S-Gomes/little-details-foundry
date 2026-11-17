@@ -23,6 +23,7 @@ import {
   atualizarClimaPorAndar
 } from './clima-por-andar.js';
 import { TELHADO_SETTING, registerTelhadoTochaHooks } from './telhado-tocha.js';
+import { CLIMA_AJUSTES_SETTING, registerClimaAjustesHooks } from './clima-ajustes.js';
 import { registerHkNotas } from './hk-notas.js';
 import {
   FIXAR_SETTING_GESTO,
@@ -165,6 +166,18 @@ Hooks.once('init', () => {
     onChange: atualizarClimaPorAndar
   });
   registerClimaPorAndarHooks();
+
+  // Ajustes das partículas que o Calendaria liga no FXMaster (campo fxAjustes do preset).
+  game.settings.register(MODULE_ID, CLIMA_AJUSTES_SETTING, {
+    name: 'Ajustar partículas do clima do Calendaria',
+    hint: 'Quando o Calendaria liga um efeito do FXMaster, troca tamanho, quantidade, velocidade e cor das partículas pelos valores do campo fxAjustes do clima. Só o GM grava.',
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: true,
+    restricted: true
+  });
+  registerClimaAjustesHooks();
 
   // Telhado à luz da tocha: telhado visto de fora recortado pelo alcance da luz/visão.
   game.settings.register(MODULE_ID, TELHADO_SETTING, {

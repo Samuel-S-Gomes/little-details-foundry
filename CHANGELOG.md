@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.11.0] — 2026-11-17
+
+### Adicionado
+- **Ajustar partículas do clima do Calendaria** (setting de mundo, ligada por padrão): quando o Calendaria liga um efeito do FXMaster na cena, o GM troca tamanho, quantidade, velocidade, duração, opacidade e cor das partículas pelos valores do campo `fxAjustes` do clima (ex.: `{ snow: { scale: 0.8, speed: 2 } }`, na escala dos presets do FXMaster). Vale para clima sorteado, escolhido à mão e depois de recarregar a página.
+
+---
+
 ## [0.10.0] — 2026-10-30
 
 ### Adicionado
