@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.12.1] — 2026-11-18
+
+### Corrigido
+- Exportar ficha: o download falhava ("Algo deu errado") porque o arquivo temporário era apagado 100 ms depois do clique; agora fica disponível por 1 minuto.
+
+---
+
 ## [0.12.0] — 2026-11-18
 
 ### Adicionado

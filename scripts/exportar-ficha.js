@@ -361,6 +361,17 @@ function carregarPdfLib() {
   return pdfLibPromise;
 }
 
+// O saveDataToFile do core revoga o blob 100 ms depois do clique; com o PDF
+// (~600 KB) o navegador ainda não leu e o download falha ("Algo deu errado").
+function baixarArquivo(bytes, tipo, nome) {
+  const url = URL.createObjectURL(new Blob([bytes], { type: tipo }));
+  const a = document.createElement('a');
+  a.href = url; a.download = nome; a.style.display = 'none';
+  document.body.append(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 60_000);
+}
+
 export async function exportarFichaPdf(actor) {
   const aviso = ui.notifications.info(`Gerando a ficha de ${actor.name}…`, { permanent: true });
   try {
@@ -375,7 +386,7 @@ export async function exportarFichaPdf(actor) {
     dados.retrato = await retratoPng(actor.img);
     const pdf = await preencherFicha(PDFLib, bytes, dados);
     const nome = `${actor.name.replace(/[\\/:*?"<>|]+/g, '').trim() || 'ficha'}.pdf`;
-    foundry.utils.saveDataToFile(pdf, 'application/pdf', nome);
+    baixarArquivo(pdf, 'application/pdf', nome);
     ui.notifications.info(`Ficha exportada: ${nome}`);
   } catch (err) {
     console.error(`${MODULE_ID} | exportar ficha`, err);
