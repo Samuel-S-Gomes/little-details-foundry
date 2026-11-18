@@ -31,6 +31,7 @@ import {
   registerFixarJanelasKeybinding
 } from './fixar-janelas.js';
 import { MODULOS_SETTING, registerModulosSoMestreHooks } from './modulos-so-mestre.js';
+import { registerExportarFichaHooks } from './exportar-ficha.js';
 
 // UUID do item do mundo que será monitorado
 const WATCHED_ITEM_UUID = 'Item.0otYDkF02RnuX8Gy';
@@ -225,6 +226,7 @@ Hooks.once('init', () => {
     onChange: () => ui.sidebar?.tabs?.settings?.render()
   });
   registerModulosSoMestreHooks();
+  registerExportarFichaHooks();
 
   // Expõe a API para uso via macro: game.modules.get('meu-modulo-rpg').api
   const mod = game.modules.get(MODULE_ID);

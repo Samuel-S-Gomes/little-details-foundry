@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.12.0] — 2026-11-18
+
+### Adicionado
+- **Exportar ficha (PDF)** no menu ⋮ da ficha de personagem (dnd5e): preenche a ficha oficial em PT-BR (3 páginas, campos editáveis) com atributos, salvaguardas, perícias, CA, PV, dados de vida, testes contra a morte, ataques, proficiências, equipamento (com conteúdo das mochilas), moedas, personalidade, detalhes, história, retrato, características (lista + descrições) e magias por círculo (preparadas marcadas, espaços totais/usados, pacto). Cada campo usa a maior fonte que cabe; o que não cabe nem em fonte mínima vai para páginas de anexo no fim.
+
+---
+
 ## [0.11.0] — 2026-11-17
 
 ### Adicionado
