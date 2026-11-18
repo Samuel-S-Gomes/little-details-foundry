@@ -6,6 +6,17 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.12.2] — 2026-11-18
+
+### Alterado
+- Exportar ficha: descrições das características correm por **Aliados e Organizações → Outras Características** com a mesma fonte, e só o que sobra vai para o anexo; descrições repetidas (ex.: Spellcasting de várias classes) entram uma vez.
+- Anexo em **duas colunas**, fonte 6,5 com nomes em negrito, ordenado (características, história, magias). Ficha do Del Nailo: de 11 para 5 páginas.
+
+### Corrigido
+- Tags do Plutonium/5etools (`@item[longsword|phb]`, `{@spell ...}`) e `&Reference[...]` apareciam cruas no texto.
+
+---
+
 ## [0.12.1] — 2026-11-18
 
 ### Corrigido

@@ -51,6 +51,26 @@ export function quebrarLinhas(texto, fonte, tamanho, largura) {
 // o pdf-lib espaça as linhas um pouco além da altura da fonte; margem de folga
 const alturaLinha = (fonte, tamanho) => fonte.heightAtSize(tamanho) * 1.18;
 
+/** Como quebrarLinhas, mas cada linha lembra o parágrafo de origem (para devolver o resto como texto corrido). */
+function quebrarComParagrafo(texto, fonte, tamanho, largura) {
+  const out = [];
+  texto.split('\n').forEach((par, i) => {
+    for (const l of quebrarLinhas(par, fonte, tamanho, largura)) out.push({ l, par: i });
+  });
+  return out;
+}
+
+/** Reconstrói texto corrido a partir de linhas quebradas (o anexo tem outra largura). */
+function juntarLinhas(linhas) {
+  const pars = [];
+  let atual = null;
+  for (const { l, par } of linhas) {
+    if (atual && atual.par === par) atual.t += ` ${l}`;
+    else { atual = { par, t: l }; pars.push(atual); }
+  }
+  return pars.map((p) => p.t).join('\n').trim();
+}
+
 function tamanhoPadrao(campo) {
   const da = campo.acroField.getDefaultAppearance?.() ?? '';
   const m = da.match(/([\d.]+)\s+Tf/);
@@ -96,12 +116,53 @@ export async function preencherFicha(PDFLib, bytesFicha, dados) {
       linhas = quebrarLinhas(valor, fonte, tamanho, largura);
       const cabem = Math.max(1, Math.floor(altura / alturaLinha(fonte, tamanho)) - 1);
       campo.setText(`${linhas.slice(0, cabem).join('\n')}\n(continua no anexo)`);
-      anexos.push({ titulo: `${dados.rotulos?.[nome] ?? nome} (continuação)`, texto: linhas.slice(cabem).join('\n') });
+      anexos.push({ titulo: dados.rotulos?.[nome] ?? nome, texto: juntarLinhas(quebrarComParagrafo(valor, fonte, tamanho, largura).slice(cabem)) });
     } else {
       // já quebrado por nós, para o pdf-lib não refazer a quebra diferente
       campo.setText(linhas.join('\n'));
     }
     campo.setFontSize(tamanho);
+  }
+
+  for (const fluxo of dados.fluxos ?? []) {
+    const valor = limparTexto(fluxo.texto ?? '', fonte).replace(/\n{3,}/g, '\n\n').trim();
+    if (!valor) continue;
+    const caixas = fluxo.campos.map((nome) => {
+      const campo = form.getTextField(nome);
+      const r = campo.acroField.getWidgets()[0].getRectangle();
+      return { campo, largura: r.width - 2 * MARGEM, altura: r.height - 2 * MARGEM, padrao: tamanhoPadrao(campo) };
+    });
+    // mesma fonte em todas as caixas do fluxo; a maior que faz tudo caber
+    const distribuir = (tamanho) => {
+      let resto = valor; const partes = [];
+      for (const cx of caixas) {
+        const linhas = quebrarComParagrafo(resto, fonte, tamanho, cx.largura);
+        const cabem = Math.floor((cx.altura - 2) / (alturaLinha(fonte, tamanho) * 1.04));
+        partes.push(linhas.slice(0, cabem));
+        resto = juntarLinhas(linhas.slice(cabem));
+        if (!resto) break;
+      }
+      return { partes, resto };
+    };
+    let tamanho = Math.max(...caixas.map((c) => c.padrao || 8)), plano;
+    for (; tamanho >= FONTE_MIN_BLOCO; tamanho -= 0.25) {
+      plano = distribuir(tamanho);
+      if (!plano.resto) break;
+    }
+    if (plano.resto) {
+      tamanho = FONTE_MIN_BLOCO;
+      plano = distribuir(tamanho);
+      const ultima = plano.partes[plano.partes.length - 1];
+      // abre espaço para o aviso na última caixa
+      const tirada = ultima.splice(ultima.length - 1, 1);
+      plano.resto = juntarLinhas([...tirada, ...quebrarComParagrafo(plano.resto, fonte, tamanho, 1e6).map((x) => ({ ...x, par: x.par + 1e4 }))]);
+      ultima.push({ l: '(continua no anexo)', par: -1 });
+      anexos.push({ titulo: fluxo.titulo, texto: plano.resto, ordem: fluxo.ordem ?? 0 });
+    }
+    plano.partes.forEach((linhas, i) => {
+      caixas[i].campo.setText(linhas.map((x) => x.l).join('\n'));
+      caixas[i].campo.setFontSize(tamanho);
+    });
   }
 
   for (const nome of dados.marcar ?? []) {
@@ -130,25 +191,43 @@ export async function preencherFicha(PDFLib, bytesFicha, dados) {
 }
 
 function desenharAnexos(pdf, fonte, negrito, rgb, anexos, titulo) {
-  const L = 612, A = 792, M = 40, larg = L - 2 * M;
-  const T = 8.5, LH = fonte.heightAtSize(T) * 1.15;
-  let pagina, y;
+  const L = 612, A = 792, M = 30, GAP = 16, TOPO = A - M - 18;
+  const colL = (L - 2 * M - GAP) / 2;
+  const T = 6.5, LH = fonte.heightAtSize(T) * 1.12, TS = 8, PAR = 2.5;
+  let pagina, col, y;
+  const xCol = () => M + col * (colL + GAP);
   const novaPagina = () => {
     pagina = pdf.addPage([L, A]);
-    pagina.drawText(limparTexto(`${titulo} — anexo`, negrito), { x: M, y: A - M, size: 13, font: negrito });
-    pagina.drawLine({ start: { x: M, y: A - M - 6 }, end: { x: L - M, y: A - M - 6 }, thickness: 0.6, color: rgb(0.4, 0.4, 0.4) });
-    y = A - M - 24;
+    pagina.drawText(limparTexto(`${titulo} — anexo`, negrito), { x: M, y: A - M, size: 10, font: negrito });
+    pagina.drawLine({ start: { x: M, y: A - M - 5 }, end: { x: L - M, y: A - M - 5 }, thickness: 0.5, color: rgb(0.4, 0.4, 0.4) });
+    pagina.drawLine({ start: { x: M + colL + GAP / 2, y: TOPO + 4 }, end: { x: M + colL + GAP / 2, y: M }, thickness: 0.3, color: rgb(0.75, 0.75, 0.75) });
+    col = 0; y = TOPO;
+  };
+  const avancar = (h) => {
+    if (y - h >= M) return;
+    if (col === 0) { col = 1; y = TOPO; } else novaPagina();
   };
   novaPagina();
-  for (const { titulo: secao, texto } of anexos) {
-    if (y < M + 40) novaPagina();
-    pagina.drawText(limparTexto(secao, negrito), { x: M, y, size: 10.5, font: negrito });
-    y -= 15;
-    for (const linha of quebrarLinhas(limparTexto(texto, fonte), fonte, T, larg)) {
-      if (y < M) novaPagina();
-      if (linha) pagina.drawText(linha, { x: M, y, size: T, font: fonte });
-      y -= LH;
+  for (const { titulo: secao, texto } of anexos.sort((a, b) => (a.ordem ?? 0) - (b.ordem ?? 0))) {
+    avancar(TS + 4 * LH);
+    pagina.drawText(limparTexto(secao, negrito).toUpperCase(), { x: xCol(), y, size: TS, font: negrito, color: rgb(0.45, 0.1, 0.1) });
+    y -= TS + 3;
+    for (const par of limparTexto(texto, fonte).split('\n')) {
+      if (!par.trim()) { y -= PAR; continue; }
+      // "NOME: texto" → nome em negrito
+      const m = par.match(/^([^:]{2,70}):\s/);
+      const cab = m && m[1] === m[1].toUpperCase() ? `${m[1]}:` : '';
+      const linhas = quebrarLinhas(cab ? `${cab} ${par.slice(m[0].length)}` : par, fonte, T, colL);
+      linhas.forEach((linha, i) => {
+        avancar(LH);
+        if (i === 0 && cab && linha.startsWith(cab)) {
+          pagina.drawText(cab, { x: xCol(), y, size: T, font: negrito });
+          pagina.drawText(linha.slice(cab.length), { x: xCol() + negrito.widthOfTextAtSize(cab, T), y, size: T, font: fonte });
+        } else pagina.drawText(linha, { x: xCol(), y, size: T, font: fonte });
+        y -= LH;
+      });
+      y -= PAR;
     }
-    y -= 8;
+    y -= 5;
   }
 }

@@ -47,10 +47,17 @@ export function htmlParaTexto(html) {
   };
   let s = String(html)
     .replace(/\s*\n\s*/g, ' ')
+    .replace(/&amp;/g, '&')
     .replace(/[@&]\w+\[[^\]]*\]\{([^}]*)\}/g, '$1')
     .replace(/&Reference\[([^\]]*)\]/g, (_, r) => r.split('=').pop().split(' ')[0])
     .replace(/@UUID\[([^\]]*)\]/g, (_, ref) => nomeUuid(ref))
-    .replace(/@\w+\[([^\]]*)\]/g, (_, ref) => ref.split('.').pop())
+    // tags do Plutonium/5etools: @item[shield|phb], @class[fighter|phb|Battle Master|...]
+    .replace(/@\w+\[([^\]]*)\]/g, (_, ref) => {
+      if (!ref.includes('|')) return ref.split('.').pop();
+      const p = ref.split('|');
+      return (p.length >= 3 && p[2] ? p[2] : p[0]).trim();
+    })
+    .replace(/\{@\w+ ([^}]*)\}/g, (_, ref) => { const p = ref.split('|'); return (p.length >= 3 && p[2] ? p[2] : p[0]).trim(); })
     .replace(/\[\[\/(save|check|skill)\s+([^\]]*)\]\]/g, (_, tipo, args) => {
       const dc = args.match(/dc=(\d+)/)?.[1];
       const alvo = args.match(/(?:ability|skill)=(\w+)/)?.[1] ?? args.split(' ')[0];
@@ -265,12 +272,12 @@ export function coletarFicha(actor) {
   T['Defeitos'] = htmlParaTexto(d.flaw);
   T['Idade'] = d.age; T['Altura'] = d.height; T['Peso'] = d.weight;
   T['Olhos'] = d.eyes; T['Pele'] = d.skin; T['Cabelos'] = d.hair;
-  T['Aliados e Organizações'] = d.faith ? `Fé: ${d.faith}` : '';
-  T['História do Personagem'] = [
+  const fluxos = [];
+  fluxos.push({ titulo: 'História', ordem: 2, campos: ['História do Personagem'], texto: [
     d.gender && `Gênero: ${d.gender}`,
     d.appearance && `Aparência: ${htmlParaTexto(d.appearance)}`,
     htmlParaTexto(d.biography?.value)
-  ].filter(Boolean).join('\n\n');
+  ].filter(Boolean).join('\n\n') });
 
   // --- Características ------------------------------------------------------
   const feats = porTipo('feat');
@@ -292,11 +299,19 @@ export function coletarFicha(actor) {
   T['Caracteristicas e Habilidades'] = ordem.filter((g) => grupos.has(g))
     .map((g) => `${g.toUpperCase()}\n${grupos.get(g).map((f) => `• ${f.name}${usosTexto(f)}`).join('\n')}`)
     .join('\n\n');
-  T['Outras Características e Habilidades'] = feats
-    .map((f) => {
-      const txt = htmlParaTexto(f.system.description?.value);
-      return txt ? `${f.name.toUpperCase()}: ${txt}` : '';
-    }).filter(Boolean).join('\n\n');
+  // descrições iguais (ex.: Spellcasting de várias classes) entram uma vez só
+  const descricoes = new Map();
+  for (const f of feats) {
+    const txt = htmlParaTexto(f.system.description?.value);
+    if (!txt) continue;
+    if (descricoes.has(txt)) descricoes.get(txt).add(f.name); else descricoes.set(txt, new Set([f.name]));
+  }
+  const textoFeats = [...descricoes].map(([txt, nomes]) => `${[...nomes].join(' / ').toUpperCase()}: ${txt.replace(/\n\n+/g, '\n')}`).join('\n');
+  fluxos.push({
+    titulo: 'Características e habilidades', ordem: 1,
+    campos: ['Aliados e Organizações', 'Outras Características e Habilidades'],
+    texto: [d.faith ? `FÉ: ${d.faith}` : '', textoFeats].filter(Boolean).join('\n')
+  });
 
   // --- Magias --------------------------------------------------------------
   const conj = classes.filter((c) => c.system.spellcasting?.progression && c.system.spellcasting.progression !== 'none');
@@ -342,10 +357,10 @@ export function coletarFicha(actor) {
     if (total || pacto?.level === n) T[`Espaços Usados${sufixo}`] = usados ? String(usados) : '';
     encher(linhas[n - 1].campos, linhas[n - 1].caixas, porNivel[n], n);
   }
-  if (sobra.length) anexos.push({ titulo: 'Magias que não couberam na página 3', texto: sobra.join('\n\n') });
+  if (sobra.length) anexos.push({ titulo: 'Magias que não couberam na página 3', ordem: 3, texto: sobra.join('\n') });
 
   for (const k of Object.keys(T)) if (T[k] == null) delete T[k]; else T[k] = String(T[k]);
-  return { texto: T, marcar, rotulos, anexos, desenhos, titulo: actor.name };
+  return { texto: T, marcar, rotulos, anexos, fluxos, desenhos, titulo: actor.name };
 }
 
 let pdfLibPromise = null;
