@@ -83,9 +83,24 @@ function rotuloTraco(chave, trait) {
 function usosTexto(item) {
   const u = item.system.uses;
   if (!u?.max) return '';
+  let max = Number(u.max);
+  if (!Number.isFinite(max)) {
+    // fórmula que o sistema não resolveu (ex.: @scale de classe importada sem a escala)
+    try {
+      const f = Roll.replaceFormulaData(String(u.max), item.getRollData?.() ?? item.actor?.getRollData() ?? {}, { missing: '' });
+      max = Roll.safeEval(f);
+    } catch { max = NaN; }
+    if (!Number.isFinite(max) || max <= 0) return '';
+    max = Math.floor(max);
+    return ` [${Math.max(0, max - (u.spent ?? 0))}/${max}${periodos(u)}]`;
+  }
+  return ` [${u.value ?? 0}/${max}${periodos(u)}]`;
+}
+
+function periodos(u) {
   const per = (u.recovery ?? []).map((r) => CONFIG.DND5E.limitedUsePeriods?.[r.period]?.abbreviation
     ?? CONFIG.DND5E.limitedUsePeriods?.[r.period]?.label ?? r.period).filter(Boolean).join('/');
-  return ` [${u.value ?? 0}/${u.max}${per ? ` ${per}` : ''}]`;
+  return per ? ` ${per}` : '';
 }
 
 function ataqueDoItem(item) {

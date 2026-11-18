@@ -10,6 +10,7 @@ const raw = fs.readFileSync(arq, 'utf8').split('\n').filter(Boolean).map(JSON.pa
 globalThis.DOMParser = class { parseFromString(s) { return { body: { textContent: s.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&') } }; } };
 globalThis.CONFIG = { DND5E: { damageTypes: {}, healingTypes: {}, abilities: {}, limitedUsePeriods: { lr: { abbreviation: 'DL' }, sr: { abbreviation: 'DC' }, day: { abbreviation: 'dia' } }, movementTypes: {}, senses: {} } };
 globalThis.game = { users: [] };
+globalThis.Roll = { replaceFormulaData: (f, d) => f.replace(/@[\w.-]+/g, (k) => { const v = k.slice(1).split(".").reduce((o, p) => o?.[p], d); return v ?? ""; }), safeEval: (f) => { if (!/^[\d+\-*/(). ]+$/.test(f) || !f.trim()) throw new Error("x"); return Function(`return (${f})`)(); } };
 globalThis.dnd5e = { documents: { Trait: { keyLabel: (k) => k } } };
 
 const s = structuredClone(raw.system);

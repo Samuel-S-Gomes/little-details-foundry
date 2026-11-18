@@ -6,6 +6,13 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.12.3] — 2026-11-18
+
+### Corrigido
+- Exportar ficha: usos com fórmula que o sistema não resolve (ex.: `@scale.fighter.action-surge` em classe importada sem a escala) apareciam crus na lista de características. Agora a fórmula é avaliada com os dados do item; se não der número, os usos são omitidos.
+
+---
+
 ## [0.12.2] — 2026-11-18
 
 ### Alterado
