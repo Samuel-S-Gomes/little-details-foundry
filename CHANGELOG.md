@@ -6,6 +6,9 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.13.2] — 2026-11-24
+- Ações de arma: o botão de TR rola para os alvos do ataque (ou tokens selecionados), nunca para o personagem de quem clicou.
+
 ## [0.13.1] — 2026-11-24
 - Ações de arma: a coluna Fórmula da ficha não lista mais o dano das ações de arma (só das activities normais).
 

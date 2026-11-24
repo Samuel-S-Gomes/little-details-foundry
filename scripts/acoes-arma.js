@@ -82,10 +82,18 @@ export function registerAcoesArmaHooks() {
     btn.addEventListener('click', async (event) => {
       event.preventDefault();
       event.stopPropagation();
-      const tokens = canvas.tokens?.controlled ?? [];
-      const atores = tokens.length ? tokens.map(t => t.actor).filter(Boolean)
-        : (game.user.character ? [game.user.character] : []);
-      if (!atores.length) return ui.notifications.warn('Selecione o token do alvo para rolar o TR.');
+      // Rola para os alvos do ataque (gravados no card); se não houver, para os tokens selecionados.
+      // Nunca para o personagem de quem clicou — quem faz o TR é o alvo.
+      const alvos = (message.getFlag('dnd5e', 'targets') ?? [])
+        .map(t => fromUuidSync(t.uuid)).filter(Boolean)
+        .map(d => d.actor ?? d);
+      const selecionados = (canvas.tokens?.controlled ?? []).map(t => t.actor).filter(Boolean);
+      const atores = [...new Set(alvos.length ? alvos : selecionados)].filter(a => a?.isOwner);
+      if (!atores.length) {
+        return ui.notifications.warn(alvos.length
+          ? 'Só o mestre (ou o dono do alvo) pode rolar o TR do alvo.'
+          : 'Mire (target) ou selecione o token do alvo para rolar o TR.');
+      }
       for (const actor of atores) {
         await actor.rollSavingThrow({ event, ability, target: dc });
       }
