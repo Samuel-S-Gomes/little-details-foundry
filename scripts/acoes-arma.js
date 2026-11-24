@@ -27,6 +27,25 @@ function cdDaAcao(activity) {
 }
 
 export function registerAcoesArmaHooks() {
+  // Coluna "Fórmula" da ficha (item.labels.damages) só com o dano das activities
+  // normais da arma; o dano das ações de arma continua no card de cada ação.
+  const Item5e = CONFIG.Item.documentClass;
+  const original = Item5e.prototype._prepareLabels;
+  if (original && !original._mmrAcoesArma) {
+    const embrulho = function (...args) {
+      const r = original.apply(this, args);
+      const mapa = this.getFlag?.(MODULE_ID, 'acoesArma');
+      if (mapa && this.labels?.damages?.length) {
+        this.labels.damages = this.system.activities
+          .filter(a => !(a.id in mapa) && ('activation' in a))
+          .flatMap(a => a.labels?.damage ?? []);
+      }
+      return r;
+    };
+    embrulho._mmrAcoesArma = true;
+    Item5e.prototype._prepareLabels = embrulho;
+  }
+
   Hooks.on('dnd5e.preUseActivity', (activity) => {
     if (!chaveDaAcao(activity)) return;
     const item = activity.item;

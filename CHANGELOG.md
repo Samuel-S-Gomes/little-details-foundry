@@ -6,6 +6,9 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.13.1] — 2026-11-24
+- Ações de arma: a coluna Fórmula da ficha não lista mais o dano das ações de arma (só das activities normais).
+
 ## [0.13.0] — 2026-11-24
 - Ações de arma (homebrew): `scripts/acoes-arma.js` bloqueia a ação se a arma não estiver equipada ou sem proficiência e põe no card o botão de TR do alvo (CD = 8 + mod. + prof.). As activities são gravadas pela macro `Foundry/macros/acoes-arma/acoes-arma.js`.
 
